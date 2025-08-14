@@ -144,50 +144,113 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Tab Content Area */
-        .tab-content {
+        /* Page Navigation Styles */
+        .page-container {
             display: none;
         }
 
-        .tab-content.active {
+        .page-container.active {
             display: block;
-            animation: fadeIn 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .main-dashboard {
+            display: block;
         }
 
-        /* Sub-content Layout */
-        .content-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 20px;
+        .main-dashboard.hidden {
+            display: none;
         }
 
-        .metrics-section, .charts-section {
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
+        /* Overview Page Specific Styles */
+        .overview-page {
+            max-width: 1400px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        .section-header {
-            font-size: 1.3em;
-            font-weight: 600;
-            color: #0066cc;
-            margin-bottom: 20px;
+        .overview-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
             text-align: center;
-            padding: 10px;
+            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.1);
+        }
+
+        .overview-title {
+            font-size: 2.5em;
+            color: #0066cc;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .overview-subtitle {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .overview-layout {
+            display: block;
+        }
+
+        .overview-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0, 102, 204, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .overview-section-header {
+            display: flex;
+            align-items: center;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 25px;
+            padding: 15px;
             background: rgba(0, 102, 204, 0.1);
-            border-radius: 8px;
+            border-radius: 10px;
+        }
+
+        .overview-section-header .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Back Navigation */
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .back-nav-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-nav-btn:hover {
+            background: #004499;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
         }
 
         /* Metrics Cards Grid */
         .metrics-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 12px;
         }
 
@@ -206,134 +269,6 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
             border-color: #0066cc;
-        }
-
-        /* Detail View Styles */
-        .detail-view {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .detail-content {
-            max-width: 900px;
-            margin: 50px auto;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 102, 204, 0.3);
-        }
-
-        .detail-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #0066cc;
-        }
-
-        .detail-title {
-            font-size: 2em;
-            color: #0066cc;
-            font-weight: 700;
-        }
-
-        .close-btn {
-            background: #cc0000;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.5em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .close-btn:hover {
-            background: #ff0000;
-            transform: scale(1.1);
-        }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-
-        .detail-card {
-            background: rgba(0, 102, 204, 0.05);
-            border: 1px solid rgba(0, 102, 204, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .detail-stat {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .detail-stat-number {
-            font-size: 3em;
-            font-weight: 700;
-            color: #0066cc;
-        }
-
-        .detail-stat-label {
-            font-size: 1.1em;
-            color: #333;
-            margin-top: 5px;
-        }
-
-        .detail-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .detail-list li {
-            padding: 10px;
-            margin: 8px 0;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
-            border-left: 4px solid #0066cc;
-        }
-
-        .back-btn {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: #004499;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .detail-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .detail-content {
-                margin: 20px auto;
-                padding: 20px;
-            }
         }
 
         .metric-icon {
@@ -357,7 +292,7 @@
         /* Charts Grid */
         .charts-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 12px;
         }
 
@@ -429,6 +364,123 @@
             r: 2;
         }
 
+        /* Detail View Styles */
+        .detail-view {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .detail-content {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 102, 204, 0.3);
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+        }
+
+        .detail-title {
+            font-size: 2em;
+            color: #0066cc;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: #cc0000;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #ff0000;
+            transform: scale(1.1);
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .detail-card {
+            background: rgba(0, 102, 204, 0.05);
+            border: 1px solid rgba(0, 102, 204, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .detail-stat {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .detail-stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: #0066cc;
+        }
+
+        .detail-stat-label {
+            font-size: 1.1em;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-list li {
+            padding: 10px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .back-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #004499;
+            transform: translateY(-2px);
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
             .main-tabs {
@@ -456,125 +508,18 @@
                 font-size: 2em;
             }
             
-            .content-layout {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
             .metrics-grid, .charts-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                 gap: 8px;
             }
-        }
-
-        /* Page Navigation Styles */
-        .page-container {
-            display: none;
-        }
-
-        .page-container.active {
-            display: block;
-        }
-
-        .main-dashboard {
-            display: block;
-        }
-
-        .main-dashboard.hidden {
-            display: none;
-        }
-
-        /* Overview Page Specific Styles */
-        .overview-page {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .overview-header {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.1);
-        }
-
-        .overview-title {
-            font-size: 2.5em;
-            color: #0066cc;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .overview-subtitle {
-            font-size: 1.2em;
-            color: #666;
-        }
-
-        .overview-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .overview-section {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 30px rgba(0, 102, 204, 0.15);
-        }
-
-        .overview-section-header {
-            display: flex;
-            align-items: center;
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #0066cc;
-            margin-bottom: 25px;
-            padding: 15px;
-            background: rgba(0, 102, 204, 0.1);
-            border-radius: 10px;
-        }
-
-        .overview-section-header .icon {
-            margin-right: 10px;
-            font-size: 1.2em;
-        }
-
-        /* Back Navigation */
-        .back-nav {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 100;
-        }
-
-        .back-nav-btn {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .back-nav-btn:hover {
-            background: #004499;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .overview-layout {
+            
+            .detail-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+            }
+            
+            .detail-content {
+                margin: 20px auto;
+                padding: 20px;
             }
             
             .back-nav {
@@ -584,11 +529,42 @@
                 margin-bottom: 20px;
             }
         }
+
+        /* Section styles for various content */
+        .section-header {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 102, 204, 0.1);
+            border-radius: 8px;
+        }
+
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 1024px) {
+            .content-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .metrics-section, .charts-section {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <div class="header">
+    <div class="header" id="mainHeader">
         <div class="logo-section">
             <div class="logo-container">
                 <div class="logo-placeholder">MINISTRY<br>HEALTH</div>
@@ -614,96 +590,45 @@
         <div class="dashboard-container">
             <!-- Main Tab Navigation -->
             <div class="main-tabs">
-                <div class="main-tab-card active" onclick="navigateToOverview()">
+                <div class="main-tab-card active" onclick="navigateToPage('overview')">
                     <div class="tab-icon">🏠</div>
                     <div class="tab-title">Overview</div>
                     <div class="tab-description">Dashboard summary</div>
                 </div>
-                <div class="main-tab-card" onclick="openTab('situation')">
+                <div class="main-tab-card" onclick="navigateToPage('situation')">
                     <div class="tab-icon">📊</div>
                     <div class="tab-title">Situation Analysis</div>
                     <div class="tab-description">Malaria burden data</div>
                 </div>
-                <div class="main-tab-card" onclick="openTab('surveillance')">
+                <div class="main-tab-card" onclick="navigateToPage('surveillance')">
                     <div class="tab-icon">🔍</div>
                     <div class="tab-title">Surveillance</div>
                     <div class="tab-description">Data monitoring</div>
                 </div>
-                <div class="main-tab-card" onclick="openTab('case-management')">
+                <div class="main-tab-card" onclick="navigateToPage('case-management')">
                     <div class="tab-icon">🏥</div>
                     <div class="tab-title">Case Management</div>
                     <div class="tab-description">Treatment protocols</div>
                 </div>
-                <div class="main-tab-card" onclick="openTab('vector-control')">
+                <div class="main-tab-card" onclick="navigateToPage('vector-control')">
                     <div class="tab-icon">🦟</div>
                     <div class="tab-title">Vector Control</div>
                     <div class="tab-description">Prevention strategies</div>
                 </div>
-                <div class="main-tab-card" onclick="openTab('monitoring')">
+                <div class="main-tab-card" onclick="navigateToPage('monitoring')">
                     <div class="tab-icon">📈</div>
                     <div class="tab-title">M&E</div>
                     <div class="tab-description">Performance tracking</div>
                 </div>
-                <div class="main-tab-card" onclick="openTab('planning')">
+                <div class="main-tab-card" onclick="navigateToPage('planning')">
                     <div class="tab-icon">📋</div>
                     <div class="tab-title">Strategic Planning</div>
                     <div class="tab-description">Action plans</div>
                 </div>
-                <div class="main-tab-card" onclick="openTab('resources')">
+                <div class="main-tab-card" onclick="navigateToPage('resources')">
                     <div class="tab-icon">📚</div>
                     <div class="tab-title">Resources</div>
                     <div class="tab-description">Documents & guides</div>
-                </div>
-            </div>
-
-            <!-- Tab Content for other tabs (not Overview) -->
-            <div class="tab-content" id="situation">
-                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                    <h3 style="color: #0066cc; margin-bottom: 20px;">📊 Situation Analysis Dashboard</h3>
-                    <p style="color: #666; font-size: 1.1em;">Detailed epidemiological analysis and burden assessment.<br>Click on metric cards for detailed breakdowns.</p>
-                </div>
-            </div>
-
-            <!-- Other tab contents remain the same but simplified for this example -->
-            <div class="tab-content" id="surveillance">
-                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                    <h3 style="color: #0066cc; margin-bottom: 20px;">🔍 Surveillance Dashboard</h3>
-                    <p style="color: #666; font-size: 1.1em;">Data quality monitoring and surveillance system performance.</p>
-                </div>
-            </div>
-
-            <div class="tab-content" id="case-management">
-                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                    <h3 style="color: #0066cc; margin-bottom: 20px;">🏥 Case Management Dashboard</h3>
-                    <p style="color: #666; font-size: 1.1em;">Treatment protocols and clinical management systems.</p>
-                </div>
-            </div>
-
-            <div class="tab-content" id="vector-control">
-                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                    <h3 style="color: #0066cc; margin-bottom: 20px;">🦟 Vector Control Dashboard</h3>
-                    <p style="color: #666; font-size: 1.1em;">Prevention strategies and intervention monitoring.</p>
-                </div>
-            </div>
-
-            <div class="tab-content" id="monitoring">
-                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                    <h3 style="color: #0066cc; margin-bottom: 20px;">📈 M&E Dashboard</h3>
-                    <p style="color: #666; font-size: 1.1em;">Performance tracking and evaluation systems.</p>
-                </div>
-            </div>
-
-            <div class="tab-content" id="planning">
-                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                    <h3 style="color: #0066cc; margin-bottom: 20px;">📋 Strategic Planning Dashboard</h3>
-                    <p style="color: #666; font-size: 1.1em;">Action plans and strategic implementation.</p>
-                </div>
-            </div>
-
-            <div class="tab-content" id="resources">
-                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                    <h3 style="color: #0066cc; margin-bottom: 20px;">📚 Resources Dashboard</h3>
-                    <p style="color: #666; font-size: 1.1em;">Documents, guidelines and reference materials.</p>
                 </div>
             </div>
         </div>
@@ -724,7 +649,6 @@
             </div>
             
             <div class="overview-layout">
-                <!-- Left Side: Key Metrics -->
                 <div class="overview-section">
                     <div class="overview-section-header">
                         <span class="icon">📊</span>
@@ -773,623 +697,158 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <!-- Right Side: Visual Analytics -->
+    <!-- Situation Analysis Page -->
+    <div class="page-container" id="situationPage">
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="backToMain()">
+                ← Back to Main Dashboard
+            </button>
+        </div>
+        
+        <div class="overview-page">
+            <div class="overview-header">
+                <h1 class="overview-title">📊 Situation Analysis</h1>
+                <p class="overview-subtitle">Epidemiological Assessment and Burden Analysis</p>
+            </div>
+            
+            <div class="overview-layout">
                 <div class="overview-section">
                     <div class="overview-section-header">
                         <span class="icon">📈</span>
-                        Visual Analytics
+                        Epidemiological Indicators
                     </div>
-                    <div class="charts-grid">
-                        <div class="chart-card">
-                            <div class="chart-title">Monthly Cases</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,30 15,25 25,28 35,20 45,22 55,15 65,18 75,12 85,15 95,8"></polyline>
-                                        <circle class="line-point" cx="5" cy="30"/>
-                                        <circle class="line-point" cx="15" cy="25"/>
-                                        <circle class="line-point" cx="25" cy="28"/>
-                                        <circle class="line-point" cx="35" cy="20"/>
-                                        <circle class="line-point" cx="45" cy="22"/>
-                                        <circle class="line-point" cx="55" cy="15"/>
-                                        <circle class="line-point" cx="65" cy="18"/>
-                                        <circle class="line-point" cx="75" cy="12"/>
-                                        <circle class="line-point" cx="85" cy="15"/>
-                                        <circle class="line-point" cx="95" cy="8"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Regional Distribution</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 30px;"></div>
-                                    <div class="bar" style="height: 38px;"></div>
-                                    <div class="bar" style="height: 25px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 28px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Age Distribution</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 50px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 25px;"></div>
-                                    <div class="bar" style="height: 18px;"></div>
-                                    <div class="bar" style="height: 15px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Treatment Outcomes</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,35 15,32 25,28 35,25 45,22 55,20 65,18 75,15 85,12 95,10" stroke="#00cc00"></polyline>
-                                        <circle class="line-point" cx="5" cy="35" fill="#00cc00"/>
-                                        <circle class="line-point" cx="15" cy="32" fill="#00cc00"/>
-                                        <circle class="line-point" cx="25" cy="28" fill="#00cc00"/>
-                                        <circle class="line-point" cx="35" cy="25" fill="#00cc00"/>
-                                        <circle class="line-point" cx="45" cy="22" fill="#00cc00"/>
-                                        <circle class="line-point" cx="55" cy="20" fill="#00cc00"/>
-                                        <circle class="line-point" cx="65" cy="18" fill="#00cc00"/>
-                                        <circle class="line-point" cx="75" cy="15" fill="#00cc00"/>
-                                        <circle class="line-point" cx="85" cy="12" fill="#00cc00"/>
-                                        <circle class="line-point" cx="95" cy="10" fill="#00cc00"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Seasonal Pattern</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 15px;"></div>
-                                    <div class="bar" style="height: 18px;"></div>
-                                    <div class="bar" style="height: 25px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 50px;"></div>
-                                    <div class="bar" style="height: 42px;"></div>
-                                    <div class="bar" style="height: 38px;"></div>
-                                    <div class="bar" style="height: 28px;"></div>
-                                    <div class="bar" style="height: 20px;"></div>
-                                    <div class="bar" style="height: 15px;"></div>
-                                    <div class="bar" style="height: 12px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Budget Utilization</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,38 15,35 25,32 35,28 45,25 55,22 65,20 75,18 85,15 95,12" stroke="#ff6600"></polyline>
-                                        <circle class="line-point" cx="5" cy="38" fill="#ff6600"/>
-                                        <circle class="line-point" cx="15" cy="35" fill="#ff6600"/>
-                                        <circle class="line-point" cx="25" cy="32" fill="#ff6600"/>
-                                        <circle class="line-point" cx="35" cy="28" fill="#ff6600"/>
-                                        <circle class="line-point" cx="45" cy="25" fill="#ff6600"/>
-                                        <circle class="line-point" cx="55" cy="22" fill="#ff6600"/>
-                                        <circle class="line-point" cx="65" cy="20" fill="#ff6600"/>
-                                        <circle class="line-point" cx="75" cy="18" fill="#ff6600"/>
-                                        <circle class="line-point" cx="85" cy="15" fill="#ff6600"/>
-                                        <circle class="line-point" cx="95" cy="12" fill="#ff6600"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Intervention Coverage</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 30px;"></div>
-                                    <div class="bar" style="height: 42px;"></div>
-                                    <div class="bar" style="height: 38px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Performance Trend</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,32 15,30 25,28 35,25 45,23 55,20 65,18 75,16 85,14 95,12" stroke="#9900cc"></polyline>
-                                        <circle class="line-point" cx="5" cy="32" fill="#9900cc"/>
-                                        <circle class="line-point" cx="15" cy="30" fill="#9900cc"/>
-                                        <circle class="line-point" cx="25" cy="28" fill="#9900cc"/>
-                                        <circle class="line-point" cx="35" cy="25" fill="#9900cc"/>
-                                        <circle class="line-point" cx="45" cy="23" fill="#9900cc"/>
-                                        <circle class="line-point" cx="55" cy="20" fill="#9900cc"/>
-                                        <circle class="line-point" cx="65" cy="18" fill="#9900cc"/>
-                                        <circle class="line-point" cx="75" cy="16" fill="#9900cc"/>
-                                        <circle class="line-point" cx="85" cy="14" fill="#9900cc"/>
-                                        <circle class="line-point" cx="95" cy="12" fill="#9900cc"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>65,18 75,12 85,15 95,8"></polyline>
-                                        <circle class="line-point" cx="5" cy="30"/>
-                                        <circle class="line-point" cx="15" cy="25"/>
-                                        <circle class="line-point" cx="25" cy="28"/>
-                                        <circle class="line-point" cx="35" cy="20"/>
-                                        <circle class="line-point" cx="45" cy="22"/>
-                                        <circle class="line-point" cx="55" cy="15"/>
-                                        <circle class="line-point" cx="65" cy="18"/>
-                                        <circle class="line-point" cx="75" cy="12"/>
-                                        <circle class="line-point" cx="85" cy="15"/>
-                                        <circle class="line-point" cx="95" cy="8"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Regional Distribution</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 30px;"></div>
-                                    <div class="bar" style="height: 38px;"></div>
-                                    <div class="bar" style="height: 25px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 28px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Age Distribution</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 50px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 25px;"></div>
-                                    <div class="bar" style="height: 18px;"></div>
-                                    <div class="bar" style="height: 15px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Treatment Outcomes</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,35 15,32 25,28 35,25 45,22 55,20 65,18 75,15 85,12 95,10" stroke="#00cc00"></polyline>
-                                        <circle class="line-point" cx="5" cy="35" fill="#00cc00"/>
-                                        <circle class="line-point" cx="15" cy="32" fill="#00cc00"/>
-                                        <circle class="line-point" cx="25" cy="28" fill="#00cc00"/>
-                                        <circle class="line-point" cx="35" cy="25" fill="#00cc00"/>
-                                        <circle class="line-point" cx="45" cy="22" fill="#00cc00"/>
-                                        <circle class="line-point" cx="55" cy="20" fill="#00cc00"/>
-                                        <circle class="line-point" cx="65" cy="18" fill="#00cc00"/>
-                                        <circle class="line-point" cx="75" cy="15" fill="#00cc00"/>
-                                        <circle class="line-point" cx="85" cy="12" fill="#00cc00"/>
-                                        <circle class="line-point" cx="95" cy="10" fill="#00cc00"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Seasonal Pattern</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 15px;"></div>
-                                    <div class="bar" style="height: 18px;"></div>
-                                    <div class="bar" style="height: 25px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 50px;"></div>
-                                    <div class="bar" style="height: 42px;"></div>
-                                    <div class="bar" style="height: 38px;"></div>
-                                    <div class="bar" style="height: 28px;"></div>
-                                    <div class="bar" style="height: 20px;"></div>
-                                    <div class="bar" style="height: 15px;"></div>
-                                    <div class="bar" style="height: 12px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Budget Utilization</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,38 15,35 25,32 35,28 45,25 55,22 65,20 75,18 85,15 95,12" stroke="#ff6600"></polyline>
-                                        <circle class="line-point" cx="5" cy="38" fill="#ff6600"/>
-                                        <circle class="line-point" cx="15" cy="35" fill="#ff6600"/>
-                                        <circle class="line-point" cx="25" cy="32" fill="#ff6600"/>
-                                        <circle class="line-point" cx="35" cy="28" fill="#ff6600"/>
-                                        <circle class="line-point" cx="45" cy="25" fill="#ff6600"/>
-                                        <circle class="line-point" cx="55" cy="22" fill="#ff6600"/>
-                                        <circle class="line-point" cx="65" cy="20" fill="#ff6600"/>
-                                        <circle class="line-point" cx="75" cy="18" fill="#ff6600"/>
-                                        <circle class="line-point" cx="85" cy="15" fill="#ff6600"/>
-                                        <circle class="line-point" cx="95" cy="12" fill="#ff6600"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Intervention Coverage</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 30px;"></div>
-                                    <div class="bar" style="height: 42px;"></div>
-                                    <div class="bar" style="height: 38px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Performance Trend</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,32 15,30 25,28 35,25 45,23 55,20 65,18 75,16 85,14 95,12" stroke="#9900cc"></polyline>
-                                        <circle class="line-point" cx="5" cy="32" fill="#9900cc"/>
-                                        <circle class="line-point" cx="15" cy="30" fill="#9900cc"/>
-                                        <circle class="line-point" cx="25" cy="28" fill="#9900cc"/>
-                                        <circle class="line-point" cx="35" cy="25" fill="#9900cc"/>
-                                        <circle class="line-point" cx="45" cy="23" fill="#9900cc"/>
-                                        <circle class="line-point" cx="55" cy="20" fill="#9900cc"/>
-                                        <circle class="line-point" cx="65" cy="18" fill="#9900cc"/>
-                                        <circle class="line-point" cx="75" cy="16" fill="#9900cc"/>
-                                        <circle class="line-point" cx="85" cy="14" fill="#9900cc"/>
-                                        <circle class="line-point" cx="95" cy="12" fill="#9900cc"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-content" id="situation">
-            <div class="content-layout">
-                <div class="metrics-section">
-                    <div class="section-header">📈 Epidemiological Indicators</div>
                     <div class="metrics-grid">
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('incidence-rate')">
                             <div class="metric-icon">🌡️</div>
                             <div class="metric-value">120‰</div>
                             <div class="metric-label">Incidence Rate</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('mortality-rate')">
                             <div class="metric-icon">💀</div>
                             <div class="metric-value">0.8‰</div>
                             <div class="metric-label">Mortality Rate</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('under5-cases')">
                             <div class="metric-icon">👶</div>
                             <div class="metric-value">45%</div>
                             <div class="metric-label">Under-5 Cases</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('high-risk-areas')">
                             <div class="metric-icon">🌍</div>
                             <div class="metric-value">25</div>
                             <div class="metric-label">High-Risk Areas</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('peak-season')">
                             <div class="metric-icon">☔</div>
                             <div class="metric-value">Jun-Nov</div>
                             <div class="metric-label">Peak Season</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('rural-cases')">
                             <div class="metric-icon">🏠</div>
                             <div class="metric-value">78%</div>
                             <div class="metric-label">Rural Cases</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('severe-malaria')">
                             <div class="metric-icon">⚠️</div>
                             <div class="metric-value">12%</div>
                             <div class="metric-label">Severe Malaria</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('hotspot-districts')">
                             <div class="metric-icon">📍</div>
                             <div class="metric-value">8</div>
                             <div class="metric-label">Hotspot Districts</div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="charts-section">
-                    <div class="section-header">📊 Trend Analysis</div>
-                    <div class="charts-grid">
-                        <div class="chart-card">
-                            <div class="chart-title">5-Year Incidence Trend</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,35 15,32 25,30 35,28 45,25 55,23 65,20 75,18 85,15 95,12"></polyline>
-                                        <circle class="line-point" cx="5" cy="35"/>
-                                        <circle class="line-point" cx="25" cy="30"/>
-                                        <circle class="line-point" cx="45" cy="25"/>
-                                        <circle class="line-point" cx="65" cy="20"/>
-                                        <circle class="line-point" cx="85" cy="15"/>
-                                        <circle class="line-point" cx="95" cy="12"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Regional Case Distribution</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 50px;" title="Northern Region"></div>
-                                    <div class="bar" style="height: 40px;" title="Eastern Region"></div>
-                                    <div class="bar" style="height: 30px;" title="Western Region"></div>
-                                    <div class="bar" style="height: 25px;" title="Southern Region"></div>
-                                    <div class="bar" style="height: 20px;" title="Central Region"></div>
-                                    <div class="bar" style="height: 15px;" title="Capital Region"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Age-Specific Mortality</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 45px;" title="<1 year"></div>
-                                    <div class="bar" style="height: 35px;" title="1-4 years"></div>
-                                    <div class="bar" style="height: 25px;" title="5-14 years"></div>
-                                    <div class="bar" style="height: 20px;" title="15-49 years"></div>
-                                    <div class="bar" style="height: 15px;" title="50+ years"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Parasite Species Distribution</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 48px; background: linear-gradient(to top, #cc0000, #ff4444);" title="P. falciparum (85%)"></div>
-                                    <div class="bar" style="height: 12px; background: linear-gradient(to top, #0066cc, #4488ff);" title="P. vivax (12%)"></div>
-                                    <div class="bar" style="height: 3px; background: linear-gradient(to top, #00cc00, #44ff44);" title="P. ovale (2%)"></div>
-                                    <div class="bar" style="height: 1px; background: linear-gradient(to top, #ff6600, #ffaa44);" title="P. malariae (1%)"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Monthly Transmission Pattern</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 20px;" title="Jan"></div>
-                                    <div class="bar" style="height: 18px;" title="Feb"></div>
-                                    <div class="bar" style="height: 25px;" title="Mar"></div>
-                                    <div class="bar" style="height: 30px;" title="Apr"></div>
-                                    <div class="bar" style="height: 40px;" title="May"></div>
-                                    <div class="bar" style="height: 50px;" title="Jun"></div>
-                                    <div class="bar" style="height: 45px;" title="Jul"></div>
-                                    <div class="bar" style="height: 42px;" title="Aug"></div>
-                                    <div class="bar" style="height: 35px;" title="Sep"></div>
-                                    <div class="bar" style="height: 28px;" title="Oct"></div>
-                                    <div class="bar" style="height: 22px;" title="Nov"></div>
-                                    <div class="bar" style="height: 18px;" title="Dec"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Socioeconomic Risk Factors</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 42px;" title="Rural residence"></div>
-                                    <div class="bar" style="height: 35px;" title="Poor housing"></div>
-                                    <div class="bar" style="height: 30px;" title="Limited education"></div>
-                                    <div class="bar" style="height: 25px;" title="Poverty"></div>
-                                    <div class="bar" style="height: 20px;" title="Distance to health facility"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Geographic Hotspot Trend</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,30 15,28 25,32 35,25 45,27 55,22 65,25 75,20 85,22 95,18" stroke="#ff6600"></polyline>
-                                        <circle class="line-point" cx="5" cy="30" fill="#ff6600"/>
-                                        <circle class="line-point" cx="25" cy="32" fill="#ff6600"/>
-                                        <circle class="line-point" cx="45" cy="27" fill="#ff6600"/>
-                                        <circle class="line-point" cx="65" cy="25" fill="#ff6600"/>
-                                        <circle class="line-point" cx="85" cy="22" fill="#ff6600"/>
-                                        <circle class="line-point" cx="95" cy="18" fill="#ff6600"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Climate Impact Index</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,25 15,28 25,32 35,29 45,33 55,30 65,35 75,32 85,36 95,33" stroke="#9900cc"></polyline>
-                                        <circle class="line-point" cx="5" cy="25" fill="#9900cc"/>
-                                        <circle class="line-point" cx="25" cy="32" fill="#9900cc"/>
-                                        <circle class="line-point" cx="45" cy="33" fill="#9900cc"/>
-                                        <circle class="line-point" cx="65" cy="35" fill="#9900cc"/>
-                                        <circle class="line-point" cx="85" cy="36" fill="#9900cc"/>
-                                        <circle class="line-point" cx="95" cy="33" fill="#9900cc"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Additional Situation Analysis Content -->
-            <div style="margin-top: 30px; padding: 25px; background: rgba(255, 255, 255, 0.5); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px; text-align: center;">🌍 Detailed Epidemiological Assessment</h3>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #0066cc;">
-                        <h4 style="color: #0066cc; margin-bottom: 15px;">📊 Current Burden Overview</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(0, 102, 204, 0.1); border-radius: 5px;">
-                                <strong>Annual Parasite Incidence:</strong> 120 cases per 1,000 population
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(0, 102, 204, 0.1); border-radius: 5px;">
-                                <strong>Case Fatality Rate:</strong> 0.65% (target: <0.5%)
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(0, 102, 204, 0.1); border-radius: 5px;">
-                                <strong>Test Positivity Rate:</strong> 23% (indicating active transmission)
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(0, 102, 204, 0.1); border-radius: 5px;">
-                                <strong>Confirmed Cases (2024):</strong> 15,234 (↓8% from 2023)
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #ff6600;">
-                        <h4 style="color: #ff6600; margin-bottom: 15px;">⚠️ High-Risk Populations</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(255, 102, 0, 0.1); border-radius: 5px;">
-                                <strong>Children <5 years:</strong> 45% of all cases, 60% of deaths
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(255, 102, 0, 0.1); border-radius: 5px;">
-                                <strong>Pregnant Women:</strong> 8% higher risk of severe malaria
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(255, 102, 0, 0.1); border-radius: 5px;">
-                                <strong>Rural Populations:</strong> 78% of cases in rural areas
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(255, 102, 0, 0.1); border-radius: 5px;">
-                                <strong>Mobile Populations:</strong> 15% higher transmission risk
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #00cc00;">
-                        <h4 style="color: #00cc00; margin-bottom: 15px;">🌍 Geographic Patterns</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(0, 204, 0, 0.1); border-radius: 5px;">
-                                <strong>Northern Region:</strong> Highest burden (180‰ incidence)
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(0, 204, 0, 0.1); border-radius: 5px;">
-                                <strong>Eastern Region:</strong> Moderate-high (140‰ incidence)
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(0, 204, 0, 0.1); border-radius: 5px;">
-                                <strong>Border Areas:</strong> Cross-border transmission hotspots
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(0, 204, 0, 0.1); border-radius: 5px;">
-                                <strong>Urban Areas:</strong> Emerging peri-urban transmission
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #9900cc;">
-                        <h4 style="color: #9900cc; margin-bottom: 15px;">🌦️ Environmental Factors</h4>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(153, 0, 204, 0.1); border-radius: 5px;">
-                                <strong>Rainfall:</strong> Peak transmission follows rainy season (Jun-Sep)
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(153, 0, 204, 0.1); border-radius: 5px;">
-                                <strong>Temperature:</strong> Optimal range 20-30°C increasing vector activity
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(153, 0, 204, 0.1); border-radius: 5px;">
-                                <strong>Altitude:</strong> <1,500m elevation zones most affected
-                            </li>
-                            <li style="margin: 8px 0; padding: 8px; background: rgba(153, 0, 204, 0.1); border-radius: 5px;">
-                                <strong>Water Bodies:</strong> Proximity to dams/irrigation increases risk 3x
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, rgba(0, 102, 204, 0.1), rgba(255, 255, 255, 0.1)); border-radius: 10px; border: 2px solid rgba(0, 102, 204, 0.2);">
-                    <h4 style="color: #0066cc; margin-bottom: 15px; text-align: center;">📈 Key Trends & Projections</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-                        <div style="text-align: center; padding: 15px;">
-                            <div style="font-size: 2em; color: #00cc00;">↓ 8%</div>
-                            <div style="font-weight: bold; color: #333;">Cases vs. 2023</div>
-                            <div style="font-size: 0.9em; color: #666;">Continuing downward trend</div>
-                        </div>
-                        <div style="text-align: center; padding: 15px;">
-                            <div style="font-size: 2em; color: #ff6600;">↑ 15%</div>
-                            <div style="font-weight: bold; color: #333;">Severe Cases</div>
-                            <div style="font-size: 0.9em; color: #666;">Requires urgent attention</div>
-                        </div>
-                        <div style="text-align: center; padding: 15px;">
-                            <div style="font-size: 2em; color: #0066cc;">65%</div>
-                            <div style="font-weight: bold; color: #333;">Progress to Target</div>
-                            <div style="font-size: 0.9em; color: #666;">40% reduction by 2025</div>
-                        </div>
-                        <div style="text-align: center; padding: 15px;">
-                            <div style="font-size: 2em; color: #9900cc;">25</div>
-                            <div style="font-weight: bold; color: #333;">Priority Districts</div>
-                            <div style="font-size: 0.9em; color: #666;">Focus for interventions</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+    </div>
 
-        <div class="tab-content" id="surveillance">
-            <div class="content-layout">
-                <div class="metrics-section">
-                    <div class="section-header">📋 System Performance</div>
+    <!-- Surveillance Page -->
+    <div class="page-container" id="surveillancePage">
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="backToMain()">
+                ← Back to Main Dashboard
+            </button>
+        </div>
+        
+        <div class="overview-page">
+            <div class="overview-header">
+                <h1 class="overview-title">🔍 Surveillance Systems</h1>
+                <p class="overview-subtitle">Data Quality Monitoring and System Performance</p>
+            </div>
+            
+            <div class="overview-layout">
+                <div class="overview-section">
+                    <div class="overview-section-header">
+                        <span class="icon">📋</span>
+                        System Performance
+                    </div>
                     <div class="metrics-grid">
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('reporting-sites')">
                             <div class="metric-icon">🏥</div>
                             <div class="metric-value">850+</div>
                             <div class="metric-label">Reporting Sites</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('chws-active')">
                             <div class="metric-icon">👥</div>
                             <div class="metric-value">2,400</div>
                             <div class="metric-label">CHWs Active</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('completeness')">
                             <div class="metric-icon">📊</div>
                             <div class="metric-value">87%</div>
                             <div class="metric-label">Completeness</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('timeliness')">
                             <div class="metric-icon">⏱️</div>
                             <div class="metric-value">82%</div>
                             <div class="metric-label">Timeliness</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('data-accuracy')">
                             <div class="metric-icon">✅</div>
                             <div class="metric-value">94%</div>
                             <div class="metric-label">Data Accuracy</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('system-uptime')">
                             <div class="metric-icon">🌐</div>
                             <div class="metric-value">98.5%</div>
                             <div class="metric-label">System Uptime</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('sentinel-sites')">
                             <div class="metric-icon">🔍</div>
                             <div class="metric-value">25</div>
                             <div class="metric-label">Sentinel Sites</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="metric-card" onclick="showDetail('border-points')">
                             <div class="metric-icon">🚪</div>
                             <div class="metric-value">12</div>
                             <div class="metric-label">Border Points</div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="charts-section">
-                    <div class="section-header">📈 Data Quality Metrics</div>
+
+                <div class="overview-section">
+                    <div class="overview-section-header">
+                        <span class="icon">📈</span>
+                        Data Quality Metrics
+                    </div>
                     <div class="charts-grid">
                         <div class="chart-card">
                             <div class="chart-title">Reporting Completeness</div>
                             <div class="chart-area">
                                 <div class="line-chart">
                                     <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,25 15,23 25,20 35,18 45,16 55,14 65,12 75,10 85,8 95,6" stroke="#00cc00"></polyline>
+                                        <polyline class="line-path" points="5,25 25,20 45,16 65,12 85,6" stroke="#00cc00"></polyline>
+                                        <circle class="line-point" cx="5" cy="25" fill="#00cc00"/>
+                                        <circle class="line-point" cx="25" cy="20" fill="#00cc00"/>
+                                        <circle class="line-point" cx="45" cy="16" fill="#00cc00"/>
+                                        <circle class="line-point" cx="65" cy="12" fill="#00cc00"/>
+                                        <circle class="line-point" cx="85" cy="6" fill="#00cc00"/>
                                     </svg>
                                 </div>
                             </div>
@@ -1411,7 +870,12 @@
                             <div class="chart-area">
                                 <div class="line-chart">
                                     <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,30 15,28 25,32 35,25 45,27 55,23 65,26 75,21 85,24 95,20"></polyline>
+                                        <polyline class="line-path" points="5,30 25,32 45,27 65,26 85,24"></polyline>
+                                        <circle class="line-point" cx="5" cy="30"/>
+                                        <circle class="line-point" cx="25" cy="32"/>
+                                        <circle class="line-point" cx="45" cy="27"/>
+                                        <circle class="line-point" cx="65" cy="26"/>
+                                        <circle class="line-point" cx="85" cy="24"/>
                                     </svg>
                                 </div>
                             </div>
@@ -1433,7 +897,12 @@
                             <div class="chart-area">
                                 <div class="line-chart">
                                     <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,32 15,30 25,27 35,24 45,21 55,18 65,15 75,12 85,10 95,8" stroke="#9900cc"></polyline>
+                                        <polyline class="line-path" points="5,32 25,27 45,21 65,15 85,8" stroke="#9900cc"></polyline>
+                                        <circle class="line-point" cx="5" cy="32" fill="#9900cc"/>
+                                        <circle class="line-point" cx="25" cy="27" fill="#9900cc"/>
+                                        <circle class="line-point" cx="45" cy="21" fill="#9900cc"/>
+                                        <circle class="line-point" cx="65" cy="15" fill="#9900cc"/>
+                                        <circle class="line-point" cx="85" cy="8" fill="#9900cc"/>
                                     </svg>
                                 </div>
                             </div>
@@ -1455,7 +924,12 @@
                             <div class="chart-area">
                                 <div class="line-chart">
                                     <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,15 15,13 25,12 35,10 45,8 55,7 65,6 75,5 85,4 95,3" stroke="#ff6600"></polyline>
+                                        <polyline class="line-path" points="5,15 25,12 45,8 65,6 85,3" stroke="#ff6600"></polyline>
+                                        <circle class="line-point" cx="5" cy="15" fill="#ff6600"/>
+                                        <circle class="line-point" cx="25" cy="12" fill="#ff6600"/>
+                                        <circle class="line-point" cx="45" cy="8" fill="#ff6600"/>
+                                        <circle class="line-point" cx="65" cy="6" fill="#ff6600"/>
+                                        <circle class="line-point" cx="85" cy="3" fill="#ff6600"/>
                                     </svg>
                                 </div>
                             </div>
@@ -1476,176 +950,89 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Additional tabs with placeholder content -->
-        <div class="tab-content" id="case-management">
-            <div class="content-layout">
-                <div class="metrics-section">
-                    <div class="section-header">💊 Treatment Metrics</div>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-icon">💊</div>
-                            <div class="metric-value">89%</div>
-                            <div class="metric-label">Cure Rate</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">⚕️</div>
-                            <div class="metric-value">2.1%</div>
-                            <div class="metric-label">Treatment Failure</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">🌡️</div>
-                            <div class="metric-value">24hrs</div>
-                            <div class="metric-label">Fever Clearance</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">⚠️</div>
-                            <div class="metric-value">3.2%</div>
-                            <div class="metric-label">Adverse Events</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">🔬</div>
-                            <div class="metric-value">95%</div>
-                            <div class="metric-label">RDT Accuracy</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">🏥</div>
-                            <div class="metric-value">92%</div>
-                            <div class="metric-label">ACT Coverage</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">👨‍⚕️</div>
-                            <div class="metric-value">78%</div>
-                            <div class="metric-label">Trained Staff</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-icon">📋</div>
-                            <div class="metric-value">85%</div>
-                            <div class="metric-label">Protocol Adherence</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="charts-section">
-                    <div class="section-header">📊 Treatment Analytics</div>
-                    <div class="charts-grid">
-                        <!-- Charts for case management -->
-                        <div class="chart-card">
-                            <div class="chart-title">Treatment Success Rate</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,25 15,22 25,20 35,18 45,15 55,13 65,11 75,9 85,7 95,5" stroke="#00cc00"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Drug Efficacy</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 42px;"></div>
-                                    <div class="bar" style="height: 38px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Age-specific Outcomes</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 48px;"></div>
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 40px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 32px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Adverse Events</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,20 15,18 25,22 35,19 45,21 55,17 65,19 75,16 85,18 95,15" stroke="#ff6600"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">RDT Performance</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 50px;"></div>
-                                    <div class="bar" style="height: 48px;"></div>
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 42px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Stock Levels</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,35 15,30 25,32 35,28 45,30 55,25 65,27 75,22 85,24 95,20" stroke="#9900cc"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Training Coverage</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 40px;"></div>
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 48px;"></div>
-                                    <div class="bar" style="height: 50px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Quality Assurance</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,28 15,25 25,22 35,20 45,17 55,15 65,12 75,10 85,8 95,6" stroke="#00cc00"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Case Management Page -->
+    <div class="page-container" id="case-managementPage">
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
+        </div>
+        <div class="overview-page">
+            <div class="overview-header">
+                <h1 class="overview-title">🏥 Case Management</h1>
+                <p class="overview-subtitle">Treatment Protocols and Clinical Guidelines</p>
+            </div>
+            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                <h3 style="color: #0066cc; margin-bottom: 20px;">Case Management Dashboard</h3>
+                <p style="color: #666; font-size: 1.1em;">Comprehensive treatment monitoring and clinical management systems.<br>Treatment outcomes, drug efficacy, and quality assurance metrics.</p>
             </div>
         </div>
+    </div>
 
-        <!-- Add other tabs with similar structure -->
-        <div class="tab-content" id="vector-control">
-            <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">🦟 Vector Control Dashboard</h3>
-                <p style="color: #666; font-size: 1.1em;">Comprehensive vector control metrics and visualizations will be displayed here.<br>Including LLIN coverage, IRS data, resistance monitoring, and intervention effectiveness.</p>
+    <!-- Vector Control Page -->
+    <div class="page-container" id="vector-controlPage">
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
+        </div>
+        <div class="overview-page">
+            <div class="overview-header">
+                <h1 class="overview-title">🦟 Vector Control</h1>
+                <p class="overview-subtitle">Prevention Strategies and Intervention Monitoring</p>
+            </div>
+            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                <h3 style="color: #0066cc; margin-bottom: 20px;">Vector Control Dashboard</h3>
+                <p style="color: #666; font-size: 1.1em;">LLIN coverage, IRS implementation, resistance monitoring.<br>Comprehensive vector control intervention tracking and effectiveness.</p>
             </div>
         </div>
+    </div>
 
-        <div class="tab-content" id="monitoring">
-            <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">📈 Monitoring & Evaluation Dashboard</h3>
-                <p style="color: #666; font-size: 1.1em;">Key performance indicators, impact assessments, and evaluation frameworks.<br>Real-time monitoring of program targets and outcomes.</p>
+    <!-- Monitoring & Evaluation Page -->
+    <div class="page-container" id="monitoringPage">
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
+        </div>
+        <div class="overview-page">
+            <div class="overview-header">
+                <h1 class="overview-title">📈 Monitoring & Evaluation</h1>
+                <p class="overview-subtitle">Performance Tracking and Impact Assessment</p>
+            </div>
+            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                <h3 style="color: #0066cc; margin-bottom: 20px;">M&E Dashboard</h3>
+                <p style="color: #666; font-size: 1.1em;">Key performance indicators, program impact assessment.<br>Real-time monitoring of targets and evaluation frameworks.</p>
             </div>
         </div>
+    </div>
 
-        <div class="tab-content" id="planning">
-            <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">📋 Strategic Planning Dashboard</h3>
-                <p style="color: #666; font-size: 1.1em;">National strategy implementation, operational plans, budget allocation.<br>Resource planning and strategic decision support tools.</p>
+    <!-- Strategic Planning Page -->
+    <div class="page-container" id="planningPage">
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
+        </div>
+        <div class="overview-page">
+            <div class="overview-header">
+                <h1 class="overview-title">📋 Strategic Planning</h1>
+                <p class="overview-subtitle">Action Plans and Implementation Roadmaps</p>
+            </div>
+            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                <h3 style="color: #0066cc; margin-bottom: 20px;">Strategic Planning Dashboard</h3>
+                <p style="color: #666; font-size: 1.1em;">National strategy implementation, budget allocation.<br>Resource planning and strategic decision support tools.</p>
             </div>
         </div>
+    </div>
 
-        <div class="tab-content" id="resources">
-            <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">📚 Resources & Guidelines</h3>
-                <p style="color: #666; font-size: 1.1em;">Policy documents, training materials, technical reports, and guidelines.<br>Comprehensive resource library for malaria program implementation.</p>
+    <!-- Resources Page -->
+    <div class="page-container" id="resourcesPage">
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
+        </div>
+        <div class="overview-page">
+            <div class="overview-header">
+                <h1 class="overview-title">📚 Resources & Guidelines</h1>
+                <p class="overview-subtitle">Documents, Training Materials and References</p>
+            </div>
+            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                <h3 style="color: #0066cc; margin-bottom: 20px;">Resources Dashboard</h3>
+                <p style="color: #666; font-size: 1.1em;">Policy documents, training materials, technical reports.<br>Comprehensive resource library for program implementation.</p>
             </div>
         </div>
     </div>
@@ -1822,7 +1209,6 @@
         </div>
     </div>
 
-    <!-- Add more detail views for other metrics -->
     <div id="detail-llin-coverage" class="detail-view">
         <div class="detail-content">
             <div class="detail-header">
@@ -1882,65 +1268,55 @@
     </div>
 
     <script>
-        function openTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active class from all tab cards
+        function navigateToPage(pageId) {
+            // Update active tab
             document.querySelectorAll('.main-tab-card').forEach(card => {
                 card.classList.remove('active');
             });
+            event.target.closest('.main-tab-card').classList.add('active');
             
-            // Show the selected tab content
-            const selectedTab = document.getElementById(tabId);
-            if (selectedTab) {
-                selectedTab.classList.add('active');
-            }
-            
-            // Mark the corresponding card as active
-            const clickedCard = event.target.closest('.main-tab-card');
-            if (clickedCard) {
-                clickedCard.classList.add('active');
-            }
-        }
-
-        function navigateToOverview() {
             // Hide main dashboard
             document.getElementById('mainDashboard').classList.add('hidden');
             
-            // Show overview page
-            document.getElementById('overviewPage').classList.add('active');
-            
             // Hide header
-            document.querySelector('.header').style.display = 'none';
+            document.getElementById('mainHeader').style.display = 'none';
+            
+            // Hide all pages first
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            const targetPage = document.getElementById(pageId + 'Page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
         }
 
         function backToMain() {
             // Show main dashboard
             document.getElementById('mainDashboard').classList.remove('hidden');
             
-            // Hide overview page
-            document.getElementById('overviewPage').classList.remove('active');
-            
             // Show header
-            document.querySelector('.header').style.display = 'block';
+            document.getElementById('mainHeader').style.display = 'block';
             
-            // Reset active tab
+            // Hide all pages
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Reset active tab to overview
             document.querySelectorAll('.main-tab-card').forEach(card => {
                 card.classList.remove('active');
             });
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
+            document.querySelector('.main-tab-card').classList.add('active');
         }
 
         function showDetail(detailId) {
             const detailView = document.getElementById('detail-' + detailId);
             if (detailView) {
                 detailView.style.display = 'block';
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                document.body.style.overflow = 'hidden';
             }
         }
 
@@ -1948,7 +1324,7 @@
             document.querySelectorAll('.detail-view').forEach(view => {
                 view.style.display = 'none';
             });
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto';
         }
 
         // Close detail view when clicking outside content
