@@ -467,13 +467,121 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .main-tabs {
+        /* Page Navigation Styles */
+        .page-container {
+            display: none;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
+        .main-dashboard {
+            display: block;
+        }
+
+        .main-dashboard.hidden {
+            display: none;
+        }
+
+        /* Overview Page Specific Styles */
+        .overview-page {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .overview-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.1);
+        }
+
+        .overview-title {
+            font-size: 2.5em;
+            color: #0066cc;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .overview-subtitle {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .overview-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .overview-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0, 102, 204, 0.15);
+        }
+
+        .overview-section-header {
+            display: flex;
+            align-items: center;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(0, 102, 204, 0.1);
+            border-radius: 10px;
+        }
+
+        .overview-section-header .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Back Navigation */
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .back-nav-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-nav-btn:hover {
+            background: #004499;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .overview-layout {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             
-            .metrics-grid, .charts-grid {
-                grid-template-columns: 1fr;
+            .back-nav {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -501,58 +609,127 @@
         </div>
     </div>
 
-    <!-- Dashboard Container -->
-    <div class="dashboard-container">
-        <!-- Main Tab Navigation -->
-        <div class="main-tabs">
-            <div class="main-tab-card active" onclick="openTab('overview')">
-                <div class="tab-icon">🏠</div>
-                <div class="tab-title">Overview</div>
-                <div class="tab-description">Dashboard summary</div>
+    <!-- Main Dashboard Container -->
+    <div class="main-dashboard" id="mainDashboard">
+        <div class="dashboard-container">
+            <!-- Main Tab Navigation -->
+            <div class="main-tabs">
+                <div class="main-tab-card active" onclick="navigateToOverview()">
+                    <div class="tab-icon">🏠</div>
+                    <div class="tab-title">Overview</div>
+                    <div class="tab-description">Dashboard summary</div>
+                </div>
+                <div class="main-tab-card" onclick="openTab('situation')">
+                    <div class="tab-icon">📊</div>
+                    <div class="tab-title">Situation Analysis</div>
+                    <div class="tab-description">Malaria burden data</div>
+                </div>
+                <div class="main-tab-card" onclick="openTab('surveillance')">
+                    <div class="tab-icon">🔍</div>
+                    <div class="tab-title">Surveillance</div>
+                    <div class="tab-description">Data monitoring</div>
+                </div>
+                <div class="main-tab-card" onclick="openTab('case-management')">
+                    <div class="tab-icon">🏥</div>
+                    <div class="tab-title">Case Management</div>
+                    <div class="tab-description">Treatment protocols</div>
+                </div>
+                <div class="main-tab-card" onclick="openTab('vector-control')">
+                    <div class="tab-icon">🦟</div>
+                    <div class="tab-title">Vector Control</div>
+                    <div class="tab-description">Prevention strategies</div>
+                </div>
+                <div class="main-tab-card" onclick="openTab('monitoring')">
+                    <div class="tab-icon">📈</div>
+                    <div class="tab-title">M&E</div>
+                    <div class="tab-description">Performance tracking</div>
+                </div>
+                <div class="main-tab-card" onclick="openTab('planning')">
+                    <div class="tab-icon">📋</div>
+                    <div class="tab-title">Strategic Planning</div>
+                    <div class="tab-description">Action plans</div>
+                </div>
+                <div class="main-tab-card" onclick="openTab('resources')">
+                    <div class="tab-icon">📚</div>
+                    <div class="tab-title">Resources</div>
+                    <div class="tab-description">Documents & guides</div>
+                </div>
             </div>
-            <div class="main-tab-card" onclick="openTab('situation')">
-                <div class="tab-icon">📊</div>
-                <div class="tab-title">Situation Analysis</div>
-                <div class="tab-description">Malaria burden data</div>
+
+            <!-- Tab Content for other tabs (not Overview) -->
+            <div class="tab-content" id="situation">
+                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                    <h3 style="color: #0066cc; margin-bottom: 20px;">📊 Situation Analysis Dashboard</h3>
+                    <p style="color: #666; font-size: 1.1em;">Detailed epidemiological analysis and burden assessment.<br>Click on metric cards for detailed breakdowns.</p>
+                </div>
             </div>
-            <div class="main-tab-card" onclick="openTab('surveillance')">
-                <div class="tab-icon">🔍</div>
-                <div class="tab-title">Surveillance</div>
-                <div class="tab-description">Data monitoring</div>
+
+            <!-- Other tab contents remain the same but simplified for this example -->
+            <div class="tab-content" id="surveillance">
+                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                    <h3 style="color: #0066cc; margin-bottom: 20px;">🔍 Surveillance Dashboard</h3>
+                    <p style="color: #666; font-size: 1.1em;">Data quality monitoring and surveillance system performance.</p>
+                </div>
             </div>
-            <div class="main-tab-card" onclick="openTab('case-management')">
-                <div class="tab-icon">🏥</div>
-                <div class="tab-title">Case Management</div>
-                <div class="tab-description">Treatment protocols</div>
+
+            <div class="tab-content" id="case-management">
+                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                    <h3 style="color: #0066cc; margin-bottom: 20px;">🏥 Case Management Dashboard</h3>
+                    <p style="color: #666; font-size: 1.1em;">Treatment protocols and clinical management systems.</p>
+                </div>
             </div>
-            <div class="main-tab-card" onclick="openTab('vector-control')">
-                <div class="tab-icon">🦟</div>
-                <div class="tab-title">Vector Control</div>
-                <div class="tab-description">Prevention strategies</div>
+
+            <div class="tab-content" id="vector-control">
+                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                    <h3 style="color: #0066cc; margin-bottom: 20px;">🦟 Vector Control Dashboard</h3>
+                    <p style="color: #666; font-size: 1.1em;">Prevention strategies and intervention monitoring.</p>
+                </div>
             </div>
-            <div class="main-tab-card" onclick="openTab('monitoring')">
-                <div class="tab-icon">📈</div>
-                <div class="tab-title">M&E</div>
-                <div class="tab-description">Performance tracking</div>
+
+            <div class="tab-content" id="monitoring">
+                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                    <h3 style="color: #0066cc; margin-bottom: 20px;">📈 M&E Dashboard</h3>
+                    <p style="color: #666; font-size: 1.1em;">Performance tracking and evaluation systems.</p>
+                </div>
             </div>
-            <div class="main-tab-card" onclick="openTab('planning')">
-                <div class="tab-icon">📋</div>
-                <div class="tab-title">Strategic Planning</div>
-                <div class="tab-description">Action plans</div>
+
+            <div class="tab-content" id="planning">
+                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                    <h3 style="color: #0066cc; margin-bottom: 20px;">📋 Strategic Planning Dashboard</h3>
+                    <p style="color: #666; font-size: 1.1em;">Action plans and strategic implementation.</p>
+                </div>
             </div>
-            <div class="main-tab-card" onclick="openTab('resources')">
-                <div class="tab-icon">📚</div>
-                <div class="tab-title">Resources</div>
-                <div class="tab-description">Documents & guides</div>
+
+            <div class="tab-content" id="resources">
+                <div style="text-align: center; padding: 60px 20px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
+                    <h3 style="color: #0066cc; margin-bottom: 20px;">📚 Resources Dashboard</h3>
+                    <p style="color: #666; font-size: 1.1em;">Documents, guidelines and reference materials.</p>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Tab Content -->
-        <div class="tab-content active" id="overview">
-            <div class="content-layout">
-                <!-- Left: Metrics -->
-                <div class="metrics-section">
-                    <div class="section-header">📊 Key Metrics</div>
+    <!-- Overview Page -->
+    <div class="page-container" id="overviewPage">
+        <div class="back-nav">
+            <button class="back-nav-btn" onclick="backToMain()">
+                ← Back to Main Dashboard
+            </button>
+        </div>
+        
+        <div class="overview-page">
+            <div class="overview-header">
+                <h1 class="overview-title">📊 Dashboard Overview</h1>
+                <p class="overview-subtitle">Key Performance Indicators and Visual Analytics</p>
+            </div>
+            
+            <div class="overview-layout">
+                <!-- Left Side: Key Metrics -->
+                <div class="overview-section">
+                    <div class="overview-section-header">
+                        <span class="icon">📊</span>
+                        Key Metrics
+                    </div>
                     <div class="metrics-grid">
                         <div class="metric-card" onclick="showDetail('population-risk')">
                             <div class="metric-icon">👥</div>
@@ -597,9 +774,12 @@
                     </div>
                 </div>
 
-                <!-- Right: Charts -->
-                <div class="charts-section">
-                    <div class="section-header">📈 Visual Analytics</div>
+                <!-- Right Side: Visual Analytics -->
+                <div class="overview-section">
+                    <div class="overview-section-header">
+                        <span class="icon">📈</span>
+                        Visual Analytics
+                    </div>
                     <div class="charts-grid">
                         <div class="chart-card">
                             <div class="chart-title">Monthly Cases</div>
@@ -607,6 +787,141 @@
                                 <div class="line-chart">
                                     <svg viewBox="0 0 100 40">
                                         <polyline class="line-path" points="5,30 15,25 25,28 35,20 45,22 55,15 65,18 75,12 85,15 95,8"></polyline>
+                                        <circle class="line-point" cx="5" cy="30"/>
+                                        <circle class="line-point" cx="15" cy="25"/>
+                                        <circle class="line-point" cx="25" cy="28"/>
+                                        <circle class="line-point" cx="35" cy="20"/>
+                                        <circle class="line-point" cx="45" cy="22"/>
+                                        <circle class="line-point" cx="55" cy="15"/>
+                                        <circle class="line-point" cx="65" cy="18"/>
+                                        <circle class="line-point" cx="75" cy="12"/>
+                                        <circle class="line-point" cx="85" cy="15"/>
+                                        <circle class="line-point" cx="95" cy="8"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Regional Distribution</div>
+                            <div class="chart-area">
+                                <div class="bar-chart">
+                                    <div class="bar" style="height: 45px;"></div>
+                                    <div class="bar" style="height: 30px;"></div>
+                                    <div class="bar" style="height: 38px;"></div>
+                                    <div class="bar" style="height: 25px;"></div>
+                                    <div class="bar" style="height: 35px;"></div>
+                                    <div class="bar" style="height: 28px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Age Distribution</div>
+                            <div class="chart-area">
+                                <div class="bar-chart">
+                                    <div class="bar" style="height: 50px;"></div>
+                                    <div class="bar" style="height: 35px;"></div>
+                                    <div class="bar" style="height: 25px;"></div>
+                                    <div class="bar" style="height: 18px;"></div>
+                                    <div class="bar" style="height: 15px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Treatment Outcomes</div>
+                            <div class="chart-area">
+                                <div class="line-chart">
+                                    <svg viewBox="0 0 100 40">
+                                        <polyline class="line-path" points="5,35 15,32 25,28 35,25 45,22 55,20 65,18 75,15 85,12 95,10" stroke="#00cc00"></polyline>
+                                        <circle class="line-point" cx="5" cy="35" fill="#00cc00"/>
+                                        <circle class="line-point" cx="15" cy="32" fill="#00cc00"/>
+                                        <circle class="line-point" cx="25" cy="28" fill="#00cc00"/>
+                                        <circle class="line-point" cx="35" cy="25" fill="#00cc00"/>
+                                        <circle class="line-point" cx="45" cy="22" fill="#00cc00"/>
+                                        <circle class="line-point" cx="55" cy="20" fill="#00cc00"/>
+                                        <circle class="line-point" cx="65" cy="18" fill="#00cc00"/>
+                                        <circle class="line-point" cx="75" cy="15" fill="#00cc00"/>
+                                        <circle class="line-point" cx="85" cy="12" fill="#00cc00"/>
+                                        <circle class="line-point" cx="95" cy="10" fill="#00cc00"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Seasonal Pattern</div>
+                            <div class="chart-area">
+                                <div class="bar-chart">
+                                    <div class="bar" style="height: 15px;"></div>
+                                    <div class="bar" style="height: 18px;"></div>
+                                    <div class="bar" style="height: 25px;"></div>
+                                    <div class="bar" style="height: 35px;"></div>
+                                    <div class="bar" style="height: 45px;"></div>
+                                    <div class="bar" style="height: 50px;"></div>
+                                    <div class="bar" style="height: 42px;"></div>
+                                    <div class="bar" style="height: 38px;"></div>
+                                    <div class="bar" style="height: 28px;"></div>
+                                    <div class="bar" style="height: 20px;"></div>
+                                    <div class="bar" style="height: 15px;"></div>
+                                    <div class="bar" style="height: 12px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Budget Utilization</div>
+                            <div class="chart-area">
+                                <div class="line-chart">
+                                    <svg viewBox="0 0 100 40">
+                                        <polyline class="line-path" points="5,38 15,35 25,32 35,28 45,25 55,22 65,20 75,18 85,15 95,12" stroke="#ff6600"></polyline>
+                                        <circle class="line-point" cx="5" cy="38" fill="#ff6600"/>
+                                        <circle class="line-point" cx="15" cy="35" fill="#ff6600"/>
+                                        <circle class="line-point" cx="25" cy="32" fill="#ff6600"/>
+                                        <circle class="line-point" cx="35" cy="28" fill="#ff6600"/>
+                                        <circle class="line-point" cx="45" cy="25" fill="#ff6600"/>
+                                        <circle class="line-point" cx="55" cy="22" fill="#ff6600"/>
+                                        <circle class="line-point" cx="65" cy="20" fill="#ff6600"/>
+                                        <circle class="line-point" cx="75" cy="18" fill="#ff6600"/>
+                                        <circle class="line-point" cx="85" cy="15" fill="#ff6600"/>
+                                        <circle class="line-point" cx="95" cy="12" fill="#ff6600"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Intervention Coverage</div>
+                            <div class="chart-area">
+                                <div class="bar-chart">
+                                    <div class="bar" style="height: 35px;"></div>
+                                    <div class="bar" style="height: 45px;"></div>
+                                    <div class="bar" style="height: 30px;"></div>
+                                    <div class="bar" style="height: 42px;"></div>
+                                    <div class="bar" style="height: 38px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-title">Performance Trend</div>
+                            <div class="chart-area">
+                                <div class="line-chart">
+                                    <svg viewBox="0 0 100 40">
+                                        <polyline class="line-path" points="5,32 15,30 25,28 35,25 45,23 55,20 65,18 75,16 85,14 95,12" stroke="#9900cc"></polyline>
+                                        <circle class="line-point" cx="5" cy="32" fill="#9900cc"/>
+                                        <circle class="line-point" cx="15" cy="30" fill="#9900cc"/>
+                                        <circle class="line-point" cx="25" cy="28" fill="#9900cc"/>
+                                        <circle class="line-point" cx="35" cy="25" fill="#9900cc"/>
+                                        <circle class="line-point" cx="45" cy="23" fill="#9900cc"/>
+                                        <circle class="line-point" cx="55" cy="20" fill="#9900cc"/>
+                                        <circle class="line-point" cx="65" cy="18" fill="#9900cc"/>
+                                        <circle class="line-point" cx="75" cy="16" fill="#9900cc"/>
+                                        <circle class="line-point" cx="85" cy="14" fill="#9900cc"/>
+                                        <circle class="line-point" cx="95" cy="12" fill="#9900cc"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>65,18 75,12 85,15 95,8"></polyline>
                                         <circle class="line-point" cx="5" cy="30"/>
                                         <circle class="line-point" cx="15" cy="25"/>
                                         <circle class="line-point" cx="25" cy="28"/>
@@ -1589,6 +1904,36 @@
             if (clickedCard) {
                 clickedCard.classList.add('active');
             }
+        }
+
+        function navigateToOverview() {
+            // Hide main dashboard
+            document.getElementById('mainDashboard').classList.add('hidden');
+            
+            // Show overview page
+            document.getElementById('overviewPage').classList.add('active');
+            
+            // Hide header
+            document.querySelector('.header').style.display = 'none';
+        }
+
+        function backToMain() {
+            // Show main dashboard
+            document.getElementById('mainDashboard').classList.remove('hidden');
+            
+            // Hide overview page
+            document.getElementById('overviewPage').classList.remove('active');
+            
+            // Show header
+            document.querySelector('.header').style.display = 'block';
+            
+            // Reset active tab
+            document.querySelectorAll('.main-tab-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
         }
 
         function showDetail(detailId) {
