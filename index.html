@@ -779,201 +779,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Trends Dashboard - Charts Grid (4x2) -->
-        <div class="dashboard-view" id="trendsDashboard">
-            <div class="back-nav">
-                <button class="back-btn" onclick="showDistrictDashboard()">← Back to Metrics</button>
-            </div>
-            
-            <div class="trends-grid">
-                <!-- Top Row -->
-                <div class="trend-chart">
-                    <div class="chart-title">Monthly Cases Trend</div>
-                    <div class="trend-value">+12%</div>
-                    <div class="chart-container">
-                        <div class="line-chart">
-                            <svg viewBox="0 0 300 150">
-                                <defs>
-                                    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#0066cc;stop-opacity:0.3" />
-                                        <stop offset="100%" style="stop-color:#0066cc;stop-opacity:0.05" />
-                                    </linearGradient>
-                                </defs>
-                                <!-- Grid lines -->
-                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
-                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
-                                <!-- Trend line -->
-                                <polyline class="line-path" points="60,110 90,95 120,105 150,85 180,75 210,80 240,65 270,55"/>
-                                <circle class="line-point" cx="60" cy="110"/>
-                                <circle class="line-point" cx="90" cy="95"/>
-                                <circle class="line-point" cx="120" cy="105"/>
-                                <circle class="line-point" cx="150" cy="85"/>
-                                <circle class="line-point" cx="180" cy="75"/>
-                                <circle class="line-point" cx="210" cy="80"/>
-                                <circle class="line-point" cx="240" cy="65"/>
-                                <circle class="line-point" cx="270" cy="55"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trend-chart">
-                    <div class="chart-title">Incidence Rate</div>
-                    <div class="trend-value">-8%</div>
-                    <div class="chart-container">
-                        <div class="line-chart">
-                            <svg viewBox="0 0 300 150">
-                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
-                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
-                                <polyline class="line-path" points="60,100 90,95 120,90 150,85 180,80 210,75 240,70 270,65"/>
-                                <circle class="line-point" cx="60" cy="100"/>
-                                <circle class="line-point" cx="90" cy="95"/>
-                                <circle class="line-point" cx="120" cy="90"/>
-                                <circle class="line-point" cx="150" cy="85"/>
-                                <circle class="line-point" cx="180" cy="80"/>
-                                <circle class="line-point" cx="210" cy="75"/>
-                                <circle class="line-point" cx="240" cy="70"/>
-                                <circle class="line-point" cx="270" cy="65"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trend-chart">
-                    <div class="chart-title">Test Positivity Rate</div>
-                    <div class="trend-value">+3%</div>
-                    <div class="chart-container">
-                        <div class="line-chart">
-                            <svg viewBox="0 0 300 150">
-                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
-                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
-                                <polyline class="line-path" points="60,85 90,90 120,85 150,95 180,100 210,95 240,105 270,110"/>
-                                <circle class="line-point" cx="60" cy="85"/>
-                                <circle class="line-point" cx="90" cy="90"/>
-                                <circle class="line-point" cx="120" cy="85"/>
-                                <circle class="line-point" cx="150" cy="95"/>
-                                <circle class="line-point" cx="180" cy="100"/>
-                                <circle class="line-point" cx="210" cy="95"/>
-                                <circle class="line-point" cx="240" cy="105"/>
-                                <circle class="line-point" cx="270" cy="110"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trend-chart">
-                    <div class="chart-title">Weekly Deaths</div>
-                    <div class="trend-value">-5%</div>
-                    <div class="chart-container">
-                        <div class="line-chart">
-                            <svg viewBox="0 0 300 150">
-                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
-                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
-                                <polyline class="line-path" points="60,90 90,85 120,95 150,80 180,75 210,85 240,70 270,65"/>
-                                <circle class="line-point" cx="60" cy="90"/>
-                                <circle class="line-point" cx="90" cy="85"/>
-                                <circle class="line-point" cx="120" cy="95"/>
-                                <circle class="line-point" cx="150" cy="80"/>
-                                <circle class="line-point" cx="180" cy="75"/>
-                                <circle class="line-point" cx="210" cy="85"/>
-                                <circle class="line-point" cx="240" cy="70"/>
-                                <circle class="line-point" cx="270" cy="65"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bottom Row -->
-                <div class="trend-chart">
-                    <div class="chart-title">Under-5 Cases</div>
-                    <div class="trend-value">+15%</div>
-                    <div class="chart-container">
-                        <div class="line-chart">
-                            <svg viewBox="0 0 300 150">
-                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
-                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
-                                <polyline class="line-path" points="60,105 90,100 120,110 150,95 180,85 210,90 240,75 270,70"/>
-                                <circle class="line-point" cx="60" cy="105"/>
-                                <circle class="line-point" cx="90" cy="100"/>
-                                <circle class="line-point" cx="120" cy="110"/>
-                                <circle class="line-point" cx="150" cy="95"/>
-                                <circle class="line-point" cx="180" cy="85"/>
-                                <circle class="line-point" cx="210" cy="90"/>
-                                <circle class="line-point" cx="240" cy="75"/>
-                                <circle class="line-point" cx="270" cy="70"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trend-chart">
-                    <div class="chart-title">Treatment Success Rate</div>
-                    <div class="trend-value">+7%</div>
-                    <div class="chart-container">
-                        <div class="line-chart">
-                            <svg viewBox="0 0 300 150">
-                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
-                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
-                                <polyline class="line-path" points="60,95 90,90 120,85 150,80 180,75 210,70 240,65 270,60"/>
-                                <circle class="line-point" cx="60" cy="95"/>
-                                <circle class="line-point" cx="90" cy="90"/>
-                                <circle class="line-point" cx="120" cy="85"/>
-                                <circle class="line-point" cx="150" cy="80"/>
-                                <circle class="line-point" cx="180" cy="75"/>
-                                <circle class="line-point" cx="210" cy="70"/>
-                                <circle class="line-point" cx="240" cy="65"/>
-                                <circle class="line-point" cx="270" cy="60"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trend-chart">
-                    <div class="chart-title">LLIN Coverage</div>
-                    <div class="trend-value">+2%</div>
-                    <div class="chart-container">
-                        <div class="line-chart">
-                            <svg viewBox="0 0 300 150">
-                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
-                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
-                                <polyline class="line-path" points="60,90 90,88 120,92 150,85 180,82 210,80 240,78 270,75"/>
-                                <circle class="line-point" cx="60" cy="90"/>
-                                <circle class="line-point" cx="90" cy="88"/>
-                                <circle class="line-point" cx="120" cy="92"/>
-                                <circle class="line-point" cx="150" cy="85"/>
-                                <circle class="line-point" cx="180" cy="82"/>
-                                <circle class="line-point" cx="210" cy="80"/>
-                                <circle class="line-point" cx="240" cy="78"/>
-                                <circle class="line-point" cx="270" cy="75"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trend-chart">
-                    <div class="chart-title">Stock Availability</div>
-                    <div class="trend-value">-4%</div>
-                    <div class="chart-container">
-                        <div class="line-chart">
-                            <svg viewBox="0 0 300 150">
-                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
-                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
-                                <polyline class="line-path" points="60,70 90,75 120,80 150,85 180,90 210,95 240,100 270,105"/>
-                                <circle class="line-point" cx="60" cy="70"/>
-                                <circle class="line-point" cx="90" cy="75"/>
-                                <circle class="line-point" cx="120" cy="80"/>
-                                <circle class="line-point" cx="150" cy="85"/>
-                                <circle class="line-point" cx="180" cy="90"/>
-                                <circle class="line-point" cx="210" cy="95"/>
-                                <circle class="line-point" cx="240" cy="100"/>
-                                <circle class="line-point" cx="270" cy="105"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -1012,28 +817,242 @@
                 'jahn': { name: 'JAHN', totalCases: 178, totalDeaths: 3, incidenceRate: '112‰', testPositivity: '22%', under5Cases: 82, severeCases: 21, treatmentSuccess: '89%', llinCoverage: '65%', healthFacilities: 4, chwsActive: 12, rdtStock: 220, actStock: 185, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 1 },
                 'jawie': { name: 'JAWIE', totalCases: 156, totalDeaths: 2, incidenceRate: '105‰', testPositivity: '20%', under5Cases: 71, severeCases: 19, treatmentSuccess: '90%', llinCoverage: '67%', healthFacilities: 3, chwsActive: 10, rdtStock: 195, actStock: 165, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
                 'kissi-kama': { name: 'KISSI KAMA', totalCases: 134, totalDeaths: 1, incidenceRate: '92‰', testPositivity: '18%', under5Cases: 58, severeCases: 15, treatmentSuccess: '92%', llinCoverage: '70%', healthFacilities: 3, chwsActive: 9, rdtStock: 175, actStock: 145, reportingRate: '89%', timeliness: '86%', budgetUtil: '79%', outbreakAlerts: 0 },
-                'kissi-teng': { name: 'KISSI TENG', totalCases: 165, totalDeaths: 2, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 76, severeCases: 20, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 4, chwsActive: 11, rdtStock: 205, actStock: 175, reportingRate: '85%', timeliness: '82%', budgetUtil: '75%', outbreakAlerts: 1 }
+                'kissi-teng': { name: 'KISSI TENG', totalCases: 165, totalDeaths: 2, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 76, severeCases: 20, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 4, chwsActive: 11, rdtStock: 205, actStock: 175, reportingRate: '85%', timeliness: '82%', budgetUtil: '75%', outbreakAlerts: 1 },
+                'kissi-tongi': { name: 'KISSI TONGI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kpeje-bongre': { name: 'KPEJE BONGRE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kpeje-west': { name: 'KPEJE WEST', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'luawa': { name: 'LUAWA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'malema': { name: 'MALEMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'mandu': { name: 'MANDU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'njaluahun': { name: 'NJALUAHUN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'penguia': { name: 'PENGUIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'upper-bambara': { name: 'UPPER BAMBARA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'yawei': { name: 'YAWEI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
             },
             'kenema': {
                 'dama': { name: 'DAMA', totalCases: 189, totalDeaths: 3, incidenceRate: '125‰', testPositivity: '25%', under5Cases: 89, severeCases: 24, treatmentSuccess: '86%', llinCoverage: '63%', healthFacilities: 4, chwsActive: 13, rdtStock: 235, actStock: 195, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 1 },
                 'dodo': { name: 'DODO', totalCases: 167, totalDeaths: 2, incidenceRate: '118‰', testPositivity: '23%', under5Cases: 78, severeCases: 21, treatmentSuccess: '87%', llinCoverage: '64%', healthFacilities: 3, chwsActive: 11, rdtStock: 210, actStock: 175, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
                 'gaura': { name: 'GAURA', totalCases: 145, totalDeaths: 2, incidenceRate: '110‰', testPositivity: '22%', under5Cases: 67, severeCases: 18, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 3, chwsActive: 10, rdtStock: 185, actStock: 155, reportingRate: '88%', timeliness: '85%', budgetUtil: '78%', outbreakAlerts: 0 },
+                'gorama-mende': { name: 'GORAMA MENDE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kandu-leppiama': { name: 'KANDU LEPPIAMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'koya': { name: 'KOYA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'langrama': { name: 'LANGRAMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'lower-bambara': { name: 'LOWER BAMBARA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'malegohun': { name: 'MALEGOHUN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'niawa': { name: 'NIAWA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'nomo': { name: 'NOMO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'nongowa': { name: 'NONGOWA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'simbaru': { name: 'SIMBARU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'small-bo': { name: 'SMALL BO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'tunkia': { name: 'TUNKIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'wandor': { name: 'WANDOR', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
                 'kenema-city': { name: 'KENEMA CITY', totalCases: 298, totalDeaths: 5, incidenceRate: '142‰', testPositivity: '27%', under5Cases: 134, severeCases: 38, treatmentSuccess: '84%', llinCoverage: '59%', healthFacilities: 8, chwsActive: 18, rdtStock: 365, actStock: 315, reportingRate: '85%', timeliness: '82%', budgetUtil: '74%', outbreakAlerts: 2 }
+            },
+            'kono': {
+                'fiama': { name: 'FIAMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbane': { name: 'GBANE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbane-kandor': { name: 'GBANE KANDOR', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbense': { name: 'GBENSE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gorama-kono': { name: 'GORAMA KONO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kamara': { name: 'KAMARA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'lei': { name: 'LEI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'mafindor': { name: 'MAFINDOR', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'nimikoro': { name: 'NIMIKORO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'nimiyama': { name: 'NIMIYAMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sandor': { name: 'SANDOR', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'soa': { name: 'SOA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'tankoro': { name: 'TANKORO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'toli': { name: 'TOLI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'koidu-city': { name: 'KOIDU CITY', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'bombali': {
+                'biriwa': { name: 'BIRIWA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'bombali-sebora': { name: 'BOMBALI SEBORA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'bombali-siari': { name: 'BOMBALI SIARI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbanti': { name: 'GBANTI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbendembu': { name: 'GBENDEMBU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kamaranka': { name: 'KAMARANKA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'magbaimba-ndorwahun': { name: 'MAGBAIMBA NDORWAHUN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'makari': { name: 'MAKARI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'mara': { name: 'MARA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'ngowahun': { name: 'N\'GOWAHUN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'paki-masabong': { name: 'PAKI MASABONG', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'safroko-limba': { name: 'SAFROKO LIMBA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'makeni-city': { name: 'MAKENI CITY', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'falaba': {
+                'delemandugu': { name: 'DELEMANDUGU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'dembelia': { name: 'DEMBELIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'dembelia-sinkunia': { name: 'DEMBELIA-SINKUNIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'folosaba': { name: 'FOLOSABA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kamadu-yiraia': { name: 'KAMADU YIRAIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kebelia': { name: 'KEBELIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kulor-saradu': { name: 'KULOR SARADU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'mongo': { name: 'MONGO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'morifindugu': { name: 'MORIFINDUGU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'neya': { name: 'NEYA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'nyedu': { name: 'NYEDU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sulima': { name: 'SULIMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'wollay-barawa': { name: 'WOLLAY BARAWA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
             },
             'bo': {
                 'badjia': { name: 'BADJIA', totalCases: 158, totalDeaths: 2, incidenceRate: '115‰', testPositivity: '22%', under5Cases: 72, severeCases: 19, treatmentSuccess: '87%', llinCoverage: '65%', healthFacilities: 3, chwsActive: 11, rdtStock: 195, actStock: 165, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 0 },
                 'bagbo': { name: 'BAGBO', totalCases: 142, totalDeaths: 2, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 65, severeCases: 17, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 3, chwsActive: 9, rdtStock: 175, actStock: 145, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
+                'bagbwe': { name: 'BAGBWE(BAGBE)', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'boama': { name: 'BOAMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'bongor': { name: 'BONGOR', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'bumpe-ngao': { name: 'BUMPE NGAO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbo': { name: 'GBO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'jaiama': { name: 'JAIAMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kakua': { name: 'KAKUA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'komboya': { name: 'KOMBOYA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'lugbu': { name: 'LUGBU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'niawa-lenga': { name: 'NIAWA LENGA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'selenga': { name: 'SELENGA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'tikonko': { name: 'TIKONKO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'valunia': { name: 'VALUNIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'wonde': { name: 'WONDE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
                 'bo-town': { name: 'BO TOWN', totalCases: 276, totalDeaths: 4, incidenceRate: '135‰', testPositivity: '26%', under5Cases: 125, severeCases: 35, treatmentSuccess: '85%', llinCoverage: '61%', healthFacilities: 7, chwsActive: 16, rdtStock: 340, actStock: 285, reportingRate: '84%', timeliness: '81%', budgetUtil: '73%', outbreakAlerts: 2 }
             },
             'western-urban': {
                 'central-i': { name: 'CENTRAL I', totalCases: 425, totalDeaths: 6, incidenceRate: '152‰', testPositivity: '29%', under5Cases: 189, severeCases: 54, treatmentSuccess: '83%', llinCoverage: '58%', healthFacilities: 9, chwsActive: 22, rdtStock: 520, actStock: 435, reportingRate: '82%', timeliness: '78%', budgetUtil: '71%', outbreakAlerts: 2 },
                 'central-ii': { name: 'CENTRAL II', totalCases: 398, totalDeaths: 5, incidenceRate: '148‰', testPositivity: '28%', under5Cases: 178, severeCases: 51, treatmentSuccess: '84%', llinCoverage: '59%', healthFacilities: 8, chwsActive: 20, rdtStock: 485, actStock: 405, reportingRate: '83%', timeliness: '79%', budgetUtil: '72%', outbreakAlerts: 1 },
-                'east-i': { name: 'EAST I', totalCases: 456, totalDeaths: 7, incidenceRate: '158‰', testPositivity: '31%', under5Cases: 205, severeCases: 58, treatmentSuccess: '82%', llinCoverage: '57%', healthFacilities: 10, chwsActive: 24, rdtStock: 560, actStock: 470, reportingRate: '81%', timeliness: '77%', budgetUtil: '70%', outbreakAlerts: 3 }
+                'east-i': { name: 'EAST I', totalCases: 456, totalDeaths: 7, incidenceRate: '158‰', testPositivity: '31%', under5Cases: 205, severeCases: 58, treatmentSuccess: '82%', llinCoverage: '57%', healthFacilities: 10, chwsActive: 24, rdtStock: 560, actStock: 470, reportingRate: '81%', timeliness: '77%', budgetUtil: '70%', outbreakAlerts: 3 },
+                'east-ii': { name: 'EAST II', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'east-iii': { name: 'EAST III', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'west-i': { name: 'WEST I', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'west-ii': { name: 'WEST II', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'west-iii': { name: 'WEST III', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
             },
             'western-rural': {
                 'koya-rural': { name: 'KOYA RURAL', totalCases: 245, totalDeaths: 2, incidenceRate: '68‰', testPositivity: '15%', under5Cases: 108, severeCases: 28, treatmentSuccess: '94%', llinCoverage: '81%', healthFacilities: 8, chwsActive: 22, rdtStock: 470, actStock: 390, reportingRate: '93%', timeliness: '90%', budgetUtil: '85%', outbreakAlerts: 0 },
-                'mountain-rural': { name: 'MOUNTAIN RURAL', totalCases: 198, totalDeaths: 1, incidenceRate: '62‰', testPositivity: '13%', under5Cases: 89, severeCases: 23, treatmentSuccess: '95%', llinCoverage: '83%', healthFacilities: 6, chwsActive: 18, rdtStock: 385, actStock: 325, reportingRate: '94%', timeliness: '91%', budgetUtil: '86%', outbreakAlerts: 0 }
+                'mountain-rural': { name: 'MOUNTAIN RURAL', totalCases: 198, totalDeaths: 1, incidenceRate: '62‰', testPositivity: '13%', under5Cases: 89, severeCases: 23, treatmentSuccess: '95%', llinCoverage: '83%', healthFacilities: 6, chwsActive: 18, rdtStock: 385, actStock: 325, reportingRate: '94%', timeliness: '91%', budgetUtil: '86%', outbreakAlerts: 0 },
+                'waterloo-rural': { name: 'WATERLOO RURAL', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'york-rural': { name: 'YORK RURAL', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'koinadugu': {
+                'diang': { name: 'DIANG', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbonkobon-kayaka': { name: 'GBONKOBON KAYAKA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kalian': { name: 'KALIAN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kamukeh': { name: 'KAMUKEH', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kasunko-kakellian': { name: 'KASUNKO KAKELLIAN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'nieni': { name: 'NIENI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sengbe': { name: 'SENGBE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'tamiso': { name: 'TAMISO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'wara-wara-bafodia': { name: 'WARA WARA BAFODIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'wara-wara-yagala': { name: 'WARA WARA YAGALA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'tonkolili': {
+                'dansogoia': { name: 'DANSOGOIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbonkolenkeni-masankong': { name: 'GBONKOLENKENI/MASANKONG', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kafe': { name: 'KAFE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kalanthuba': { name: 'KALANTHUBA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kholifa-mabang': { name: 'KHOLIFA MABANG', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kholifa-mamuntha-mayosso': { name: 'KHOLIFA MAMUNTHA/MAYOSSO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kholifa-rowala': { name: 'KHOLIFA ROWALA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kunike-barina': { name: 'KUNIKE BARINA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kunike-folawusu': { name: 'KUNIKE FOLAWUSU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kunike-sanda': { name: 'KUNIKE SANDA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'malal': { name: 'MALAL', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'mayeppoh': { name: 'MAYEPPOH', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'poli': { name: 'POLI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sambaya': { name: 'SAMBAYA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'simiria': { name: 'SIMIRIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'tane': { name: 'TANE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'yele': { name: 'YELE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'yoni-mabanta': { name: 'YONI MABANTA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'yoni-mamaila': { name: 'YONI MAMAILA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'kambia': {
+                'bramaia': { name: 'BRAMAIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'dixon': { name: 'DIXON', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbinle': { name: 'GBINLE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'khonimaka': { name: 'KHONIMAKA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'magbema': { name: 'MAGBEMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'mambolo': { name: 'MAMBOLO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'masungbala': { name: 'MASUNGBALA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'munu-thallah': { name: 'MUNU THALLAH', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'samu': { name: 'SAMU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'tonko-limba': { name: 'TONKO LIMBA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'karene': {
+                'buya': { name: 'BUYA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'dibia': { name: 'DIBIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'gbanti-karene': { name: 'GBANTI_KARENE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'libeisaygahun-gbombahun': { name: 'LIBEISAYGAHUN/GBOMBAHUN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'mafonda-makerembay': { name: 'MAFONDA MAKEREMBAY', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'romende': { name: 'ROMENDE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'safroko': { name: 'SAFROKO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sanda-loko': { name: 'SANDA LOKO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sanda-magbolontor': { name: 'SANDA MAGBOLONTOR', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sanda-tendaran': { name: 'SANDA TENDARAN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sella-limba': { name: 'SELLA LIMBA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'tambakha-simibungie': { name: 'TAMBAKHA SIMIBUNGIE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'tambakha-yobangie': { name: 'TAMBAKHA YOBANGIE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'port-loko': {
+                'bakeh-loko': { name: 'BAKEH LOKO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'bureh': { name: 'BUREH', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kaffu-bullom': { name: 'KAFFU BULLOM', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kamasondo': { name: 'KAMASONDO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kasseh': { name: 'KASSEH', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'koya': { name: 'KOYA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'lokomasama': { name: 'LOKOMASAMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'maconteh': { name: 'MACONTEH', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'maforki': { name: 'MAFORKI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'makama': { name: 'MAKAMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'marampa': { name: 'MARAMPA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'masimera': { name: 'MASIMERA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'thainkatopa': { name: 'THAINKATOPA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'port-loko-city': { name: 'PORT LOKO CITY', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'bonthe': {
+                'bendu-cha': { name: 'BENDU-CHA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'bum': { name: 'BUM', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'dema': { name: 'DEMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'imperri': { name: 'IMPERRI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'jong': { name: 'JONG', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kpanda-kemo': { name: 'KPANDA KEMO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kwamebai-krim': { name: 'KWAMEBAI KRIM', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'nongoba-bullom': { name: 'NONGOBA BULLOM', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sittia': { name: 'SITTIA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sogbeni': { name: 'SOGBENI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'yawbeko': { name: 'YAWBEKO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'bonthe-urban': { name: 'BONTHE URBAN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'moyamba': {
+                'bagruwa': { name: 'BAGRUWA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'bumpeh': { name: 'BUMPEH', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'dasse': { name: 'DASSE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'fakunya': { name: 'FAKUNYA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kagboro': { name: 'KAGBORO', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kaiyamba': { name: 'KAIYAMBA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kamajei': { name: 'KAMAJEI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kongbora': { name: 'KONGBORA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kori': { name: 'KORI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kowa': { name: 'KOWA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'lower-banta': { name: 'LOWER BANTA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'ribbi': { name: 'RIBBI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'timdale': { name: 'TIMDALE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'upper-banta': { name: 'UPPER BANTA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
+            },
+            'pujehun': {
+                'barri': { name: 'BARRI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'perri': { name: 'PERRI', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kabonde': { name: 'KABONDE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'kpaka': { name: 'KPAKA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'makpele': { name: 'MAKPELE', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'malen': { name: 'MALEN', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'mono-sakrim': { name: 'MONO SAKRIM', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'panga': { name: 'PANGA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'panga-krim': { name: 'PANGA KRIM', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'pejeh-futa-peje': { name: 'PEJEH (FUTA PEJE)', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'galliness': { name: 'GALLINESS', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'soro-gbema': { name: 'SORO GBEMA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'sowa': { name: 'SOWA', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 },
+                'yakemu-kpukumu': { name: 'YAKEMU KPUKUMU', totalCases: 0, totalDeaths: 0, incidenceRate: '0‰', testPositivity: '0%', under5Cases: 0, severeCases: 0, treatmentSuccess: '0%', llinCoverage: '0%', healthFacilities: 0, chwsActive: 0, rdtStock: 0, actStock: 0, reportingRate: '0%', timeliness: '0%', budgetUtil: '0%', outbreakAlerts: 0 }
             }
+   
         };
 
         function generateChiefdomIcon() {
