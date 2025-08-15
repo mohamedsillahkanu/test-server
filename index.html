@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">       
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>District Malaria Dashboard</title>
+    <style>    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+      
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0066cc 0%, #004499 50%, #ffffff 100%);
+            min-height: 100vh;
+            color: #333;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #0066cc;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.2);
+        }
+
+        .logo-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-container {
+            width: 100px;
+            height: 60px;
+            border: 2px solid #0066cc;
+            border-radius: 8px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
+        }
+
+        .logo-placeholder {
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .title-section {
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 2.5em;
+            color: #0066cc;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #004499;
+            margin-bottom: 5px;
+        }
+
+        .dashboard-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 102, 204, 0.2);
+        }
+
+        /* Navigation breadcrumb */
+        .breadcrumb {
+            background: rgba(0, 102, 204, 0.1);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #0066cc;
+        }
+
+        .breadcrumb span {
+            color: #0066cc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .breadcrumb span:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Dashboard Grid - 4x4 */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .district-card, .chiefdom-card {
+            background: linear-gradient(145deg, #ffffff, #f0f8ff);
+            border: 2px solid rgba(0, 102, 204, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .district-card:hover, .chiefdom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.2);
+            border-color: #0066cc;
+        }
+
+        .district-icon, .chiefdom-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .chiefdom-icon {
+            font-size: 2.5em;
+        }
+
+        .district-name, .chiefdom-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .chiefdom-name {
+            font-size: 1.1em;
+        }
+
+        .district-stats, .chiefdom-stats {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .chiefdom-stats {
+            font-size: 0.8em;
+        }
+
+        .cases-count {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff6600;
+            margin: 5px 0;
+        }
+
+        .chiefdom-cases {
+            font-size: 1.3em;
+        }
+
+        /* Enhanced Metrics Grid with Years */
+        .metrics-section {
+            margin-top: 20px;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 250px repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .metric-row-header {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid rgba(0, 102, 204, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: 700;
+            color: #0066cc;
+            font-size: 1.1em;
+            min-height: 120px;
+            position: sticky;
+            left: 0;
+            z-index: 10;
+        }
+
+        .metric-row-header .metric-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #ff6600;
+        }
+
+        .year-metric-card {
+            background: white;
+            border: 2px solid rgba(0, 102, 204, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .year-metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.2);
+            border-color: #0066cc;
+        }
+
+        .year-header {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.2em;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 15;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+        }
+
+        .metric-value {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 8px;
+        }
+
+        .metric-change {
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 15px;
+            margin-top: 5px;
+        }
+
+        .metric-change.positive {
+            color: #28a745;
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .metric-change.negative {
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .metric-change.neutral {
+            color: #6c757d;
+            background: rgba(108, 117, 125, 0.1);
+        }
+
+        /* Back Navigation */
+        .back-nav {
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: #004499;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+        }
+
+        /* View States */
+        .dashboard-view {
+            display: none;
+        }
+
+        .dashboard-view.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Special button to view chiefdoms */
+        .view-chiefdoms-btn {
+            background: linear-gradient(45deg, #00cc66, #0099ff);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 153, 255, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .view-chiefdoms-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 153, 255, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .metrics-grid {
+                grid-template-columns: 200px repeat(4, 1fr);
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .main-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 150px repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .metric-row-header, .year-metric-card {
+                min-height: 100px;
+                padding: 15px;
+                font-size: 0.9em;
+            }
+            
+            .main-title {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Scrollable container for metrics */
+        .metrics-container {
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+
+        .metrics-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .metrics-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .metrics-container::-webkit-scrollbar-thumb {
+            background: #0066cc;
+            border-radius: 10px;
+        }
+
+        .metrics-container::-webkit-scrollbar-thumb:hover {
+            background: #004499;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <div class="logo-container">
+                <div class="logo-placeholder">MINISTRY<br>HEALTH</div>
+            </div>
+            <div class="logo-container">
+                <div class="logo-placeholder">WHO</div>
+            </div>
+            <div class="logo-container">
+                <div class="logo-placeholder">UNICEF</div>
+            </div>
+        </div>
+        
+        <div class="title-section">
+            <h1 class="main-title">Sierra Leone Malaria Dashboard</h1>
+            <h2 class="subtitle">Real-time Monitoring & Analytics</h2>
+            <h2 class="subtitle">Ministry of Health and Sanitation</h2>
+            <h2 class="subtitle"><em>District-Level Surveillance</em></h2>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb" id="breadcrumb">
+            <span onclick="showMainDashboard()">Home</span>
+        </div>
+
+        <!-- Main Dashboard - Districts Grid (4x4) -->
+        <div class="dashboard-view active" id="mainDashboard">
+            <div class="main-grid">
+                <!-- Row 1 -->
+                <div class="district-card" onclick="showDistrictDashboard('bo', 'BO District')">
+                    <div class="district-name">BO</div>
+                    <div class="cases-count">17</div>
+                    <div class="district-stats">Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('bombali', 'BOMBALI District')">
+                    <div class="district-name">BOMBALI</div>
+                    <div class="cases-count">1,856</div>
+                    <div class="district-stats">Cases this month<br>13 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('bonthe', 'BONTHE District')">
+                    <div class="district-name">BONTHE</div>
+                    <div class="cases-count">1,234</div>
+                    <div class="district-stats">Cases this month<br>12 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('falaba', 'FALABA District')">
+                    <div class="district-name">FALABA</div>
+                    <div class="cases-count">1,567</div>
+                    <div class="district-stats">Cases this month<br>13 Chiefdoms</div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="district-card" onclick="showDistrictDashboard('kailahun', 'KAILAHUN District')">
+                    <div class="district-name">KAILAHUN</div>
+                    <div class="cases-count">2,134</div>
+                    <div class="district-stats">Cases this month<br>15 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('kambia', 'KAMBIA District')">
+                    <div class="district-name">KAMBIA</div>
+                    <div class="cases-count">1,456</div>
+                    <div class="district-stats">Cases this month<br>10 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('karene', 'KARENE District')">
+                    <div class="district-name">KARENE</div>
+                    <div class="cases-count">1,789</div>
+                    <div class="district-stats">Cases this month<br>13 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('kenema', 'KENEMA District')">
+                    <div class="district-name">KENEMA</div>
+                    <div class="cases-count">2,567</div>
+                    <div class="district-stats">Cases this month<br>17 Chiefdoms</div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="district-card" onclick="showDistrictDashboard('koinadugu', 'KOINADUGU District')">
+                    <div class="district-name">KOINADUGU</div>
+                    <div class="cases-count">1,345</div>
+                    <div class="district-stats">Cases this month<br>10 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('kono', 'KONO District')">
+                    <div class="district-name">KONO</div>
+                    <div class="cases-count">1,923</div>
+                    <div class="district-stats">Cases this month<br>15 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('moyamba', 'MOYAMBA District')">
+                    <div class="district-name">MOYAMBA</div>
+                    <div class="cases-count">1,678</div>
+                    <div class="district-stats">Cases this month<br>14 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('port-loko', 'PORT LOKO District')">
+                    <div class="district-name">PORT LOKO</div>
+                    <div class="cases-count">2,234</div>
+                    <div class="district-stats">Cases this month<br>14 Chiefdoms</div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="district-card" onclick="showDistrictDashboard('pujehun', 'PUJEHUN District')">
+                    <div class="district-name">PUJEHUN</div>
+                    <div class="cases-count">1,456</div>
+                    <div class="district-stats">Cases this month<br>14 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('tonkolili', 'TONKOLILI District')">
+                    <div class="district-name">TONKOLILI</div>
+                    <div class="cases-count">2,789</div>
+                    <div class="district-stats">Cases this month<br>19 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('western-rural', 'WESTERN RURAL District')">
+                    <div class="district-name">WESTERN RURAL</div>
+                    <div class="cases-count">987</div>
+                    <div class="district-stats">Cases this month<br>4 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('western-urban', 'WESTERN URBAN District')">
+                    <div class="district-name">WESTERN URBAN</div>
+                    <div class="cases-count">3,456</div>
+                    <div class="district-stats">Cases this month<br>8 Chiefdoms</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- District Dashboard - Enhanced Metrics with Years -->
+        <div class="dashboard-view" id="districtDashboard">
+            <div class="back-nav">
+                <button class="back-btn" onclick="showMainDashboard()">← Back to Districts</button>
+                <button class="view-chiefdoms-btn" onclick="showChiefdomsDashboard()">View Chiefdoms</button>
+            </div>
+            
+            <div class="metrics-section">
+                <!-- Epidemiological Indicators -->
+                <div class="section-header">📊 Epidemiological Indicators</div>
+                <div class="metrics-container">
+                    <div class="metrics-grid">
+                        <!-- Header Row -->
+                        <div class="metric-row-header"></div>
+                        <div class="year-header">2021</div>
+                        <div class="year-header">2022</div>
+                        <div class="year-header">2023</div>
+                        <div class="year-header">2024</div>
+
+                        <!-- Total Cases Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">📈</div>
+                            <div>Total Cases</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('cases-trend-2021', 'Total Cases 2021')">
+                            <div class="metric-value" id="totalCases2021">980</div>
+                            <div class="metric-change negative">-8.2%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('cases-trend-2022', 'Total Cases 2022')">
+                            <div class="metric-value" id="totalCases2022">1,068</div>
+                            <div class="metric-change positive">+9.0%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('cases-trend-2023', 'Total Cases 2023')">
+                            <div class="metric-value" id="totalCases2023">1,156</div>
+                            <div class="metric-change positive">+8.2%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('cases-trend-2024', 'Total Cases 2024')">
+                            <div class="metric-value" id="totalCases2024">1,245</div>
+                            <div class="metric-change positive">+7.7%</div>
+                        </div>
+
+                        <!-- Deaths Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">💀</div>
+                            <div>Deaths</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('deaths-trend-2021', 'Deaths 2021')">
+                            <div class="metric-value" id="totalDeaths2021">15</div>
+                            <div class="metric-change negative">-16.7%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('deaths-trend-2022', 'Deaths 2022')">
+                            <div class="metric-value" id="totalDeaths2022">14</div>
+                            <div class="metric-change negative">-6.7%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('deaths-trend-2023', 'Deaths 2023')">
+                            <div class="metric-value" id="totalDeaths2023">13</div>
+                            <div class="metric-change negative">-7.1%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('deaths-trend-2024', 'Deaths 2024')">
+                            <div class="metric-value" id="totalDeaths2024">12</div>
+                            <div class="metric-change negative">-7.7%</div>
+                        </div>
+
+                        <!-- Incidence Rate Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">📊</div>
+                            <div>Incidence Rate</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('incidence-trend-2021', 'Incidence Rate 2021')">
+                            <div class="metric-value" id="incidenceRate2021">78‰</div>
+                            <div class="metric-change negative">-5.1%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('incidence-trend-2022', 'Incidence Rate 2022')">
+                            <div class="metric-value" id="incidenceRate2022">81‰</div>
+                            <div class="metric-change positive">+3.8%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('incidence-trend-2023', 'Incidence Rate 2023')">
+                            <div class="metric-value" id="incidenceRate2023">83‰</div>
+                            <div class="metric-change positive">+2.5%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('incidence-trend-2024', 'Incidence Rate 2024')">
+                            <div class="metric-value" id="incidenceRate2024">85‰</div>
+                            <div class="metric-change positive">+2.4%</div>
+                        </div>
+
+                        <!-- Test Positivity Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">🧪</div>
+                            <div>Test Positivity</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('positivity-trend-2021', 'Test Positivity 2021')">
+                            <div class="metric-value" id="testPositivity2021">22%</div>
+                            <div class="metric-change positive">+4.8%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('positivity-trend-2022', 'Test Positivity 2022')">
+                            <div class="metric-value" id="testPositivity2022">20%</div>
+                            <div class="metric-change negative">-9.1%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('positivity-trend-2023', 'Test Positivity 2023')">
+                            <div class="metric-value" id="testPositivity2023">19%</div>
+                            <div class="metric-change negative">-5.0%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('positivity-trend-2024', 'Test Positivity 2024')">
+                            <div class="metric-value" id="testPositivity2024">18%</div>
+                            <div class="metric-change negative">-5.3%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vulnerable Populations -->
+                <div class="section-header">👶 Vulnerable Populations</div>
+                <div class="metrics-container">
+                    <div class="metrics-grid">
+                        <!-- Header Row -->
+                        <div class="metric-row-header"></div>
+                        <div class="year-header">2021</div>
+                        <div class="year-header">2022</div>
+                        <div class="year-header">2023</div>
+                        <div class="year-header">2024</div>
+
+                        <!-- Under-5 Cases Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">👶</div>
+                            <div>Under-5 Cases</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('under5-trend-2021', 'Under-5 Cases 2021')">
+                            <div class="metric-value" id="under5Cases2021">441</div>
+                            <div class="metric-change negative">-7.5%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('under5-trend-2022', 'Under-5 Cases 2022')">
+                            <div class="metric-value" id="under5Cases2022">481</div>
+                            <div class="metric-change positive">+9.1%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('under5-trend-2023', 'Under-5 Cases 2023')">
+                            <div class="metric-value" id="under5Cases2023">521</div>
+                            <div class="metric-change positive">+8.3%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('under5-trend-2024', 'Under-5 Cases 2024')">
+                            <div class="metric-value" id="under5Cases2024">560</div>
+                            <div class="metric-change positive">+7.5%</div>
+                        </div>
+
+                        <!-- Severe Cases Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">🚨</div>
+                            <div>Severe Cases</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('severe-trend-2021', 'Severe Cases 2021')">
+                            <div class="metric-value" id="severeCases2021">127</div>
+                            <div class="metric-change negative">-12.3%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('severe-trend-2022', 'Severe Cases 2022')">
+                            <div class="metric-value" id="severeCases2022">136</div>
+                            <div class="metric-change positive">+7.1%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('severe-trend-2023', 'Severe Cases 2023')">
+                            <div class="metric-value" id="severeCases2023">142</div>
+                            <div class="metric-change positive">+4.4%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('severe-trend-2024', 'Severe Cases 2024')">
+                            <div class="metric-value" id="severeCases2024">149</div>
+                            <div class="metric-change positive">+4.9%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Treatment & Prevention -->
+                <div class="section-header">💊 Treatment & Prevention</div>
+                <div class="metrics-container">
+                    <div class="metrics-grid">
+                        <!-- Header Row -->
+                        <div class="metric-row-header"></div>
+                        <div class="year-header">2021</div>
+                        <div class="year-header">2022</div>
+                        <div class="year-header">2023</div>
+                        <div class="year-header">2024</div>
+
+                        <!-- Treatment Success Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">✅</div>
+                            <div>Treatment Success</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('treatment-trend-2021', 'Treatment Success 2021')">
+                            <div class="metric-value" id="treatmentSuccess2021">89%</div>
+                            <div class="metric-change positive">+2.3%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('treatment-trend-2022', 'Treatment Success 2022')">
+                            <div class="metric-value" id="treatmentSuccess2022">90%</div>
+                            <div class="metric-change positive">+1.1%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('treatment-trend-2023', 'Treatment Success 2023')">
+                            <div class="metric-value" id="treatmentSuccess2023">91%</div>
+                            <div class="metric-change positive">+1.1%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('treatment-trend-2024', 'Treatment Success 2024')">
+                            <div class="metric-value" id="treatmentSuccess2024">92%</div>
+                            <div class="metric-change positive">+1.1%</div>
+                        </div>
+
+                        <!-- LLIN Coverage Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">🛏️</div>
+                            <div>LLIN Coverage</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('llin-trend-2021', 'LLIN Coverage 2021')">
+                            <div class="metric-value" id="llinCoverage2021">68%</div>
+                            <div class="metric-change negative">-2.9%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('llin-trend-2022', 'LLIN Coverage 2022')">
+                            <div class="metric-value" id="llinCoverage2022">71%</div>
+                            <div class="metric-change positive">+4.4%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('llin-trend-2023', 'LLIN Coverage 2023')">
+                            <div class="metric-value" id="llinCoverage2023">72%</div>
+                            <div class="metric-change positive">+1.4%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('llin-trend-2024', 'LLIN Coverage 2024')">
+                            <div class="metric-value" id="llinCoverage2024">74%</div>
+                            <div class="metric-change positive">+2.8%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health System Capacity -->
+                <div class="section-header">🏥 Health System Capacity</div>
+                <div class="metrics-container">
+                    <div class="metrics-grid">
+                        <!-- Header Row -->
+                        <div class="metric-row-header"></div>
+                        <div class="year-header">2021</div>
+                        <div class="year-header">2022</div>
+                        <div class="year-header">2023</div>
+                        <div class="year-header">2024</div>
+
+                        <!-- Health Facilities Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">🏥</div>
+                            <div>Health Facilities</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('facilities-trend-2021', 'Health Facilities 2021')">
+                            <div class="metric-value" id="healthFacilities2021">41</div>
+                            <div class="metric-change positive">+2.5%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('facilities-trend-2022', 'Health Facilities 2022')">
+                            <div class="metric-value" id="healthFacilities2022">43</div>
+                            <div class="metric-change positive">+4.9%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('facilities-trend-2023', 'Health Facilities 2023')">
+                            <div class="metric-value" id="healthFacilities2023">44</div>
+                            <div class="metric-change positive">+2.3%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('facilities-trend-2024', 'Health Facilities 2024')">
+                            <div class="metric-value" id="healthFacilities2024">45</div>
+                            <div class="metric-change positive">+2.3%</div>
+                        </div>
+
+                        <!-- CHWs Active Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">👩‍⚕️</div>
+                            <div>CHWs Active</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('chws-trend-2021', 'CHWs Active 2021')">
+                            <div class="metric-value" id="chwsActive2021">115</div>
+                            <div class="metric-change positive">+4.5%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('chws-trend-2022', 'CHWs Active 2022')">
+                            <div class="metric-value" id="chwsActive2022">121</div>
+                            <div class="metric-change positive">+5.2%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('chws-trend-2023', 'CHWs Active 2023')">
+                            <div class="metric-value" id="chwsActive2023">125</div>
+                            <div class="metric-change positive">+3.3%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('chws-trend-2024', 'CHWs Active 2024')">
+                            <div class="metric-value" id="chwsActive2024">128</div>
+                            <div class="metric-change positive">+2.4%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supply Chain & Logistics -->
+                <div class="section-header">📦 Supply Chain & Logistics</div>
+                <div class="metrics-container">
+                    <div class="metrics-grid">
+                        <!-- Header Row -->
+                        <div class="metric-row-header"></div>
+                        <div class="year-header">2021</div>
+                        <div class="year-header">2022</div>
+                        <div class="year-header">2023</div>
+                        <div class="year-header">2024</div>
+
+                        <!-- RDT Stock Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">🧪</div>
+                            <div>RDT Stock</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('rdt-trend-2021', 'RDT Stock 2021')">
+                            <div class="metric-value" id="rdtStock2021">2,106</div>
+                            <div class="metric-change positive">+8.2%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('rdt-trend-2022', 'RDT Stock 2022')">
+                            <div class="metric-value" id="rdtStock2022">2,223</div>
+                            <div class="metric-change positive">+5.6%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('rdt-trend-2023', 'RDT Stock 2023')">
+                            <div class="metric-value" id="rdtStock2023">2,281</div>
+                            <div class="metric-change positive">+2.6%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('rdt-trend-2024', 'RDT Stock 2024')">
+                            <div class="metric-value" id="rdtStock2024">2,340</div>
+                            <div class="metric-change positive">+2.6%</div>
+                        </div>
+
+                        <!-- ACT Stock Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">💊</div>
+                            <div>ACT Stock</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('act-trend-2021', 'ACT Stock 2021')">
+                            <div class="metric-value" id="actStock2021">1,701</div>
+                            <div class="metric-change positive">+6.9%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('act-trend-2022', 'ACT Stock 2022')">
+                            <div class="metric-value" id="actStock2022">1,796</div>
+                            <div class="metric-change positive">+5.6%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('act-trend-2023', 'ACT Stock 2023')">
+                            <div class="metric-value" id="actStock2023">1,843</div>
+                            <div class="metric-change positive">+2.6%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('act-trend-2024', 'ACT Stock 2024')">
+                            <div class="metric-value" id="actStock2024">1,890</div>
+                            <div class="metric-change positive">+2.6%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Surveillance & Management -->
+                <div class="section-header">📋 Surveillance & Management</div>
+                <div class="metrics-container">
+                    <div class="metrics-grid">
+                        <!-- Header Row -->
+                        <div class="metric-row-header"></div>
+                        <div class="year-header">2021</div>
+                        <div class="year-header">2022</div>
+                        <div class="year-header">2023</div>
+                        <div class="year-header">2024</div>
+
+                        <!-- Reporting Rate Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">📊</div>
+                            <div>Reporting Rate</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('reporting-trend-2021', 'Reporting Rate 2021')">
+                            <div class="metric-value" id="reportingRate2021">85%</div>
+                            <div class="metric-change positive">+2.4%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('reporting-trend-2022', 'Reporting Rate 2022')">
+                            <div class="metric-value" id="reportingRate2022">87%</div>
+                            <div class="metric-change positive">+2.4%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('reporting-trend-2023', 'Reporting Rate 2023')">
+                            <div class="metric-value" id="reportingRate2023">88%</div>
+                            <div class="metric-change positive">+1.1%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('reporting-trend-2024', 'Reporting Rate 2024')">
+                            <div class="metric-value" id="reportingRate2024">89%</div>
+                            <div class="metric-change positive">+1.1%</div>
+                        </div>
+
+                        <!-- Timeliness Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">⏰</div>
+                            <div>Timeliness</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('timeliness-trend-2021', 'Timeliness 2021')">
+                            <div class="metric-value" id="timeliness2021">80%</div>
+                            <div class="metric-change positive">+1.3%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('timeliness-trend-2022', 'Timeliness 2022')">
+                            <div class="metric-value" id="timeliness2022">82%</div>
+                            <div class="metric-change positive">+2.5%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('timeliness-trend-2023', 'Timeliness 2023')">
+                            <div class="metric-value" id="timeliness2023">83%</div>
+                            <div class="metric-change positive">+1.2%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('timeliness-trend-2024', 'Timeliness 2024')">
+                            <div class="metric-value" id="timeliness2024">84%</div>
+                            <div class="metric-change positive">+1.2%</div>
+                        </div>
+
+                        <!-- Budget Utilization Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">💰</div>
+                            <div>Budget Utilization</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('budget-trend-2021', 'Budget Utilization 2021')">
+                            <div class="metric-value" id="budgetUtil2021">70%</div>
+                            <div class="metric-change positive">+4.5%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('budget-trend-2022', 'Budget Utilization 2022')">
+                            <div class="metric-value" id="budgetUtil2022">73%</div>
+                            <div class="metric-change positive">+4.3%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('budget-trend-2023', 'Budget Utilization 2023')">
+                            <div class="metric-value" id="budgetUtil2023">75%</div>
+                            <div class="metric-change positive">+2.7%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('budget-trend-2024', 'Budget Utilization 2024')">
+                            <div class="metric-value" id="budgetUtil2024">76%</div>
+                            <div class="metric-change positive">+1.3%</div>
+                        </div>
+
+                        <!-- Outbreak Alerts Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">🚨</div>
+                            <div>Outbreak Alerts</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('alerts-trend-2021', 'Outbreak Alerts 2021')">
+                            <div class="metric-value" id="outbreakAlerts2021">5</div>
+                            <div class="metric-change negative">-16.7%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('alerts-trend-2022', 'Outbreak Alerts 2022')">
+                            <div class="metric-value" id="outbreakAlerts2022">4</div>
+                            <div class="metric-change negative">-20.0%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('alerts-trend-2023', 'Outbreak Alerts 2023')">
+                            <div class="metric-value" id="outbreakAlerts2023">4</div>
+                            <div class="metric-change neutral">0.0%</div>
+                        </div>
+                        <div class="year-metric-card" onclick="showTrendsDashboard('alerts-trend-2024', 'Outbreak Alerts 2024')">
+                            <div class="metric-value" id="outbreakAlerts2024">3</div>
+                            <div class="metric-change negative">-25.0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chiefdoms Dashboard - Dynamic Grid -->
+        <div class="dashboard-view" id="chiefdomsDashboard">
+            <div class="back-nav">
+                <button class="back-btn" onclick="showDistrictDashboard()">← Back to District Metrics</button>
+            </div>
+            
+            <div class="main-grid" id="chiefomsGrid">
+                <!-- Chiefdoms will be dynamically loaded here -->
+            </div>
+        </div>
+
+        <!-- Chiefdom Detail Dashboard - Enhanced Metrics with Years -->
+        <div class="dashboard-view" id="chiefdomDetailDashboard">
+            <div class="back-nav">
+                <button class="back-btn" onclick="showChiefdomsDashboard()">← Back to Chiefdoms</button>
+            </div>
+            
+            <div class="metrics-section">
+                <!-- Chiefdom Epidemiological Indicators -->
+                <div class="section-header">📊 Chiefdom Epidemiological Indicators</div>
+                <div class="metrics-container">
+                    <div class="metrics-grid">
+                        <!-- Header Row -->
+                        <div class="metric-row-header"></div>
+                        <div class="year-header">2021</div>
+                        <div class="year-header">2022</div>
+                        <div class="year-header">2023</div>
+                        <div class="year-header">2024</div>
+
+                        <!-- Total Cases Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">📈</div>
+                            <div>Total Cases</div>
+                        </div>
+                        <div class="year-metric-card">
+                            <div class="metric-value" id="chiefdomTotalCases2021">196</div>
+                            <div class="metric-change negative">-12.5%</div>
+                        </div>
+                        <div class="year-metric-card">
+                            <div class="metric-value" id="chiefdomTotalCases2022">213</div>
+                            <div class="metric-change positive">+8.7%</div>
+                        </div>
+                        <div class="year-metric-card">
+                            <div class="metric-value" id="chiefdomTotalCases2023">229</div>
+                            <div class="metric-change positive">+7.5%</div>
+                        </div>
+                        <div class="year-metric-card">
+                            <div class="metric-value" id="chiefdomTotalCases2024">245</div>
+                            <div class="metric-change positive">+7.0%</div>
+                        </div>
+
+                        <!-- Deaths Row -->
+                        <div class="metric-row-header">
+                            <div class="metric-icon">💀</div>
+                            <div>Deaths</div>
+                        </div>
+                        <div class="year-metric-card">
+                            <div class="metric-value" id="chiefdomTotalDeaths2021">4</div>
+                            <div class="metric-change positive">+0.0%</div>
+                        </div>
+                        <div class="year-metric-card">
+                            <div class="metric-value" id="chiefdomTotalDeaths2022">4</div>
+                            <div class="metric-change neutral">0.0%</div>
+                        </div>
+                        <div class="year-metric-card">
+                            <div class="metric-value" id="chiefdomTotalDeaths2023">3</div>
+                            <div class="metric-change negative">-25.0%</div>
+                        </div>
+                        <div class="year-metric-card">
+                            <div class="metric-value" id="chiefdomTotalDeaths2024">3</div>
+                            <div class="metric-change neutral">0.0%</div>
+                        </div>
+
+                        <!-- Additional chiefdom metrics would continue in the same pattern... -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables to track current state
+        let currentDistrict = '';
+        let currentDistrictName = '';
+        let currentMetric = '';
+        let currentMetricName = '';
+        let currentChiefdom = '';
+        let currentChiefdomName = '';
+
+        // District data for dynamic updates - Sierra Leone Districts
+        const districtData = {
+            'bo': { totalCases: 20215, totalDeaths: 28, incidenceRate: '118‰', testPositivity: '23%', under5Cases: 1055, severeCases: 281, treatmentSuccess: '86%', llinCoverage: '64%', healthFacilities: 56, chwsActive: 174, rdtStock: 3200, actStock: 2670, reportingRate: '85%', timeliness: '81%', budgetUtil: '75%', outbreakAlerts: 6 },
+            'bombali': { totalCases: 1856, totalDeaths: 18, incidenceRate: '95‰', testPositivity: '20%', under5Cases: 835, severeCases: 223, treatmentSuccess: '91%', llinCoverage: '71%', healthFacilities: 52, chwsActive: 156, rdtStock: 2890, actStock: 2340, reportingRate: '88%', timeliness: '85%', budgetUtil: '79%', outbreakAlerts: 4 },
+            'bonthe': { totalCases: 1234, totalDeaths: 12, incidenceRate: '85‰', testPositivity: '18%', under5Cases: 555, severeCases: 148, treatmentSuccess: '92%', llinCoverage: '74%', healthFacilities: 45, chwsActive: 128, rdtStock: 2340, actStock: 1890, reportingRate: '89%', timeliness: '84%', budgetUtil: '76%', outbreakAlerts: 3 },
+            'falaba': { totalCases: 1567, totalDeaths: 19, incidenceRate: '102‰', testPositivity: '22%', under5Cases: 706, severeCases: 188, treatmentSuccess: '89%', llinCoverage: '68%', healthFacilities: 48, chwsActive: 145, rdtStock: 2650, actStock: 2200, reportingRate: '86%', timeliness: '83%', budgetUtil: '78%', outbreakAlerts: 5 },
+            'kailahun': { totalCases: 2134, totalDeaths: 25, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 960, severeCases: 256, treatmentSuccess: '89%', llinCoverage: '67%', healthFacilities: 54, chwsActive: 163, rdtStock: 2980, actStock: 2480, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 5 },
+            'kambia': { totalCases: 1456, totalDeaths: 14, incidenceRate: '75‰', testPositivity: '16%', under5Cases: 655, severeCases: 175, treatmentSuccess: '92%', llinCoverage: '73%', healthFacilities: 39, chwsActive: 125, rdtStock: 2340, actStock: 1950, reportingRate: '90%', timeliness: '87%', budgetUtil: '81%', outbreakAlerts: 2 },
+            'karene': { totalCases: 1789, totalDeaths: 17, incidenceRate: '89‰', testPositivity: '18%', under5Cases: 805, severeCases: 215, treatmentSuccess: '91%', llinCoverage: '72%', healthFacilities: 46, chwsActive: 142, rdtStock: 2650, actStock: 2200, reportingRate: '88%', timeliness: '85%', budgetUtil: '79%', outbreakAlerts: 3 },
+            'kenema': { totalCases: 2567, totalDeaths: 31, incidenceRate: '122‰', testPositivity: '24%', under5Cases: 1155, severeCases: 308, treatmentSuccess: '87%', llinCoverage: '65%', healthFacilities: 61, chwsActive: 181, rdtStock: 3350, actStock: 2790, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 6 },
+            'koinadugu': { totalCases: 1345, totalDeaths: 16, incidenceRate: '82‰', testPositivity: '17%', under5Cases: 605, severeCases: 161, treatmentSuccess: '93%', llinCoverage: '75%', healthFacilities: 42, chwsActive: 118, rdtStock: 2200, actStock: 1850, reportingRate: '91%', timeliness: '88%', budgetUtil: '82%', outbreakAlerts: 2 },
+            'kono': { totalCases: 1923, totalDeaths: 23, incidenceRate: '98‰', testPositivity: '19%', under5Cases: 865, severeCases: 231, treatmentSuccess: '90%', llinCoverage: '69%', healthFacilities: 48, chwsActive: 145, rdtStock: 2780, actStock: 2290, reportingRate: '89%', timeliness: '86%', budgetUtil: '80%', outbreakAlerts: 4 },
+            'moyamba': { totalCases: 1678, totalDeaths: 20, incidenceRate: '92‰', testPositivity: '19%', under5Cases: 755, severeCases: 201, treatmentSuccess: '90%', llinCoverage: '70%', healthFacilities: 47, chwsActive: 138, rdtStock: 2550, actStock: 2125, reportingRate: '88%', timeliness: '85%', budgetUtil: '79%', outbreakAlerts: 4 },
+            'port-loko': { totalCases: 2234, totalDeaths: 27, incidenceRate: '115‰', testPositivity: '23%', under5Cases: 1005, severeCases: 268, treatmentSuccess: '87%', llinCoverage: '66%', healthFacilities: 58, chwsActive: 167, rdtStock: 3100, actStock: 2580, reportingRate: '86%', timeliness: '82%', budgetUtil: '77%', outbreakAlerts: 6 },
+            'pujehun': { totalCases: 1456, totalDeaths: 18, incidenceRate: '88‰', testPositivity: '18%', under5Cases: 655, severeCases: 175, treatmentSuccess: '91%', llinCoverage: '72%', healthFacilities: 44, chwsActive: 132, rdtStock: 2400, actStock: 2000, reportingRate: '89%', timeliness: '86%', budgetUtil: '80%', outbreakAlerts: 3 },
+            'tonkolili': { totalCases: 2789, totalDeaths: 34, incidenceRate: '125‰', testPositivity: '24%', under5Cases: 1255, severeCases: 334, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 62, chwsActive: 189, rdtStock: 3450, actStock: 2890, reportingRate: '87%', timeliness: '83%', budgetUtil: '78%', outbreakAlerts: 7 },
+            'western-rural': { totalCases: 987, totalDeaths: 8, incidenceRate: '65‰', testPositivity: '14%', under5Cases: 444, severeCases: 118, treatmentSuccess: '95%', llinCoverage: '82%', healthFacilities: 32, chwsActive: 89, rdtStock: 1890, actStock: 1560, reportingRate: '94%', timeliness: '91%', budgetUtil: '86%', outbreakAlerts: 1 },
+            'western-urban': { totalCases: 3456, totalDeaths: 42, incidenceRate: '145‰', testPositivity: '28%', under5Cases: 1555, severeCases: 414, treatmentSuccess: '85%', llinCoverage: '62%', healthFacilities: 73, chwsActive: 212, rdtStock: 4200, actStock: 3450, reportingRate: '84%', timeliness: '80%', budgetUtil: '74%', outbreakAlerts: 8 }
+        };
+
+        // Comprehensive chiefdom data structure
+        const chiefdomData = {
+            'kailahun': {
+                'dea': { name: 'DEA', totalCases: 142, totalDeaths: 2, incidenceRate: '98‰', testPositivity: '19%', under5Cases: 65, severeCases: 17, treatmentSuccess: '91%', llinCoverage: '68%', healthFacilities: 3, chwsActive: 8, rdtStock: 185, actStock: 155, reportingRate: '88%', timeliness: '85%', budgetUtil: '78%', outbreakAlerts: 0 },
+                'jahn': { name: 'JAHN', totalCases: 178, totalDeaths: 3, incidenceRate: '112‰', testPositivity: '22%', under5Cases: 82, severeCases: 21, treatmentSuccess: '89%', llinCoverage: '65%', healthFacilities: 4, chwsActive: 12, rdtStock: 220, actStock: 185, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 1 },
+                'jawie': { name: 'JAWIE', totalCases: 156, totalDeaths: 2, incidenceRate: '105‰', testPositivity: '20%', under5Cases: 71, severeCases: 19, treatmentSuccess: '90%', llinCoverage: '67%', healthFacilities: 3, chwsActive: 10, rdtStock: 195, actStock: 165, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
+                'kissi-kama': { name: 'KISSI KAMA', totalCases: 134, totalDeaths: 1, incidenceRate: '92‰', testPositivity: '18%', under5Cases: 58, severeCases: 15, treatmentSuccess: '92%', llinCoverage: '70%', healthFacilities: 3, chwsActive: 9, rdtStock: 175, actStock: 145, reportingRate: '89%', timeliness: '86%', budgetUtil: '79%', outbreakAlerts: 0 },
+                'kissi-teng': { name: 'KISSI TENG', totalCases: 165, totalDeaths: 2, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 76, severeCases: 20, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 4, chwsActive: 11, rdtStock: 205, actStock: 175, reportingRate: '85%', timeliness: '82%', budgetUtil: '75%', outbreakAlerts: 1 }
+            },
+            'kenema': {
+                'dama': { name: 'DAMA', totalCases: 189, totalDeaths: 3, incidenceRate: '125‰', testPositivity: '25%', under5Cases: 89, severeCases: 24, treatmentSuccess: '86%', llinCoverage: '63%', healthFacilities: 4, chwsActive: 13, rdtStock: 235, actStock: 195, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 1 },
+                'dodo': { name: 'DODO', totalCases: 167, totalDeaths: 2, incidenceRate: '118‰', testPositivity: '23%', under5Cases: 78, severeCases: 21, treatmentSuccess: '87%', llinCoverage: '64%', healthFacilities: 3, chwsActive: 11, rdtStock: 210, actStock: 175, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
+                'gaura': { name: 'GAURA', totalCases: 145, totalDeaths: 2, incidenceRate: '110‰', testPositivity: '22%', under5Cases: 67, severeCases: 18, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 3, chwsActive: 10, rdtStock: 185, actStock: 155, reportingRate: '88%', timeliness: '85%', budgetUtil: '78%', outbreakAlerts: 0 },
+                'kenema-city': { name: 'KENEMA CITY', totalCases: 298, totalDeaths: 5, incidenceRate: '142‰', testPositivity: '27%', under5Cases: 134, severeCases: 38, treatmentSuccess: '84%', llinCoverage: '59%', healthFacilities: 8, chwsActive: 18, rdtStock: 365, actStock: 315, reportingRate: '85%', timeliness: '82%', budgetUtil: '74%', outbreakAlerts: 2 }
+            },
+            'bo': {
+                'badjia': { name: 'BADJIA', totalCases: 158, totalDeaths: 2, incidenceRate: '115‰', testPositivity: '22%', under5Cases: 72, severeCases: 19, treatmentSuccess: '87%', llinCoverage: '65%', healthFacilities: 3, chwsActive: 11, rdtStock: 195, actStock: 165, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 0 },
+                'bagbo': { name: 'BAGBO', totalCases: 142, totalDeaths: 2, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 65, severeCases: 17, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 3, chwsActive: 9, rdtStock: 175, actStock: 145, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
+                'bo-town': { name: 'BO TOWN', totalCases: 276, totalDeaths: 4, incidenceRate: '135‰', testPositivity: '26%', under5Cases: 125, severeCases: 35, treatmentSuccess: '85%', llinCoverage: '61%', healthFacilities: 7, chwsActive: 16, rdtStock: 340, actStock: 285, reportingRate: '84%', timeliness: '81%', budgetUtil: '73%', outbreakAlerts: 2 }
+            },
+            'western-urban': {
+                'central-i': { name: 'CENTRAL I', totalCases: 425, totalDeaths: 6, incidenceRate: '152‰', testPositivity: '29%', under5Cases: 189, severeCases: 54, treatmentSuccess: '83%', llinCoverage: '58%', healthFacilities: 9, chwsActive: 22, rdtStock: 520, actStock: 435, reportingRate: '82%', timeliness: '78%', budgetUtil: '71%', outbreakAlerts: 2 },
+                'central-ii': { name: 'CENTRAL II', totalCases: 398, totalDeaths: 5, incidenceRate: '148‰', testPositivity: '28%', under5Cases: 178, severeCases: 51, treatmentSuccess: '84%', llinCoverage: '59%', healthFacilities: 8, chwsActive: 20, rdtStock: 485, actStock: 405, reportingRate: '83%', timeliness: '79%', budgetUtil: '72%', outbreakAlerts: 1 },
+                'east-i': { name: 'EAST I', totalCases: 456, totalDeaths: 7, incidenceRate: '158‰', testPositivity: '31%', under5Cases: 205, severeCases: 58, treatmentSuccess: '82%', llinCoverage: '57%', healthFacilities: 10, chwsActive: 24, rdtStock: 560, actStock: 470, reportingRate: '81%', timeliness: '77%', budgetUtil: '70%', outbreakAlerts: 3 }
+            },
+            'western-rural': {
+                'koya-rural': { name: 'KOYA RURAL', totalCases: 245, totalDeaths: 2, incidenceRate: '68‰', testPositivity: '15%', under5Cases: 108, severeCases: 28, treatmentSuccess: '94%', llinCoverage: '81%', healthFacilities: 8, chwsActive: 22, rdtStock: 470, actStock: 390, reportingRate: '93%', timeliness: '90%', budgetUtil: '85%', outbreakAlerts: 0 },
+                'mountain-rural': { name: 'MOUNTAIN RURAL', totalCases: 198, totalDeaths: 1, incidenceRate: '62‰', testPositivity: '13%', under5Cases: 89, severeCases: 23, treatmentSuccess: '95%', llinCoverage: '83%', healthFacilities: 6, chwsActive: 18, rdtStock: 385, actStock: 325, reportingRate: '94%', timeliness: '91%', budgetUtil: '86%', outbreakAlerts: 0 }
+            }
+        };
+
+        function generateChiefdomIcon() {
+            const icons = ['🏘️', '🏛️', '🏗️', '🏪', '🏬', '🏭', '🏢', '🏠'];
+            return icons[Math.floor(Math.random() * icons.length)];
+        }
+
+        function updateBreadcrumb() {
+            const breadcrumb = document.getElementById('breadcrumb');
+            let content = '<span onclick="showMainDashboard()">Home</span>';
+            
+            if (currentDistrict) {
+                content += ` > <span onclick="showDistrictDashboard('${currentDistrict}', '${currentDistrictName}')">${currentDistrictName}</span>`;
+            }
+            
+            if (currentChiefdom) {
+                content += ` > <span onclick="showChiefdomsDashboard()">Chiefdoms</span>`;
+                content += ` > <span>${currentChiefdomName}</span>`;
+            } else if (currentMetric) {
+                content += ` > <span>${currentMetricName}</span>`;
+            }
+            
+            breadcrumb.innerHTML = content;
+        }
+
+        function showMainDashboard() {
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Show main dashboard
+            document.getElementById('mainDashboard').classList.add('active');
+            
+            // Reset state
+            currentDistrict = '';
+            currentDistrictName = '';
+            currentMetric = '';
+            currentMetricName = '';
+            currentChiefdom = '';
+            currentChiefdomName = '';
+            
+            updateBreadcrumb();
+        }
+
+        function showDistrictDashboard(districtId, districtName) {
+            // Update current state
+            currentDistrict = districtId || currentDistrict;
+            currentDistrictName = districtName || currentDistrictName;
+            currentMetric = '';
+            currentMetricName = '';
+            currentChiefdom = '';
+            currentChiefdomName = '';
+            
+            // Update metrics with district data if available
+            if (districtData[currentDistrict]) {
+                updateDistrictMetrics(districtData[currentDistrict]);
+            }
+            
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Show district dashboard
+            document.getElementById('districtDashboard').classList.add('active');
+            
+            updateBreadcrumb();
+        }
+
+        function updateDistrictMetrics(data) {
+            // Update 2024 values (current year)
+            const currentYear = '2024';
+            const elements = [
+                'totalCases', 'totalDeaths', 'incidenceRate', 'testPositivity',
+                'under5Cases', 'severeCases', 'treatmentSuccess', 'llinCoverage',
+                'healthFacilities', 'chwsActive', 'rdtStock', 'actStock',
+                'reportingRate', 'timeliness', 'budgetUtil', 'outbreakAlerts'
+            ];
+
+            elements.forEach(element => {
+                const elementId = element + currentYear;
+                const targetElement = document.getElementById(elementId);
+                if (targetElement && data[element] !== undefined) {
+                    if (typeof data[element] === 'number') {
+                        targetElement.textContent = data[element].toLocaleString();
+                    } else {
+                        targetElement.textContent = data[element];
+                    }
+                }
+            });
+        }
+
+        function showChiefdomsDashboard() {
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Show chiefdoms dashboard
+            document.getElementById('chiefdomsDashboard').classList.add('active');
+            
+            // Load chiefdoms for current district
+            loadChiefomsForDistrict();
+            
+            updateBreadcrumb();
+        }
+
+        function loadChiefomsForDistrict() {
+            const chiefomsGrid = document.getElementById('chiefomsGrid');
+            chiefomsGrid.innerHTML = '';
+            
+            if (chiefdomData[currentDistrict]) {
+                const chiefdoms = chiefdomData[currentDistrict];
+                
+                Object.keys(chiefdoms).forEach(chiefdomKey => {
+                    const chiefdom = chiefdoms[chiefdomKey];
+                    const chiefdomCard = document.createElement('div');
+                    chiefdomCard.className = 'chiefdom-card';
+                    chiefdomCard.onclick = () => showChiefdomDetail(chiefdomKey, chiefdom.name);
+                    
+                    chiefdomCard.innerHTML = `
+                        <div class="chiefdom-icon">${generateChiefdomIcon()}</div>
+                        <div class="chiefdom-name">${chiefdom.name}</div>
+                        <div class="cases-count chiefdom-cases">${chiefdom.totalCases}</div>
+                        <div class="chiefdom-stats">Cases this month<br>${chiefdom.healthFacilities} Health Facilities</div>
+                    `;
+                    
+                    chiefomsGrid.appendChild(chiefdomCard);
+                });
+            }
+        }
+
+        function showChiefdomDetail(chiefdomId, chiefdomName) {
+            // Update current state
+            currentChiefdom = chiefdomId;
+            currentChiefdomName = chiefdomName;
+            
+            // Update chiefdom metrics
+            if (chiefdomData[currentDistrict] && chiefdomData[currentDistrict][currentChiefdom]) {
+                const data = chiefdomData[currentDistrict][currentChiefdom];
+                updateChiefdomMetrics(data);
+            }
+            
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Show chiefdom detail dashboard
+            document.getElementById('chiefdomDetailDashboard').classList.add('active');
+            
+            updateBreadcrumb();
+        }
+
+        function updateChiefdomMetrics(data) {
+            // Update 2024 values for chiefdom
+            const elements = [
+                'chiefdomTotalCases', 'chiefdomTotalDeaths', 'chiefdomIncidenceRate', 'chiefdomTestPositivity',
+                'chiefdomUnder5Cases', 'chiefdomSevereCases', 'chiefdomTreatmentSuccess', 'chiefdomLlinCoverage',
+                'chiefdomHealthFacilities', 'chiefdomChwsActive', 'chiefdomRdtStock', 'chiefdomActStock',
+                'chiefdomReportingRate', 'chiefdomTimeliness', 'chiefdomBudgetUtil', 'chiefdomOutbreakAlerts'
+            ];
+
+            const dataMapping = {
+                'chiefdomTotalCases': 'totalCases',
+                'chiefdomTotalDeaths': 'totalDeaths',
+                'chiefdomIncidenceRate': 'incidenceRate',
+                'chiefdomTestPositivity': 'testPositivity',
+                'chiefdomUnder5Cases': 'under5Cases',
+                'chiefdomSevereCases': 'severeCases',
+                'chiefdomTreatmentSuccess': 'treatmentSuccess',
+                'chiefdomLlinCoverage': 'llinCoverage',
+                'chiefdomHealthFacilities': 'healthFacilities',
+                'chiefdomChwsActive': 'chwsActive',
+                'chiefdomRdtStock': 'rdtStock',
+                'chiefdomActStock': 'actStock',
+                'chiefdomReportingRate': 'reportingRate',
+                'chiefdomTimeliness': 'timeliness',
+                'chiefdomBudgetUtil': 'budgetUtil',
+                'chiefdomOutbreakAlerts': 'outbreakAlerts'
+            };
+
+            elements.forEach(element => {
+                const targetElement = document.getElementById(element + '2024');
+                const dataKey = dataMapping[element];
+                if (targetElement && data[dataKey] !== undefined) {
+                    if (typeof data[dataKey] === 'number') {
+                        targetElement.textContent = data[dataKey].toLocaleString();
+                    } else {
+                        targetElement.textContent = data[dataKey];
+                    }
+                }
+            });
+        }
+
+        function showTrendsDashboard(metricId, metricName) {
+            // Update current state
+            currentMetric = metricId;
+            currentMetricName = metricName;
+            
+            // For now, just show an alert - trends dashboard would be implemented separately
+            alert(`Showing trends for: ${metricName}\nThis would display detailed trend analysis and charts.`);
+            
+            updateBreadcrumb();
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBreadcrumb();
+            console.log('Enhanced District Malaria Dashboard with Yearly Metrics loaded successfully');
+        });
+
+        // Add some animation effects
+        document.addEventListener('click', function(event) {
+            if (event.target.closest('.district-card') || 
+                event.target.closest('.year-metric-card') || 
+                event.target.closest('.chiefdom-card')) {
+                const card = event.target.closest('.district-card') || 
+                           event.target.closest('.year-metric-card') || 
+                           event.target.closest('.chiefdom-card');
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+            }
+        });
+    </script>
+</body>
+</html>
