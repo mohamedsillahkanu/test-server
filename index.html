@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malaria Program Review (MPR)</title>
+    <title>District Malaria Dashboard</title>
     <style>    
         * {
             margin: 0;
@@ -75,7 +75,7 @@
         }
 
         .dashboard-container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
@@ -83,204 +83,136 @@
             box-shadow: 0 8px 30px rgba(0, 102, 204, 0.2);
         }
 
-        /* Main Tab Navigation */
-        .main-tabs {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(0, 102, 204, 0.05);
-            border-radius: 15px;
+        /* Navigation breadcrumb */
+        .breadcrumb {
+            background: rgba(0, 102, 204, 0.1);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #0066cc;
         }
 
-        .main-tab-card {
+        .breadcrumb span {
+            color: #0066cc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .breadcrumb span:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Dashboard Grid - 4x4 */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .district-card, .chiefdom-card {
             background: linear-gradient(145deg, #ffffff, #f0f8ff);
             border: 2px solid rgba(0, 102, 204, 0.2);
             border-radius: 15px;
-            padding: 25px 20px;
+            padding: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
-            min-height: 160px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .district-card:hover, .chiefdom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.2);
+            border-color: #0066cc;
+        }
+
+        .district-icon, .chiefdom-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .chiefdom-icon {
+            font-size: 2.5em;
+        }
+
+        .district-name, .chiefdom-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .chiefdom-name {
+            font-size: 1.1em;
+        }
+
+        .district-stats, .chiefdom-stats {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .chiefdom-stats {
+            font-size: 0.8em;
+        }
+
+        .cases-count {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff6600;
+            margin: 5px 0;
+        }
+
+        .chiefdom-cases {
+            font-size: 1.3em;
+        }
+
+        /* Sub-dashboard Grid - 4x4 */
+        .sub-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .metric-card {
+            background: white;
+            border: 2px solid rgba(0, 102, 204, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 140px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
-        .main-tab-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.2);
-            border-color: #0066cc;
-        }
-
-        .main-tab-card.active {
-            background: linear-gradient(145deg, #0066cc, #004499);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 102, 204, 0.3);
-        }
-
-        .tab-icon {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
-        .tab-title {
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .tab-description {
-            font-size: 0.9em;
-            opacity: 0.8;
-            line-height: 1.3;
-        }
-
-        .main-tab-card.active .tab-description {
-            opacity: 1;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Page Navigation Styles */
-        .page-container {
-            display: none;
-        }
-
-        .page-container.active {
-            display: block;
-        }
-
-        .main-dashboard {
-            display: block;
-        }
-
-        .main-dashboard.hidden {
-            display: none;
-        }
-
-        /* Overview Page Specific Styles */
-        .overview-page {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .overview-header {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.1);
-        }
-
-        .overview-title {
-            font-size: 2.5em;
-            color: #0066cc;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .overview-subtitle {
-            font-size: 1.2em;
-            color: #666;
-        }
-
-        .overview-layout {
-            display: block;
-        }
-
-        .overview-section {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 8px 30px rgba(0, 102, 204, 0.15);
-            margin-bottom: 20px;
-        }
-
-        .overview-section-header {
-            display: flex;
-            align-items: center;
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #0066cc;
-            margin-bottom: 25px;
-            padding: 15px;
-            background: rgba(0, 102, 204, 0.1);
-            border-radius: 10px;
-        }
-
-        .overview-section-header .icon {
-            margin-right: 10px;
-            font-size: 1.2em;
-        }
-
-        /* Back Navigation */
-        .back-nav {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 100;
-        }
-
-        .back-nav-btn {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .back-nav-btn:hover {
-            background: #004499;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
-        }
-
-        /* Metrics Cards Grid */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-
-        .metric-card {
-            background: white;
-            border: 1px solid rgba(0, 102, 204, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
         .metric-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.2);
             border-color: #0066cc;
         }
 
         .metric-icon {
-            font-size: 1.8em;
-            margin-bottom: 8px;
+            font-size: 2em;
+            margin-bottom: 10px;
         }
 
         .metric-value {
-            font-size: 1.5em;
+            font-size: 1.8em;
             font-weight: 700;
             color: #0066cc;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .metric-label {
@@ -289,62 +221,46 @@
             font-weight: 500;
         }
 
-        /* Charts Grid */
-        .charts-grid {
+        /* Trends Dashboard - 4x2 Grid */
+        .trends-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px 0;
+            height: 600px;
         }
 
-        .chart-card {
+        .trend-chart {
             background: white;
-            border: 1px solid rgba(0, 102, 204, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+            border: 2px solid rgba(0, 102, 204, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.1);
+            position: relative;
         }
 
         .chart-title {
-            font-size: 0.9em;
+            font-size: 1.1em;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
+            color: #0066cc;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        .chart-area {
-            height: 60px;
-            display: flex;
-            align-items: end;
-            justify-content: center;
+        .chart-container {
+            height: calc(100% - 40px);
+            position: relative;
         }
 
-        /* Simple Bar Chart */
-        .bar-chart {
-            display: flex;
-            align-items: end;
-            justify-content: space-around;
-            height: 100%;
-            width: 100%;
-        }
-
-        .bar {
-            background: linear-gradient(to top, #0066cc, #004499);
-            width: 8px;
-            border-radius: 2px;
-            margin: 0 1px;
-            transition: all 0.3s ease;
-        }
-
-        .bar:hover {
-            background: linear-gradient(to top, #004499, #0066cc);
-        }
-
-        /* Simple Line Chart */
+        /* Line Chart Styles */
         .line-chart {
             width: 100%;
             height: 100%;
             position: relative;
+            background: rgba(0, 102, 204, 0.02);
+            border-radius: 8px;
+            padding: 10px;
         }
 
         .line-chart svg {
@@ -354,137 +270,119 @@
 
         .line-path {
             fill: none;
-            stroke: #0066cc;
-            stroke-width: 2;
+            stroke-width: 3;
             stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .line-point {
-            fill: #0066cc;
-            r: 2;
+            r: 4;
+            stroke: white;
+            stroke-width: 2;
         }
 
-        /* Detail View Styles */
-        .detail-view {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            padding: 20px;
-            overflow-y: auto;
+        .chart-grid {
+            stroke: rgba(0, 102, 204, 0.1);
+            stroke-width: 1;
         }
 
-        .detail-content {
-            max-width: 900px;
-            margin: 50px auto;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 102, 204, 0.3);
-        }
+        /* Different colors for different charts */
+        .trend-chart:nth-child(1) .line-path { stroke: #0066cc; }
+        .trend-chart:nth-child(1) .line-point { fill: #0066cc; }
 
-        .detail-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #0066cc;
-        }
+        .trend-chart:nth-child(2) .line-path { stroke: #ff6600; }
+        .trend-chart:nth-child(2) .line-point { fill: #ff6600; }
 
-        .detail-title {
-            font-size: 2em;
-            color: #0066cc;
-            font-weight: 700;
-        }
+        .trend-chart:nth-child(3) .line-path { stroke: #00cc00; }
+        .trend-chart:nth-child(3) .line-point { fill: #00cc00; }
 
-        .close-btn {
-            background: #cc0000;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.5em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        .trend-chart:nth-child(4) .line-path { stroke: #9900cc; }
+        .trend-chart:nth-child(4) .line-point { fill: #9900cc; }
 
-        .close-btn:hover {
-            background: #ff0000;
-            transform: scale(1.1);
-        }
+        .trend-chart:nth-child(5) .line-path { stroke: #cc0000; }
+        .trend-chart:nth-child(5) .line-point { fill: #cc0000; }
 
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 25px;
-        }
+        .trend-chart:nth-child(6) .line-path { stroke: #00cccc; }
+        .trend-chart:nth-child(6) .line-point { fill: #00cccc; }
 
-        .detail-card {
-            background: rgba(0, 102, 204, 0.05);
-            border: 1px solid rgba(0, 102, 204, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-        }
+        .trend-chart:nth-child(7) .line-path { stroke: #ccaa00; }
+        .trend-chart:nth-child(7) .line-point { fill: #ccaa00; }
 
-        .detail-stat {
-            text-align: center;
+        .trend-chart:nth-child(8) .line-path { stroke: #cc6600; }
+        .trend-chart:nth-child(8) .line-point { fill: #cc6600; }
+
+        /* Back Navigation */
+        .back-nav {
             margin-bottom: 20px;
-        }
-
-        .detail-stat-number {
-            font-size: 3em;
-            font-weight: 700;
-            color: #0066cc;
-        }
-
-        .detail-stat-label {
-            font-size: 1.1em;
-            color: #333;
-            margin-top: 5px;
-        }
-
-        .detail-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .detail-list li {
-            padding: 10px;
-            margin: 8px 0;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
-            border-left: 4px solid #0066cc;
         }
 
         .back-btn {
             background: #0066cc;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 12px 20px;
+            border-radius: 25px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .back-btn:hover {
             background: #004499;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+        }
+
+        /* View States */
+        .dashboard-view {
+            display: none;
+        }
+
+        .dashboard-view.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Special button to view chiefdoms */
+        .view-chiefdoms-btn {
+            background: linear-gradient(45deg, #00cc66, #0099ff);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 153, 255, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .view-chiefdoms-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 153, 255, 0.4);
         }
 
         /* Responsive Design */
         @media (max-width: 1200px) {
-            .main-tabs {
+            .main-grid, .sub-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            .trends-grid {
+                grid-template-columns: repeat(2, 1fr);
+                height: 800px;
             }
         }
 
@@ -493,78 +391,57 @@
                 padding: 10px;
             }
             
-            .main-tabs {
+            .main-grid, .sub-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
-                padding: 15px;
             }
             
-            .main-tab-card {
+            .trends-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(8, 200px);
+                height: auto;
+                gap: 15px;
+            }
+            
+            .district-card, .metric-card, .chiefdom-card {
                 min-height: 120px;
                 padding: 15px;
             }
             
-            .tab-icon {
+            .district-icon, .chiefdom-icon {
                 font-size: 2em;
             }
             
-            .metrics-grid, .charts-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 8px;
-            }
-            
-            .detail-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .detail-content {
-                margin: 20px auto;
-                padding: 20px;
-            }
-            
-            .back-nav {
-                position: relative;
-                top: 0;
-                left: 0;
-                margin-bottom: 20px;
+            .main-title {
+                font-size: 1.8em;
             }
         }
 
-        /* Section styles for various content */
-        .section-header {
-            font-size: 1.3em;
-            font-weight: 600;
-            color: #0066cc;
-            margin-bottom: 20px;
-            text-align: center;
-            padding: 10px;
-            background: rgba(0, 102, 204, 0.1);
-            border-radius: 8px;
+        /* Additional styling for chart axes and labels */
+        .chart-axis {
+            stroke: rgba(0, 102, 204, 0.3);
+            stroke-width: 1;
         }
 
-        .content-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            margin-top: 20px;
+        .chart-label {
+            font-size: 10px;
+            fill: #666;
+            text-anchor: middle;
         }
 
-        @media (min-width: 1024px) {
-            .content-layout {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .metrics-section, .charts-section {
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
-            padding: 20px;
+        .trend-value {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: inherit;
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <div class="header" id="mainHeader">
+    <div class="header">
         <div class="logo-section">
             <div class="logo-container">
                 <div class="logo-placeholder">MINISTRY<br>HEALTH</div>
@@ -578,772 +455,782 @@
         </div>
         
         <div class="title-section">
-            <h1 class="main-title">Malaria Program Review (MPR)</h1>
-            <h2 class="subtitle">Interactive Dashboard</h2>
-            <h2 class="subtitle">Ministry of Health</h2>
-            <h2 class="subtitle"><em>Data-Driven Malaria Control</em></h2>
+            <h1 class="main-title">Sierra Leone Malaria Dashboard</h1>
+            <h2 class="subtitle">Real-time Monitoring & Analytics</h2>
+            <h2 class="subtitle">Ministry of Health and Sanitation</h2>
+            <h2 class="subtitle"><em>District-Level Surveillance</em></h2>
         </div>
     </div>
 
-    <!-- Main Dashboard Container -->
-    <div class="main-dashboard" id="mainDashboard">
-        <div class="dashboard-container">
-            <!-- Main Tab Navigation -->
-            <div class="main-tabs">
-                <div class="main-tab-card active" onclick="navigateToPage('overview')">
-                    <div class="tab-icon">🏠</div>
-                    <div class="tab-title">Overview</div>
-                    <div class="tab-description">Dashboard summary</div>
+    <div class="dashboard-container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb" id="breadcrumb">
+            <span onclick="showMainDashboard()">Home</span>
+        </div>
+
+        <!-- Main Dashboard - Districts Grid (4x4) -->
+        <div class="dashboard-view active" id="mainDashboard">
+            <div class="main-grid">
+                <!-- Row 1 -->
+                <div class="district-card" onclick="showDistrictDashboard('bo', 'BO District')">
+                    <div class="district-icon">🏘️</div>
+                    <div class="district-name">BO</div>
+                    <div class="cases-count">2,345</div>
+                    <div class="district-stats">Cases this month<br>17 Chiefdoms</div>
                 </div>
-                <div class="main-tab-card" onclick="navigateToPage('situation')">
-                    <div class="tab-icon">📊</div>
-                    <div class="tab-title">Situation Analysis</div>
-                    <div class="tab-description">Malaria burden data</div>
+                <div class="district-card" onclick="showDistrictDashboard('bombali', 'BOMBALI District')">
+                    <div class="district-icon">🌾</div>
+                    <div class="district-name">BOMBALI</div>
+                    <div class="cases-count">1,856</div>
+                    <div class="district-stats">Cases this month<br>13 Chiefdoms</div>
                 </div>
-                <div class="main-tab-card" onclick="navigateToPage('surveillance')">
-                    <div class="tab-icon">🔍</div>
-                    <div class="tab-title">Surveillance</div>
-                    <div class="tab-description">Data monitoring</div>
+                <div class="district-card" onclick="showDistrictDashboard('bonthe', 'BONTHE District')">
+                    <div class="district-icon">🌊</div>
+                    <div class="district-name">BONTHE</div>
+                    <div class="cases-count">1,234</div>
+                    <div class="district-stats">Cases this month<br>12 Chiefdoms</div>
                 </div>
-                <div class="main-tab-card" onclick="navigateToPage('case-management')">
-                    <div class="tab-icon">🏥</div>
-                    <div class="tab-title">Case Management</div>
-                    <div class="tab-description">Treatment protocols</div>
+                <div class="district-card" onclick="showDistrictDashboard('falaba', 'FALABA District')">
+                    <div class="district-icon">⛰️</div>
+                    <div class="district-name">FALABA</div>
+                    <div class="cases-count">1,567</div>
+                    <div class="district-stats">Cases this month<br>13 Chiefdoms</div>
                 </div>
-                <div class="main-tab-card" onclick="navigateToPage('vector-control')">
-                    <div class="tab-icon">🦟</div>
-                    <div class="tab-title">Vector Control</div>
-                    <div class="tab-description">Prevention strategies</div>
+
+                <!-- Row 2 -->
+                <div class="district-card" onclick="showDistrictDashboard('kailahun', 'KAILAHUN District')">
+                    <div class="district-icon">🌳</div>
+                    <div class="district-name">KAILAHUN</div>
+                    <div class="cases-count">2,134</div>
+                    <div class="district-stats">Cases this month<br>15 Chiefdoms</div>
                 </div>
-                <div class="main-tab-card" onclick="navigateToPage('monitoring')">
-                    <div class="tab-icon">📈</div>
-                    <div class="tab-title">M&E</div>
-                    <div class="tab-description">Performance tracking</div>
+                <div class="district-card" onclick="showDistrictDashboard('kambia', 'KAMBIA District')">
+                    <div class="district-icon">🏞️</div>
+                    <div class="district-name">KAMBIA</div>
+                    <div class="cases-count">1,456</div>
+                    <div class="district-stats">Cases this month<br>10 Chiefdoms</div>
                 </div>
-                <div class="main-tab-card" onclick="navigateToPage('planning')">
-                    <div class="tab-icon">📋</div>
-                    <div class="tab-title">Strategic Planning</div>
-                    <div class="tab-description">Action plans</div>
+                <div class="district-card" onclick="showDistrictDashboard('karene', 'KARENE District')">
+                    <div class="district-icon">🌾</div>
+                    <div class="district-name">KARENE</div>
+                    <div class="cases-count">1,789</div>
+                    <div class="district-stats">Cases this month<br>13 Chiefdoms</div>
                 </div>
-                <div class="main-tab-card" onclick="navigateToPage('resources')">
-                    <div class="tab-icon">📚</div>
-                    <div class="tab-title">Resources</div>
-                    <div class="tab-description">Documents & guides</div>
+                <div class="district-card" onclick="showDistrictDashboard('kenema', 'KENEMA District')">
+                    <div class="district-icon">🏘️</div>
+                    <div class="district-name">KENEMA</div>
+                    <div class="cases-count">2,567</div>
+                    <div class="district-stats">Cases this month<br>17 Chiefdoms</div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="district-card" onclick="showDistrictDashboard('koinadugu', 'KOINADUGU District')">
+                    <div class="district-icon">⛰️</div>
+                    <div class="district-name">KOINADUGU</div>
+                    <div class="cases-count">1,345</div>
+                    <div class="district-stats">Cases this month<br>10 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('kono', 'KONO District')">
+                    <div class="district-icon">💎</div>
+                    <div class="district-name">KONO</div>
+                    <div class="cases-count">1,923</div>
+                    <div class="district-stats">Cases this month<br>15 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('moyamba', 'MOYAMBA District')">
+                    <div class="district-icon">🌊</div>
+                    <div class="district-name">MOYAMBA</div>
+                    <div class="cases-count">1,678</div>
+                    <div class="district-stats">Cases this month<br>14 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('port-loko', 'PORT LOKO District')">
+                    <div class="district-icon">🚢</div>
+                    <div class="district-name">PORT LOKO</div>
+                    <div class="cases-count">2,234</div>
+                    <div class="district-stats">Cases this month<br>14 Chiefdoms</div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="district-card" onclick="showDistrictDashboard('pujehun', 'PUJEHUN District')">
+                    <div class="district-icon">🌳</div>
+                    <div class="district-name">PUJEHUN</div>
+                    <div class="cases-count">1,456</div>
+                    <div class="district-stats">Cases this month<br>14 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('tonkolili', 'TONKOLILI District')">
+                    <div class="district-icon">🌾</div>
+                    <div class="district-name">TONKOLILI</div>
+                    <div class="cases-count">2,789</div>
+                    <div class="district-stats">Cases this month<br>19 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('western-rural', 'WESTERN RURAL District')">
+                    <div class="district-icon">🏞️</div>
+                    <div class="district-name">WESTERN RURAL</div>
+                    <div class="cases-count">987</div>
+                    <div class="district-stats">Cases this month<br>4 Chiefdoms</div>
+                </div>
+                <div class="district-card" onclick="showDistrictDashboard('western-urban', 'WESTERN URBAN District')">
+                    <div class="district-icon">🏙️</div>
+                    <div class="district-name">WESTERN URBAN</div>
+                    <div class="cases-count">3,456</div>
+                    <div class="district-stats">Cases this month<br>8 Chiefdoms</div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Overview Page -->
-    <div class="page-container" id="overviewPage">
-        <div class="back-nav">
-            <button class="back-nav-btn" onclick="backToMain()">
-                ← Back to Main Dashboard
-            </button>
-        </div>
-        
-        <div class="overview-page">
-            <div class="overview-header">
-                <h1 class="overview-title">📊 Dashboard Overview</h1>
-                <p class="overview-subtitle">Key Performance Indicators and Visual Analytics</p>
+        <!-- District Dashboard - Metrics Grid (4x4) -->
+        <div class="dashboard-view" id="districtDashboard">
+            <div class="back-nav">
+                <button class="back-btn" onclick="showMainDashboard()">← Back to Districts</button>
+                <button class="view-chiefdoms-btn" onclick="showChiefdomsDashboard()">🏘️ View Chiefdoms</button>
             </div>
             
-            <div class="overview-layout">
-                <div class="overview-section">
-                    <div class="overview-section-header">
-                        <span class="icon">📊</span>
-                        Key Metrics
-                    </div>
-                    <div class="metrics-grid">
-                        <div class="metric-card" onclick="showDetail('population-risk')">
-                            <div class="metric-icon">👥</div>
-                            <div class="metric-value">2.1M</div>
-                            <div class="metric-label">Population at Risk</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('cases-year')">
-                            <div class="metric-icon">🤒</div>
-                            <div class="metric-value">15,234</div>
-                            <div class="metric-label">Cases This Year</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('treatment-success')">
-                            <div class="metric-icon">💊</div>
-                            <div class="metric-value">89%</div>
-                            <div class="metric-label">Treatment Success</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('llin-coverage')">
-                            <div class="metric-icon">🛏️</div>
-                            <div class="metric-value">67%</div>
-                            <div class="metric-label">LLIN Coverage</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('mortality-rate')">
-                            <div class="metric-icon">⚰️</div>
-                            <div class="metric-value">0.8‰</div>
-                            <div class="metric-label">Mortality Rate</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('test-positivity')">
-                            <div class="metric-icon">🔬</div>
-                            <div class="metric-value">23%</div>
-                            <div class="metric-label">Test Positivity</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('care-seeking')">
-                            <div class="metric-icon">🏥</div>
-                            <div class="metric-value">78%</div>
-                            <div class="metric-label">Care Seeking</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('budget-utilized')">
-                            <div class="metric-icon">💰</div>
-                            <div class="metric-value">84%</div>
-                            <div class="metric-label">Budget Utilized</div>
-                        </div>
-                    </div>
+            <div class="sub-grid" id="metricsGrid">
+                <!-- Row 1 -->
+                <div class="metric-card" onclick="showTrendsDashboard('cases-trend', 'Total Cases Trend')">
+                    <div class="metric-icon">🤒</div>
+                    <div class="metric-value" id="totalCases">1,245</div>
+                    <div class="metric-label">Total Cases</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('deaths-trend', 'Deaths Trend')">
+                    <div class="metric-icon">💀</div>
+                    <div class="metric-value" id="totalDeaths">12</div>
+                    <div class="metric-label">Deaths</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('incidence-trend', 'Incidence Rate Trend')">
+                    <div class="metric-icon">📈</div>
+                    <div class="metric-value" id="incidenceRate">85‰</div>
+                    <div class="metric-label">Incidence Rate</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('positivity-trend', 'Test Positivity Trend')">
+                    <div class="metric-icon">🔬</div>
+                    <div class="metric-value" id="testPositivity">18%</div>
+                    <div class="metric-label">Test Positivity</div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="metric-card" onclick="showTrendsDashboard('under5-trend', 'Under-5 Cases Trend')">
+                    <div class="metric-icon">👶</div>
+                    <div class="metric-value" id="under5Cases">560</div>
+                    <div class="metric-label">Under-5 Cases</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('severe-trend', 'Severe Cases Trend')">
+                    <div class="metric-icon">⚠️</div>
+                    <div class="metric-value" id="severeCases">149</div>
+                    <div class="metric-label">Severe Cases</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('treatment-trend', 'Treatment Success Trend')">
+                    <div class="metric-icon">💊</div>
+                    <div class="metric-value" id="treatmentSuccess">92%</div>
+                    <div class="metric-label">Treatment Success</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('llin-trend', 'LLIN Coverage Trend')">
+                    <div class="metric-icon">🛏️</div>
+                    <div class="metric-value" id="llinCoverage">74%</div>
+                    <div class="metric-label">LLIN Coverage</div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="metric-card" onclick="showTrendsDashboard('facilities-trend', 'Health Facilities Trend')">
+                    <div class="metric-icon">🏥</div>
+                    <div class="metric-value" id="healthFacilities">45</div>
+                    <div class="metric-label">Health Facilities</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('chws-trend', 'CHWs Active Trend')">
+                    <div class="metric-icon">👥</div>
+                    <div class="metric-value" id="chwsActive">128</div>
+                    <div class="metric-label">CHWs Active</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('rdt-trend', 'RDT Stock Trend')">
+                    <div class="metric-icon">🔬</div>
+                    <div class="metric-value" id="rdtStock">2,340</div>
+                    <div class="metric-label">RDT Stock</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('act-trend', 'ACT Stock Trend')">
+                    <div class="metric-icon">💊</div>
+                    <div class="metric-value" id="actStock">1,890</div>
+                    <div class="metric-label">ACT Stock</div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="metric-card" onclick="showTrendsDashboard('reporting-trend', 'Reporting Rate Trend')">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-value" id="reportingRate">89%</div>
+                    <div class="metric-label">Reporting Rate</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('timeliness-trend', 'Timeliness Trend')">
+                    <div class="metric-icon">⏱️</div>
+                    <div class="metric-value" id="timeliness">84%</div>
+                    <div class="metric-label">Timeliness</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('budget-trend', 'Budget Utilization Trend')">
+                    <div class="metric-icon">💰</div>
+                    <div class="metric-value" id="budgetUtil">76%</div>
+                    <div class="metric-label">Budget Utilization</div>
+                </div>
+                <div class="metric-card" onclick="showTrendsDashboard('alerts-trend', 'Outbreak Alerts Trend')">
+                    <div class="metric-icon">🚨</div>
+                    <div class="metric-value" id="outbreakAlerts">3</div>
+                    <div class="metric-label">Outbreak Alerts</div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Situation Analysis Page -->
-    <div class="page-container" id="situationPage">
-        <div class="back-nav">
-            <button class="back-nav-btn" onclick="backToMain()">
-                ← Back to Main Dashboard
-            </button>
-        </div>
-        
-        <div class="overview-page">
-            <div class="overview-header">
-                <h1 class="overview-title">📊 Situation Analysis</h1>
-                <p class="overview-subtitle">Epidemiological Assessment and Burden Analysis</p>
+        <!-- Chiefdoms Dashboard - Dynamic Grid -->
+        <div class="dashboard-view" id="chiefdomsDashboard">
+            <div class="back-nav">
+                <button class="back-btn" onclick="showDistrictDashboard()">← Back to District Metrics</button>
             </div>
             
-            <div class="overview-layout">
-                <div class="overview-section">
-                    <div class="overview-section-header">
-                        <span class="icon">📈</span>
-                        Epidemiological Indicators
-                    </div>
-                    <div class="metrics-grid">
-                        <div class="metric-card" onclick="showDetail('incidence-rate')">
-                            <div class="metric-icon">🌡️</div>
-                            <div class="metric-value">120‰</div>
-                            <div class="metric-label">Incidence Rate</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('mortality-rate')">
-                            <div class="metric-icon">💀</div>
-                            <div class="metric-value">0.8‰</div>
-                            <div class="metric-label">Mortality Rate</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('under5-cases')">
-                            <div class="metric-icon">👶</div>
-                            <div class="metric-value">45%</div>
-                            <div class="metric-label">Under-5 Cases</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('high-risk-areas')">
-                            <div class="metric-icon">🌍</div>
-                            <div class="metric-value">25</div>
-                            <div class="metric-label">High-Risk Areas</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('peak-season')">
-                            <div class="metric-icon">☔</div>
-                            <div class="metric-value">Jun-Nov</div>
-                            <div class="metric-label">Peak Season</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('rural-cases')">
-                            <div class="metric-icon">🏠</div>
-                            <div class="metric-value">78%</div>
-                            <div class="metric-label">Rural Cases</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('severe-malaria')">
-                            <div class="metric-icon">⚠️</div>
-                            <div class="metric-value">12%</div>
-                            <div class="metric-label">Severe Malaria</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('hotspot-districts')">
-                            <div class="metric-icon">📍</div>
-                            <div class="metric-value">8</div>
-                            <div class="metric-label">Hotspot Districts</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="main-grid" id="chiefomsGrid">
+                <!-- Chiefdoms will be dynamically loaded here -->
             </div>
         </div>
-    </div>
 
-    <!-- Surveillance Page -->
-    <div class="page-container" id="surveillancePage">
-        <div class="back-nav">
-            <button class="back-nav-btn" onclick="backToMain()">
-                ← Back to Main Dashboard
-            </button>
-        </div>
-        
-        <div class="overview-page">
-            <div class="overview-header">
-                <h1 class="overview-title">🔍 Surveillance Systems</h1>
-                <p class="overview-subtitle">Data Quality Monitoring and System Performance</p>
+        <!-- Chiefdom Detail Dashboard - Metrics Grid (4x4) -->
+        <div class="dashboard-view" id="chiefdomDetailDashboard">
+            <div class="back-nav">
+                <button class="back-btn" onclick="showChiefdomsDashboard()">← Back to Chiefdoms</button>
             </div>
             
-            <div class="overview-layout">
-                <div class="overview-section">
-                    <div class="overview-section-header">
-                        <span class="icon">📋</span>
-                        System Performance
-                    </div>
-                    <div class="metrics-grid">
-                        <div class="metric-card" onclick="showDetail('reporting-sites')">
-                            <div class="metric-icon">🏥</div>
-                            <div class="metric-value">850+</div>
-                            <div class="metric-label">Reporting Sites</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('chws-active')">
-                            <div class="metric-icon">👥</div>
-                            <div class="metric-value">2,400</div>
-                            <div class="metric-label">CHWs Active</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('completeness')">
-                            <div class="metric-icon">📊</div>
-                            <div class="metric-value">87%</div>
-                            <div class="metric-label">Completeness</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('timeliness')">
-                            <div class="metric-icon">⏱️</div>
-                            <div class="metric-value">82%</div>
-                            <div class="metric-label">Timeliness</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('data-accuracy')">
-                            <div class="metric-icon">✅</div>
-                            <div class="metric-value">94%</div>
-                            <div class="metric-label">Data Accuracy</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('system-uptime')">
-                            <div class="metric-icon">🌐</div>
-                            <div class="metric-value">98.5%</div>
-                            <div class="metric-label">System Uptime</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('sentinel-sites')">
-                            <div class="metric-icon">🔍</div>
-                            <div class="metric-value">25</div>
-                            <div class="metric-label">Sentinel Sites</div>
-                        </div>
-                        <div class="metric-card" onclick="showDetail('border-points')">
-                            <div class="metric-icon">🚪</div>
-                            <div class="metric-value">12</div>
-                            <div class="metric-label">Border Points</div>
-                        </div>
-                    </div>
+            <div class="sub-grid" id="chiefdomMetricsGrid">
+                <!-- Row 1 -->
+                <div class="metric-card">
+                    <div class="metric-icon">🤒</div>
+                    <div class="metric-value" id="chiefdomTotalCases">245</div>
+                    <div class="metric-label">Total Cases</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">💀</div>
+                    <div class="metric-value" id="chiefdomTotalDeaths">3</div>
+                    <div class="metric-label">Deaths</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">📈</div>
+                    <div class="metric-value" id="chiefdomIncidenceRate">95‰</div>
+                    <div class="metric-label">Incidence Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🔬</div>
+                    <div class="metric-value" id="chiefdomTestPositivity">22%</div>
+                    <div class="metric-label">Test Positivity</div>
                 </div>
 
-                <div class="overview-section">
-                    <div class="overview-section-header">
-                        <span class="icon">📈</span>
-                        Data Quality Metrics
-                    </div>
-                    <div class="charts-grid">
-                        <div class="chart-card">
-                            <div class="chart-title">Reporting Completeness</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,25 25,20 45,16 65,12 85,6" stroke="#00cc00"></polyline>
-                                        <circle class="line-point" cx="5" cy="25" fill="#00cc00"/>
-                                        <circle class="line-point" cx="25" cy="20" fill="#00cc00"/>
-                                        <circle class="line-point" cx="45" cy="16" fill="#00cc00"/>
-                                        <circle class="line-point" cx="65" cy="12" fill="#00cc00"/>
-                                        <circle class="line-point" cx="85" cy="6" fill="#00cc00"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Data Sources</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 25px;"></div>
-                                    <div class="bar" style="height: 18px;"></div>
-                                    <div class="bar" style="height: 12px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Weekly Trends</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,30 25,32 45,27 65,26 85,24"></polyline>
-                                        <circle class="line-point" cx="5" cy="30"/>
-                                        <circle class="line-point" cx="25" cy="32"/>
-                                        <circle class="line-point" cx="45" cy="27"/>
-                                        <circle class="line-point" cx="65" cy="26"/>
-                                        <circle class="line-point" cx="85" cy="24"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Regional Coverage</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 50px;"></div>
-                                    <div class="bar" style="height: 42px;"></div>
-                                    <div class="bar" style="height: 38px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 32px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Data Accuracy</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,32 25,27 45,21 65,15 85,8" stroke="#9900cc"></polyline>
-                                        <circle class="line-point" cx="5" cy="32" fill="#9900cc"/>
-                                        <circle class="line-point" cx="25" cy="27" fill="#9900cc"/>
-                                        <circle class="line-point" cx="45" cy="21" fill="#9900cc"/>
-                                        <circle class="line-point" cx="65" cy="15" fill="#9900cc"/>
-                                        <circle class="line-point" cx="85" cy="8" fill="#9900cc"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Alert Detection</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 20px;"></div>
-                                    <div class="bar" style="height: 30px;"></div>
-                                    <div class="bar" style="height: 18px;"></div>
-                                    <div class="bar" style="height: 35px;"></div>
-                                    <div class="bar" style="height: 25px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">System Performance</div>
-                            <div class="chart-area">
-                                <div class="line-chart">
-                                    <svg viewBox="0 0 100 40">
-                                        <polyline class="line-path" points="5,15 25,12 45,8 65,6 85,3" stroke="#ff6600"></polyline>
-                                        <circle class="line-point" cx="5" cy="15" fill="#ff6600"/>
-                                        <circle class="line-point" cx="25" cy="12" fill="#ff6600"/>
-                                        <circle class="line-point" cx="45" cy="8" fill="#ff6600"/>
-                                        <circle class="line-point" cx="65" cy="6" fill="#ff6600"/>
-                                        <circle class="line-point" cx="85" cy="3" fill="#ff6600"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-title">Mobile Collection</div>
-                            <div class="chart-area">
-                                <div class="bar-chart">
-                                    <div class="bar" style="height: 38px;"></div>
-                                    <div class="bar" style="height: 42px;"></div>
-                                    <div class="bar" style="height: 45px;"></div>
-                                    <div class="bar" style="height: 48px;"></div>
-                                    <div class="bar" style="height: 46px;"></div>
-                                </div>
-                            </div>
+                <!-- Row 2 -->
+                <div class="metric-card">
+                    <div class="metric-icon">👶</div>
+                    <div class="metric-value" id="chiefdomUnder5Cases">98</div>
+                    <div class="metric-label">Under-5 Cases</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">⚠️</div>
+                    <div class="metric-value" id="chiefdomSevereCases">25</div>
+                    <div class="metric-label">Severe Cases</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">💊</div>
+                    <div class="metric-value" id="chiefdomTreatmentSuccess">94%</div>
+                    <div class="metric-label">Treatment Success</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🛏️</div>
+                    <div class="metric-value" id="chiefdomLlinCoverage">78%</div>
+                    <div class="metric-label">LLIN Coverage</div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="metric-card">
+                    <div class="metric-icon">🏥</div>
+                    <div class="metric-value" id="chiefdomHealthFacilities">6</div>
+                    <div class="metric-label">Health Facilities</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">👥</div>
+                    <div class="metric-value" id="chiefdomChwsActive">12</div>
+                    <div class="metric-label">CHWs Active</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🔬</div>
+                    <div class="metric-value" id="chiefdomRdtStock">340</div>
+                    <div class="metric-label">RDT Stock</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">💊</div>
+                    <div class="metric-value" id="chiefdomActStock">290</div>
+                    <div class="metric-label">ACT Stock</div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-value" id="chiefdomReportingRate">91%</div>
+                    <div class="metric-label">Reporting Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">⏱️</div>
+                    <div class="metric-value" id="chiefdomTimeliness">87%</div>
+                    <div class="metric-label">Timeliness</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">💰</div>
+                    <div class="metric-value" id="chiefdomBudgetUtil">82%</div>
+                    <div class="metric-label">Budget Utilization</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">🚨</div>
+                    <div class="metric-value" id="chiefdomOutbreakAlerts">1</div>
+                    <div class="metric-label">Outbreak Alerts</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trends Dashboard - Charts Grid (4x2) -->
+        <div class="dashboard-view" id="trendsDashboard">
+            <div class="back-nav">
+                <button class="back-btn" onclick="showDistrictDashboard()">← Back to Metrics</button>
+            </div>
+            
+            <div class="trends-grid">
+                <!-- Top Row -->
+                <div class="trend-chart">
+                    <div class="chart-title">Monthly Cases Trend</div>
+                    <div class="trend-value">+12%</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <svg viewBox="0 0 300 150">
+                                <defs>
+                                    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#0066cc;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#0066cc;stop-opacity:0.05" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Grid lines -->
+                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
+                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
+                                <!-- Trend line -->
+                                <polyline class="line-path" points="60,110 90,95 120,105 150,85 180,75 210,80 240,65 270,55"/>
+                                <circle class="line-point" cx="60" cy="110"/>
+                                <circle class="line-point" cx="90" cy="95"/>
+                                <circle class="line-point" cx="120" cy="105"/>
+                                <circle class="line-point" cx="150" cy="85"/>
+                                <circle class="line-point" cx="180" cy="75"/>
+                                <circle class="line-point" cx="210" cy="80"/>
+                                <circle class="line-point" cx="240" cy="65"/>
+                                <circle class="line-point" cx="270" cy="55"/>
+                            </svg>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Case Management Page -->
-    <div class="page-container" id="case-managementPage">
-        <div class="back-nav">
-            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
-        </div>
-        <div class="overview-page">
-            <div class="overview-header">
-                <h1 class="overview-title">🏥 Case Management</h1>
-                <p class="overview-subtitle">Treatment Protocols and Clinical Guidelines</p>
-            </div>
-            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">Case Management Dashboard</h3>
-                <p style="color: #666; font-size: 1.1em;">Comprehensive treatment monitoring and clinical management systems.<br>Treatment outcomes, drug efficacy, and quality assurance metrics.</p>
-            </div>
-        </div>
-    </div>
+                <div class="trend-chart">
+                    <div class="chart-title">Incidence Rate</div>
+                    <div class="trend-value">-8%</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <svg viewBox="0 0 300 150">
+                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
+                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
+                                <polyline class="line-path" points="60,100 90,95 120,90 150,85 180,80 210,75 240,70 270,65"/>
+                                <circle class="line-point" cx="60" cy="100"/>
+                                <circle class="line-point" cx="90" cy="95"/>
+                                <circle class="line-point" cx="120" cy="90"/>
+                                <circle class="line-point" cx="150" cy="85"/>
+                                <circle class="line-point" cx="180" cy="80"/>
+                                <circle class="line-point" cx="210" cy="75"/>
+                                <circle class="line-point" cx="240" cy="70"/>
+                                <circle class="line-point" cx="270" cy="65"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Vector Control Page -->
-    <div class="page-container" id="vector-controlPage">
-        <div class="back-nav">
-            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
-        </div>
-        <div class="overview-page">
-            <div class="overview-header">
-                <h1 class="overview-title">🦟 Vector Control</h1>
-                <p class="overview-subtitle">Prevention Strategies and Intervention Monitoring</p>
-            </div>
-            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">Vector Control Dashboard</h3>
-                <p style="color: #666; font-size: 1.1em;">LLIN coverage, IRS implementation, resistance monitoring.<br>Comprehensive vector control intervention tracking and effectiveness.</p>
-            </div>
-        </div>
-    </div>
+                <div class="trend-chart">
+                    <div class="chart-title">Test Positivity Rate</div>
+                    <div class="trend-value">+3%</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <svg viewBox="0 0 300 150">
+                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
+                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
+                                <polyline class="line-path" points="60,85 90,90 120,85 150,95 180,100 210,95 240,105 270,110"/>
+                                <circle class="line-point" cx="60" cy="85"/>
+                                <circle class="line-point" cx="90" cy="90"/>
+                                <circle class="line-point" cx="120" cy="85"/>
+                                <circle class="line-point" cx="150" cy="95"/>
+                                <circle class="line-point" cx="180" cy="100"/>
+                                <circle class="line-point" cx="210" cy="95"/>
+                                <circle class="line-point" cx="240" cy="105"/>
+                                <circle class="line-point" cx="270" cy="110"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Monitoring & Evaluation Page -->
-    <div class="page-container" id="monitoringPage">
-        <div class="back-nav">
-            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
-        </div>
-        <div class="overview-page">
-            <div class="overview-header">
-                <h1 class="overview-title">📈 Monitoring & Evaluation</h1>
-                <p class="overview-subtitle">Performance Tracking and Impact Assessment</p>
-            </div>
-            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">M&E Dashboard</h3>
-                <p style="color: #666; font-size: 1.1em;">Key performance indicators, program impact assessment.<br>Real-time monitoring of targets and evaluation frameworks.</p>
-            </div>
-        </div>
-    </div>
+                <div class="trend-chart">
+                    <div class="chart-title">Weekly Deaths</div>
+                    <div class="trend-value">-5%</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <svg viewBox="0 0 300 150">
+                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
+                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
+                                <polyline class="line-path" points="60,90 90,85 120,95 150,80 180,75 210,85 240,70 270,65"/>
+                                <circle class="line-point" cx="60" cy="90"/>
+                                <circle class="line-point" cx="90" cy="85"/>
+                                <circle class="line-point" cx="120" cy="95"/>
+                                <circle class="line-point" cx="150" cy="80"/>
+                                <circle class="line-point" cx="180" cy="75"/>
+                                <circle class="line-point" cx="210" cy="85"/>
+                                <circle class="line-point" cx="240" cy="70"/>
+                                <circle class="line-point" cx="270" cy="65"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Strategic Planning Page -->
-    <div class="page-container" id="planningPage">
-        <div class="back-nav">
-            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
-        </div>
-        <div class="overview-page">
-            <div class="overview-header">
-                <h1 class="overview-title">📋 Strategic Planning</h1>
-                <p class="overview-subtitle">Action Plans and Implementation Roadmaps</p>
-            </div>
-            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">Strategic Planning Dashboard</h3>
-                <p style="color: #666; font-size: 1.1em;">National strategy implementation, budget allocation.<br>Resource planning and strategic decision support tools.</p>
-            </div>
-        </div>
-    </div>
+                <!-- Bottom Row -->
+                <div class="trend-chart">
+                    <div class="chart-title">Under-5 Cases</div>
+                    <div class="trend-value">+15%</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <svg viewBox="0 0 300 150">
+                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
+                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
+                                <polyline class="line-path" points="60,105 90,100 120,110 150,95 180,85 210,90 240,75 270,70"/>
+                                <circle class="line-point" cx="60" cy="105"/>
+                                <circle class="line-point" cx="90" cy="100"/>
+                                <circle class="line-point" cx="120" cy="110"/>
+                                <circle class="line-point" cx="150" cy="95"/>
+                                <circle class="line-point" cx="180" cy="85"/>
+                                <circle class="line-point" cx="210" cy="90"/>
+                                <circle class="line-point" cx="240" cy="75"/>
+                                <circle class="line-point" cx="270" cy="70"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Resources Page -->
-    <div class="page-container" id="resourcesPage">
-        <div class="back-nav">
-            <button class="back-nav-btn" onclick="backToMain()">← Back to Main Dashboard</button>
-        </div>
-        <div class="overview-page">
-            <div class="overview-header">
-                <h1 class="overview-title">📚 Resources & Guidelines</h1>
-                <p class="overview-subtitle">Documents, Training Materials and References</p>
-            </div>
-            <div style="text-align: center; padding: 60px; background: rgba(0, 102, 204, 0.05); border-radius: 15px;">
-                <h3 style="color: #0066cc; margin-bottom: 20px;">Resources Dashboard</h3>
-                <p style="color: #666; font-size: 1.1em;">Policy documents, training materials, technical reports.<br>Comprehensive resource library for program implementation.</p>
-            </div>
-        </div>
-    </div>
+                <div class="trend-chart">
+                    <div class="chart-title">Treatment Success Rate</div>
+                    <div class="trend-value">+7%</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <svg viewBox="0 0 300 150">
+                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
+                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
+                                <polyline class="line-path" points="60,95 90,90 120,85 150,80 180,75 210,70 240,65 270,60"/>
+                                <circle class="line-point" cx="60" cy="95"/>
+                                <circle class="line-point" cx="90" cy="90"/>
+                                <circle class="line-point" cx="120" cy="85"/>
+                                <circle class="line-point" cx="150" cy="80"/>
+                                <circle class="line-point" cx="180" cy="75"/>
+                                <circle class="line-point" cx="210" cy="70"/>
+                                <circle class="line-point" cx="240" cy="65"/>
+                                <circle class="line-point" cx="270" cy="60"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Detail View Overlays -->
-    <div id="detail-population-risk" class="detail-view">
-        <div class="detail-content">
-            <div class="detail-header">
-                <div class="detail-title">👥 Population at Risk Analysis</div>
-                <button class="close-btn" onclick="closeDetail()">&times;</button>
-            </div>
-            
-            <div class="detail-stat">
-                <div class="detail-stat-number">2.1M</div>
-                <div class="detail-stat-label">Total Population at Risk of Malaria</div>
-            </div>
+                <div class="trend-chart">
+                    <div class="chart-title">LLIN Coverage</div>
+                    <div class="trend-value">+2%</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <svg viewBox="0 0 300 150">
+                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
+                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
+                                <polyline class="line-path" points="60,90 90,88 120,92 150,85 180,82 210,80 240,78 270,75"/>
+                                <circle class="line-point" cx="60" cy="90"/>
+                                <circle class="line-point" cx="90" cy="88"/>
+                                <circle class="line-point" cx="120" cy="92"/>
+                                <circle class="line-point" cx="150" cy="85"/>
+                                <circle class="line-point" cx="180" cy="82"/>
+                                <circle class="line-point" cx="210" cy="80"/>
+                                <circle class="line-point" cx="240" cy="78"/>
+                                <circle class="line-point" cx="270" cy="75"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="detail-grid">
-                <div class="detail-card">
-                    <h4 style="color: #0066cc; margin-bottom: 15px;">📊 Demographic Breakdown</h4>
-                    <ul class="detail-list">
-                        <li><strong>Children under 5:</strong> 420,000 (20%)</li>
-                        <li><strong>Children 5-14 years:</strong> 525,000 (25%)</li>
-                        <li><strong>Adults 15-49 years:</strong> 1,050,000 (50%)</li>
-                        <li><strong>Adults 50+ years:</strong> 105,000 (5%)</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #ff6600; margin-bottom: 15px;">🌍 Geographic Distribution</h4>
-                    <ul class="detail-list">
-                        <li><strong>Northern Region:</strong> 840,000 (40%)</li>
-                        <li><strong>Eastern Region:</strong> 630,000 (30%)</li>
-                        <li><strong>Western Region:</strong> 420,000 (20%)</li>
-                        <li><strong>Southern Region:</strong> 210,000 (10%)</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #00cc00; margin-bottom: 15px;">🏠 Settlement Type</h4>
-                    <ul class="detail-list">
-                        <li><strong>Rural areas:</strong> 1,638,000 (78%)</li>
-                        <li><strong>Peri-urban:</strong> 315,000 (15%)</li>
-                        <li><strong>Urban areas:</strong> 147,000 (7%)</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #9900cc; margin-bottom: 15px;">⚠️ Risk Categories</h4>
-                    <ul class="detail-list">
-                        <li><strong>High risk:</strong> 1,260,000 (60%)</li>
-                        <li><strong>Moderate risk:</strong> 630,000 (30%)</li>
-                        <li><strong>Low risk:</strong> 210,000 (10%)</li>
-                    </ul>
+                <div class="trend-chart">
+                    <div class="chart-title">Stock Availability</div>
+                    <div class="trend-value">-4%</div>
+                    <div class="chart-container">
+                        <div class="line-chart">
+                            <svg viewBox="0 0 300 150">
+                                <line x1="50" y1="20" x2="50" y2="130" class="chart-axis"/>
+                                <line x1="50" y1="130" x2="280" y2="130" class="chart-axis"/>
+                                <polyline class="line-path" points="60,70 90,75 120,80 150,85 180,90 210,95 240,100 270,105"/>
+                                <circle class="line-point" cx="60" cy="70"/>
+                                <circle class="line-point" cx="90" cy="75"/>
+                                <circle class="line-point" cx="120" cy="80"/>
+                                <circle class="line-point" cx="150" cy="85"/>
+                                <circle class="line-point" cx="180" cy="90"/>
+                                <circle class="line-point" cx="210" cy="95"/>
+                                <circle class="line-point" cx="240" cy="100"/>
+                                <circle class="line-point" cx="270" cy="105"/>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <button class="back-btn" onclick="closeDetail()">← Back to Dashboard</button>
-        </div>
-    </div>
-
-    <div id="detail-cases-year" class="detail-view">
-        <div class="detail-content">
-            <div class="detail-header">
-                <div class="detail-title">🤒 Cases This Year Analysis</div>
-                <button class="close-btn" onclick="closeDetail()">&times;</button>
-            </div>
-            
-            <div class="detail-stat">
-                <div class="detail-stat-number">15,234</div>
-                <div class="detail-stat-label">Confirmed Malaria Cases in 2024</div>
-            </div>
-
-            <div class="detail-grid">
-                <div class="detail-card">
-                    <h4 style="color: #0066cc; margin-bottom: 15px;">📈 Monthly Trends</h4>
-                    <ul class="detail-list">
-                        <li><strong>Jan-Mar:</strong> 2,845 cases (Low season)</li>
-                        <li><strong>Apr-Jun:</strong> 4,156 cases (Rising)</li>
-                        <li><strong>Jul-Sep:</strong> 5,892 cases (Peak season)</li>
-                        <li><strong>Oct-Dec:</strong> 2,341 cases (Declining)</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #ff6600; margin-bottom: 15px;">👶 Age Distribution</h4>
-                    <ul class="detail-list">
-                        <li><strong>Under 5 years:</strong> 6,855 cases (45%)</li>
-                        <li><strong>5-14 years:</strong> 3,047 cases (20%)</li>
-                        <li><strong>15-49 years:</strong> 4,570 cases (30%)</li>
-                        <li><strong>50+ years:</strong> 762 cases (5%)</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #00cc00; margin-bottom: 15px;">🔬 Case Types</h4>
-                    <ul class="detail-list">
-                        <li><strong>Uncomplicated:</strong> 13,406 cases (88%)</li>
-                        <li><strong>Severe malaria:</strong> 1,828 cases (12%)</li>
-                        <li><strong>Cerebral malaria:</strong> 152 cases (1%)</li>
-                        <li><strong>Deaths:</strong> 98 cases (0.6%)</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #9900cc; margin-bottom: 15px;">📍 District Breakdown</h4>
-                    <ul class="detail-list">
-                        <li><strong>Top 5 districts:</strong> 8,234 cases (54%)</li>
-                        <li><strong>Moderate burden:</strong> 4,567 cases (30%)</li>
-                        <li><strong>Low burden:</strong> 2,433 cases (16%)</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <button class="back-btn" onclick="closeDetail()">← Back to Dashboard</button>
-        </div>
-    </div>
-
-    <div id="detail-treatment-success" class="detail-view">
-        <div class="detail-content">
-            <div class="detail-header">
-                <div class="detail-title">💊 Treatment Success Analysis</div>
-                <button class="close-btn" onclick="closeDetail()">&times;</button>
-            </div>
-            
-            <div class="detail-stat">
-                <div class="detail-stat-number">89%</div>
-                <div class="detail-stat-label">Overall Treatment Success Rate</div>
-            </div>
-
-            <div class="detail-grid">
-                <div class="detail-card">
-                    <h4 style="color: #0066cc; margin-bottom: 15px;">💊 Treatment Outcomes</h4>
-                    <ul class="detail-list">
-                        <li><strong>Cured:</strong> 13,558 patients (89%)</li>
-                        <li><strong>Treatment completed:</strong> 762 patients (5%)</li>
-                        <li><strong>Treatment failure:</strong> 320 patients (2.1%)</li>
-                        <li><strong>Lost to follow-up:</strong> 594 patients (3.9%)</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #ff6600; margin-bottom: 15px;">🏥 By Treatment Type</h4>
-                    <ul class="detail-list">
-                        <li><strong>ACT (Artemether-Lumefantrine):</strong> 91% success</li>
-                        <li><strong>Severe malaria treatment:</strong> 78% success</li>
-                        <li><strong>Artesunate monotherapy:</strong> 94% success</li>
-                        <li><strong>Quinine (severe cases):</strong> 72% success</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #00cc00; margin-bottom: 15px;">👶 Age-Specific Success</h4>
-                    <ul class="detail-list">
-                        <li><strong>Under 5 years:</strong> 87% success rate</li>
-                        <li><strong>5-14 years:</strong> 92% success rate</li>
-                        <li><strong>15-49 years:</strong> 91% success rate</li>
-                        <li><strong>50+ years:</strong> 85% success rate</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #9900cc; margin-bottom: 15px;">⏱️ Time to Recovery</h4>
-                    <ul class="detail-list">
-                        <li><strong>Fever clearance:</strong> 24-48 hours average</li>
-                        <li><strong>Parasite clearance:</strong> 3-5 days average</li>
-                        <li><strong>Complete recovery:</strong> 7-14 days average</li>
-                        <li><strong>Follow-up completion:</strong> 28 days</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <button class="back-btn" onclick="closeDetail()">← Back to Dashboard</button>
-        </div>
-    </div>
-
-    <div id="detail-llin-coverage" class="detail-view">
-        <div class="detail-content">
-            <div class="detail-header">
-                <div class="detail-title">🛏️ LLIN Coverage Analysis</div>
-                <button class="close-btn" onclick="closeDetail()">&times;</button>
-            </div>
-            
-            <div class="detail-stat">
-                <div class="detail-stat-number">67%</div>
-                <div class="detail-stat-label">Household LLIN Ownership Rate</div>
-            </div>
-
-            <div class="detail-grid">
-                <div class="detail-card">
-                    <h4 style="color: #0066cc; margin-bottom: 15px;">🏠 Coverage Metrics</h4>
-                    <ul class="detail-list">
-                        <li><strong>Household ownership:</strong> 67% (target: >80%)</li>
-                        <li><strong>Population access:</strong> 52% (target: >80%)</li>
-                        <li><strong>Usage rate:</strong> 78% of owned nets</li>
-                        <li><strong>Year-round usage:</strong> 65% consistent use</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #ff6600; margin-bottom: 15px;">📊 Regional Variations</h4>
-                    <ul class="detail-list">
-                        <li><strong>Northern Region:</strong> 72% coverage</li>
-                        <li><strong>Eastern Region:</strong> 69% coverage</li>
-                        <li><strong>Western Region:</strong> 65% coverage</li>
-                        <li><strong>Southern Region:</strong> 61% coverage</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #00cc00; margin-bottom: 15px;">🌟 Net Condition</h4>
-                    <ul class="detail-list">
-                        <li><strong>Good condition:</strong> 84% of nets serviceable</li>
-                        <li><strong>Minor damage:</strong> 12% repairable nets</li>
-                        <li><strong>Major damage:</strong> 4% need replacement</li>
-                        <li><strong>Average age:</strong> 2.3 years</li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card">
-                    <h4 style="color: #9900cc; margin-bottom: 15px;">🎯 Distribution Strategy</h4>
-                    <ul class="detail-list">
-                        <li><strong>Mass campaigns:</strong> 78% of nets distributed</li>
-                        <li><strong>Routine distribution:</strong> 15% (ANC/EPI)</li>
-                        <li><strong>School-based:</strong> 5% distribution</li>
-                        <li><strong>Community-based:</strong> 2% distribution</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <button class="back-btn" onclick="closeDetail()">← Back to Dashboard</button>
         </div>
     </div>
 
     <script>
-        function navigateToPage(pageId) {
-            // Update active tab
-            document.querySelectorAll('.main-tab-card').forEach(card => {
-                card.classList.remove('active');
-            });
-            event.target.closest('.main-tab-card').classList.add('active');
-            
-            // Hide main dashboard
-            document.getElementById('mainDashboard').classList.add('hidden');
-            
-            // Hide header
-            document.getElementById('mainHeader').style.display = 'none';
-            
-            // Hide all pages first
-            document.querySelectorAll('.page-container').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show the selected page
-            const targetPage = document.getElementById(pageId + 'Page');
-            if (targetPage) {
-                targetPage.classList.add('active');
+        // Global variables to track current state
+        let currentDistrict = '';
+        let currentDistrictName = '';
+        let currentMetric = '';
+        let currentMetricName = '';
+        let currentChiefdom = '';
+        let currentChiefdomName = '';
+
+        // District data for dynamic updates - Sierra Leone Districts
+        const districtData = {
+            'bo': { totalCases: 2345, totalDeaths: 28, incidenceRate: '118‰', testPositivity: '23%', under5Cases: 1055, severeCases: 281, treatmentSuccess: '86%', llinCoverage: '64%', healthFacilities: 56, chwsActive: 174, rdtStock: 3200, actStock: 2670, reportingRate: '85%', timeliness: '81%', budgetUtil: '75%', outbreakAlerts: 6 },
+            'bombali': { totalCases: 1856, totalDeaths: 18, incidenceRate: '95‰', testPositivity: '20%', under5Cases: 835, severeCases: 223, treatmentSuccess: '91%', llinCoverage: '71%', healthFacilities: 52, chwsActive: 156, rdtStock: 2890, actStock: 2340, reportingRate: '88%', timeliness: '85%', budgetUtil: '79%', outbreakAlerts: 4 },
+            'bonthe': { totalCases: 1234, totalDeaths: 12, incidenceRate: '85‰', testPositivity: '18%', under5Cases: 555, severeCases: 148, treatmentSuccess: '92%', llinCoverage: '74%', healthFacilities: 45, chwsActive: 128, rdtStock: 2340, actStock: 1890, reportingRate: '89%', timeliness: '84%', budgetUtil: '76%', outbreakAlerts: 3 },
+            'falaba': { totalCases: 1567, totalDeaths: 19, incidenceRate: '102‰', testPositivity: '22%', under5Cases: 706, severeCases: 188, treatmentSuccess: '89%', llinCoverage: '68%', healthFacilities: 48, chwsActive: 145, rdtStock: 2650, actStock: 2200, reportingRate: '86%', timeliness: '83%', budgetUtil: '78%', outbreakAlerts: 5 },
+            'kailahun': { totalCases: 2134, totalDeaths: 25, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 960, severeCases: 256, treatmentSuccess: '89%', llinCoverage: '67%', healthFacilities: 54, chwsActive: 163, rdtStock: 2980, actStock: 2480, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 5 },
+            'kambia': { totalCases: 1456, totalDeaths: 14, incidenceRate: '75‰', testPositivity: '16%', under5Cases: 655, severeCases: 175, treatmentSuccess: '92%', llinCoverage: '73%', healthFacilities: 39, chwsActive: 125, rdtStock: 2340, actStock: 1950, reportingRate: '90%', timeliness: '87%', budgetUtil: '81%', outbreakAlerts: 2 },
+            'karene': { totalCases: 1789, totalDeaths: 17, incidenceRate: '89‰', testPositivity: '18%', under5Cases: 805, severeCases: 215, treatmentSuccess: '91%', llinCoverage: '72%', healthFacilities: 46, chwsActive: 142, rdtStock: 2650, actStock: 2200, reportingRate: '88%', timeliness: '85%', budgetUtil: '79%', outbreakAlerts: 3 },
+            'kenema': { totalCases: 2567, totalDeaths: 31, incidenceRate: '122‰', testPositivity: '24%', under5Cases: 1155, severeCases: 308, treatmentSuccess: '87%', llinCoverage: '65%', healthFacilities: 61, chwsActive: 181, rdtStock: 3350, actStock: 2790, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 6 },
+            'koinadugu': { totalCases: 1345, totalDeaths: 16, incidenceRate: '82‰', testPositivity: '17%', under5Cases: 605, severeCases: 161, treatmentSuccess: '93%', llinCoverage: '75%', healthFacilities: 42, chwsActive: 118, rdtStock: 2200, actStock: 1850, reportingRate: '91%', timeliness: '88%', budgetUtil: '82%', outbreakAlerts: 2 },
+            'kono': { totalCases: 1923, totalDeaths: 23, incidenceRate: '98‰', testPositivity: '19%', under5Cases: 865, severeCases: 231, treatmentSuccess: '90%', llinCoverage: '69%', healthFacilities: 48, chwsActive: 145, rdtStock: 2780, actStock: 2290, reportingRate: '89%', timeliness: '86%', budgetUtil: '80%', outbreakAlerts: 4 },
+            'moyamba': { totalCases: 1678, totalDeaths: 20, incidenceRate: '92‰', testPositivity: '19%', under5Cases: 755, severeCases: 201, treatmentSuccess: '90%', llinCoverage: '70%', healthFacilities: 47, chwsActive: 138, rdtStock: 2550, actStock: 2125, reportingRate: '88%', timeliness: '85%', budgetUtil: '79%', outbreakAlerts: 4 },
+            'port-loko': { totalCases: 2234, totalDeaths: 27, incidenceRate: '115‰', testPositivity: '23%', under5Cases: 1005, severeCases: 268, treatmentSuccess: '87%', llinCoverage: '66%', healthFacilities: 58, chwsActive: 167, rdtStock: 3100, actStock: 2580, reportingRate: '86%', timeliness: '82%', budgetUtil: '77%', outbreakAlerts: 6 },
+            'pujehun': { totalCases: 1456, totalDeaths: 18, incidenceRate: '88‰', testPositivity: '18%', under5Cases: 655, severeCases: 175, treatmentSuccess: '91%', llinCoverage: '72%', healthFacilities: 44, chwsActive: 132, rdtStock: 2400, actStock: 2000, reportingRate: '89%', timeliness: '86%', budgetUtil: '80%', outbreakAlerts: 3 },
+            'tonkolili': { totalCases: 2789, totalDeaths: 34, incidenceRate: '125‰', testPositivity: '24%', under5Cases: 1255, severeCases: 334, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 62, chwsActive: 189, rdtStock: 3450, actStock: 2890, reportingRate: '87%', timeliness: '83%', budgetUtil: '78%', outbreakAlerts: 7 },
+            'western-rural': { totalCases: 987, totalDeaths: 8, incidenceRate: '65‰', testPositivity: '14%', under5Cases: 444, severeCases: 118, treatmentSuccess: '95%', llinCoverage: '82%', healthFacilities: 32, chwsActive: 89, rdtStock: 1890, actStock: 1560, reportingRate: '94%', timeliness: '91%', budgetUtil: '86%', outbreakAlerts: 1 },
+            'western-urban': { totalCases: 3456, totalDeaths: 42, incidenceRate: '145‰', testPositivity: '28%', under5Cases: 1555, severeCases: 414, treatmentSuccess: '85%', llinCoverage: '62%', healthFacilities: 73, chwsActive: 212, rdtStock: 4200, actStock: 3450, reportingRate: '84%', timeliness: '80%', budgetUtil: '74%', outbreakAlerts: 8 }
+        };
+
+        // Comprehensive chiefdom data structure from Excel file
+        const chiefdomData = {
+            'kailahun': {
+                'dea': { name: 'DEA', totalCases: 142, totalDeaths: 2, incidenceRate: '98‰', testPositivity: '19%', under5Cases: 65, severeCases: 17, treatmentSuccess: '91%', llinCoverage: '68%', healthFacilities: 3, chwsActive: 8, rdtStock: 185, actStock: 155, reportingRate: '88%', timeliness: '85%', budgetUtil: '78%', outbreakAlerts: 0 },
+                'jahn': { name: 'JAHN', totalCases: 178, totalDeaths: 3, incidenceRate: '112‰', testPositivity: '22%', under5Cases: 82, severeCases: 21, treatmentSuccess: '89%', llinCoverage: '65%', healthFacilities: 4, chwsActive: 12, rdtStock: 220, actStock: 185, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 1 },
+                'jawie': { name: 'JAWIE', totalCases: 156, totalDeaths: 2, incidenceRate: '105‰', testPositivity: '20%', under5Cases: 71, severeCases: 19, treatmentSuccess: '90%', llinCoverage: '67%', healthFacilities: 3, chwsActive: 10, rdtStock: 195, actStock: 165, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
+                'kissi-kama': { name: 'KISSI KAMA', totalCases: 134, totalDeaths: 1, incidenceRate: '92‰', testPositivity: '18%', under5Cases: 58, severeCases: 15, treatmentSuccess: '92%', llinCoverage: '70%', healthFacilities: 3, chwsActive: 9, rdtStock: 175, actStock: 145, reportingRate: '89%', timeliness: '86%', budgetUtil: '79%', outbreakAlerts: 0 },
+                'kissi-teng': { name: 'KISSI TENG', totalCases: 165, totalDeaths: 2, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 76, severeCases: 20, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 4, chwsActive: 11, rdtStock: 205, actStock: 175, reportingRate: '85%', timeliness: '82%', budgetUtil: '75%', outbreakAlerts: 1 }
+            },
+            'kenema': {
+                'dama': { name: 'DAMA', totalCases: 189, totalDeaths: 3, incidenceRate: '125‰', testPositivity: '25%', under5Cases: 89, severeCases: 24, treatmentSuccess: '86%', llinCoverage: '63%', healthFacilities: 4, chwsActive: 13, rdtStock: 235, actStock: 195, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 1 },
+                'dodo': { name: 'DODO', totalCases: 167, totalDeaths: 2, incidenceRate: '118‰', testPositivity: '23%', under5Cases: 78, severeCases: 21, treatmentSuccess: '87%', llinCoverage: '64%', healthFacilities: 3, chwsActive: 11, rdtStock: 210, actStock: 175, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
+                'gaura': { name: 'GAURA', totalCases: 145, totalDeaths: 2, incidenceRate: '110‰', testPositivity: '22%', under5Cases: 67, severeCases: 18, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 3, chwsActive: 10, rdtStock: 185, actStock: 155, reportingRate: '88%', timeliness: '85%', budgetUtil: '78%', outbreakAlerts: 0 },
+                'kenema-city': { name: 'KENEMA CITY', totalCases: 298, totalDeaths: 5, incidenceRate: '142‰', testPositivity: '27%', under5Cases: 134, severeCases: 38, treatmentSuccess: '84%', llinCoverage: '59%', healthFacilities: 8, chwsActive: 18, rdtStock: 365, actStock: 315, reportingRate: '85%', timeliness: '82%', budgetUtil: '74%', outbreakAlerts: 2 }
+            },
+            'bo': {
+                'badjia': { name: 'BADJIA', totalCases: 158, totalDeaths: 2, incidenceRate: '115‰', testPositivity: '22%', under5Cases: 72, severeCases: 19, treatmentSuccess: '87%', llinCoverage: '65%', healthFacilities: 3, chwsActive: 11, rdtStock: 195, actStock: 165, reportingRate: '86%', timeliness: '83%', budgetUtil: '76%', outbreakAlerts: 0 },
+                'bagbo': { name: 'BAGBO', totalCases: 142, totalDeaths: 2, incidenceRate: '108‰', testPositivity: '21%', under5Cases: 65, severeCases: 17, treatmentSuccess: '88%', llinCoverage: '66%', healthFacilities: 3, chwsActive: 9, rdtStock: 175, actStock: 145, reportingRate: '87%', timeliness: '84%', budgetUtil: '77%', outbreakAlerts: 0 },
+                'bo-town': { name: 'BO TOWN', totalCases: 276, totalDeaths: 4, incidenceRate: '135‰', testPositivity: '26%', under5Cases: 125, severeCases: 35, treatmentSuccess: '85%', llinCoverage: '61%', healthFacilities: 7, chwsActive: 16, rdtStock: 340, actStock: 285, reportingRate: '84%', timeliness: '81%', budgetUtil: '73%', outbreakAlerts: 2 }
+            },
+            'western-urban': {
+                'central-i': { name: 'CENTRAL I', totalCases: 425, totalDeaths: 6, incidenceRate: '152‰', testPositivity: '29%', under5Cases: 189, severeCases: 54, treatmentSuccess: '83%', llinCoverage: '58%', healthFacilities: 9, chwsActive: 22, rdtStock: 520, actStock: 435, reportingRate: '82%', timeliness: '78%', budgetUtil: '71%', outbreakAlerts: 2 },
+                'central-ii': { name: 'CENTRAL II', totalCases: 398, totalDeaths: 5, incidenceRate: '148‰', testPositivity: '28%', under5Cases: 178, severeCases: 51, treatmentSuccess: '84%', llinCoverage: '59%', healthFacilities: 8, chwsActive: 20, rdtStock: 485, actStock: 405, reportingRate: '83%', timeliness: '79%', budgetUtil: '72%', outbreakAlerts: 1 },
+                'east-i': { name: 'EAST I', totalCases: 456, totalDeaths: 7, incidenceRate: '158‰', testPositivity: '31%', under5Cases: 205, severeCases: 58, treatmentSuccess: '82%', llinCoverage: '57%', healthFacilities: 10, chwsActive: 24, rdtStock: 560, actStock: 470, reportingRate: '81%', timeliness: '77%', budgetUtil: '70%', outbreakAlerts: 3 }
+            },
+            'western-rural': {
+                'koya-rural': { name: 'KOYA RURAL', totalCases: 245, totalDeaths: 2, incidenceRate: '68‰', testPositivity: '15%', under5Cases: 108, severeCases: 28, treatmentSuccess: '94%', llinCoverage: '81%', healthFacilities: 8, chwsActive: 22, rdtStock: 470, actStock: 390, reportingRate: '93%', timeliness: '90%', budgetUtil: '85%', outbreakAlerts: 0 },
+                'mountain-rural': { name: 'MOUNTAIN RURAL', totalCases: 198, totalDeaths: 1, incidenceRate: '62‰', testPositivity: '13%', under5Cases: 89, severeCases: 23, treatmentSuccess: '95%', llinCoverage: '83%', healthFacilities: 6, chwsActive: 18, rdtStock: 385, actStock: 325, reportingRate: '94%', timeliness: '91%', budgetUtil: '86%', outbreakAlerts: 0 }
             }
+        };
+
+        function generateChiefdomIcon() {
+            const icons = ['🏘️', '🌿', '🏞️', '🌾', '🏛️', '🏡', '🌳', '🏕️'];
+            return icons[Math.floor(Math.random() * icons.length)];
         }
 
-        function backToMain() {
+        function updateBreadcrumb() {
+            const breadcrumb = document.getElementById('breadcrumb');
+            let content = '<span onclick="showMainDashboard()">Home</span>';
+            
+            if (currentDistrict) {
+                content += ` > <span onclick="showDistrictDashboard('${currentDistrict}', '${currentDistrictName}')">${currentDistrictName}</span>`;
+            }
+            
+            if (currentChiefdom) {
+                content += ` > <span onclick="showChiefdomsDashboard()">Chiefdoms</span>`;
+                content += ` > <span>${currentChiefdomName}</span>`;
+            } else if (currentMetric) {
+                content += ` > <span>${currentMetricName}</span>`;
+            }
+            
+            breadcrumb.innerHTML = content;
+        }
+
+        function showMainDashboard() {
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
             // Show main dashboard
-            document.getElementById('mainDashboard').classList.remove('hidden');
+            document.getElementById('mainDashboard').classList.add('active');
             
-            // Show header
-            document.getElementById('mainHeader').style.display = 'block';
+            // Reset state
+            currentDistrict = '';
+            currentDistrictName = '';
+            currentMetric = '';
+            currentMetricName = '';
+            currentChiefdom = '';
+            currentChiefdomName = '';
             
-            // Hide all pages
-            document.querySelectorAll('.page-container').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Reset active tab to overview
-            document.querySelectorAll('.main-tab-card').forEach(card => {
-                card.classList.remove('active');
-            });
-            document.querySelector('.main-tab-card').classList.add('active');
+            updateBreadcrumb();
         }
 
-        function showDetail(detailId) {
-            const detailView = document.getElementById('detail-' + detailId);
-            if (detailView) {
-                detailView.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+        function showDistrictDashboard(districtId, districtName) {
+            // Update current state
+            currentDistrict = districtId || currentDistrict;
+            currentDistrictName = districtName || currentDistrictName;
+            currentMetric = '';
+            currentMetricName = '';
+            currentChiefdom = '';
+            currentChiefdomName = '';
+            
+            // Update metrics with district data
+            if (districtData[currentDistrict]) {
+                const data = districtData[currentDistrict];
+                document.getElementById('totalCases').textContent = data.totalCases.toLocaleString();
+                document.getElementById('totalDeaths').textContent = data.totalDeaths;
+                document.getElementById('incidenceRate').textContent = data.incidenceRate;
+                document.getElementById('testPositivity').textContent = data.testPositivity;
+                document.getElementById('under5Cases').textContent = data.under5Cases.toLocaleString();
+                document.getElementById('severeCases').textContent = data.severeCases;
+                document.getElementById('treatmentSuccess').textContent = data.treatmentSuccess;
+                document.getElementById('llinCoverage').textContent = data.llinCoverage;
+                document.getElementById('healthFacilities').textContent = data.healthFacilities;
+                document.getElementById('chwsActive').textContent = data.chwsActive;
+                document.getElementById('rdtStock').textContent = data.rdtStock.toLocaleString();
+                document.getElementById('actStock').textContent = data.actStock.toLocaleString();
+                document.getElementById('reportingRate').textContent = data.reportingRate;
+                document.getElementById('timeliness').textContent = data.timeliness;
+                document.getElementById('budgetUtil').textContent = data.budgetUtil;
+                document.getElementById('outbreakAlerts').textContent = data.outbreakAlerts;
+            }
+            
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Show district dashboard
+            document.getElementById('districtDashboard').classList.add('active');
+            
+            updateBreadcrumb();
+        }
+
+        function showChiefdomsDashboard() {
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Show chiefdoms dashboard
+            document.getElementById('chiefdomsDashboard').classList.add('active');
+            
+            // Load chiefdoms for current district
+            loadChiefomsForDistrict();
+            
+            updateBreadcrumb();
+        }
+
+        function loadChiefomsForDistrict() {
+            const chiefomsGrid = document.getElementById('chiefomsGrid');
+            chiefomsGrid.innerHTML = '';
+            
+            if (chiefdomData[currentDistrict]) {
+                const chiefdoms = chiefdomData[currentDistrict];
+                
+                Object.keys(chiefdoms).forEach(chiefdomKey => {
+                    const chiefdom = chiefdoms[chiefdomKey];
+                    const chiefdomCard = document.createElement('div');
+                    chiefdomCard.className = 'chiefdom-card';
+                    chiefdomCard.onclick = () => showChiefdomDetail(chiefdomKey, chiefdom.name);
+                    
+                    chiefdomCard.innerHTML = `
+                        <div class="chiefdom-icon">${generateChiefdomIcon()}</div>
+                        <div class="chiefdom-name">${chiefdom.name}</div>
+                        <div class="cases-count chiefdom-cases">${chiefdom.totalCases}</div>
+                        <div class="chiefdom-stats">Cases this month<br>${chiefdom.healthFacilities} Health Facilities</div>
+                    `;
+                    
+                    chiefomsGrid.appendChild(chiefdomCard);
+                });
             }
         }
 
-        function closeDetail() {
-            document.querySelectorAll('.detail-view').forEach(view => {
-                view.style.display = 'none';
+        function showChiefdomDetail(chiefdomId, chiefdomName) {
+            // Update current state
+            currentChiefdom = chiefdomId;
+            currentChiefdomName = chiefdomName;
+            
+            // Update chiefdom metrics
+            if (chiefdomData[currentDistrict] && chiefdomData[currentDistrict][currentChiefdom]) {
+                const data = chiefdomData[currentDistrict][currentChiefdom];
+                document.getElementById('chiefdomTotalCases').textContent = data.totalCases.toLocaleString();
+                document.getElementById('chiefdomTotalDeaths').textContent = data.totalDeaths;
+                document.getElementById('chiefdomIncidenceRate').textContent = data.incidenceRate;
+                document.getElementById('chiefdomTestPositivity').textContent = data.testPositivity;
+                document.getElementById('chiefdomUnder5Cases').textContent = data.under5Cases.toLocaleString();
+                document.getElementById('chiefdomSevereCases').textContent = data.severeCases;
+                document.getElementById('chiefdomTreatmentSuccess').textContent = data.treatmentSuccess;
+                document.getElementById('chiefdomLlinCoverage').textContent = data.llinCoverage;
+                document.getElementById('chiefdomHealthFacilities').textContent = data.healthFacilities;
+                document.getElementById('chiefdomChwsActive').textContent = data.chwsActive;
+                document.getElementById('chiefdomRdtStock').textContent = data.rdtStock.toLocaleString();
+                document.getElementById('chiefdomActStock').textContent = data.actStock.toLocaleString();
+                document.getElementById('chiefdomReportingRate').textContent = data.reportingRate;
+                document.getElementById('chiefdomTimeliness').textContent = data.timeliness;
+                document.getElementById('chiefdomBudgetUtil').textContent = data.budgetUtil;
+                document.getElementById('chiefdomOutbreakAlerts').textContent = data.outbreakAlerts;
+            }
+            
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
             });
-            document.body.style.overflow = 'auto';
+            
+            // Show chiefdom detail dashboard
+            document.getElementById('chiefdomDetailDashboard').classList.add('active');
+            
+            updateBreadcrumb();
         }
 
-        // Close detail view when clicking outside content
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('detail-view')) {
-                closeDetail();
-            }
-        });
-
-        // Close detail view with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeDetail();
-            }
-        });
+        function showTrendsDashboard(metricId, metricName) {
+            // Update current state
+            currentMetric = metricId;
+            currentMetricName = metricName;
+            
+            // Hide all views
+            document.querySelectorAll('.dashboard-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Show trends dashboard
+            document.getElementById('trendsDashboard').classList.add('active');
+            
+            updateBreadcrumb();
+        }
 
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Malaria Program Review Dashboard loaded successfully');
+            updateBreadcrumb();
+            console.log('District Malaria Dashboard with Chiefdoms loaded successfully');
+        });
+
+        // Add some animation effects
+        document.addEventListener('click', function(event) {
+            if (event.target.closest('.district-card') || event.target.closest('.metric-card') || event.target.closest('.chiefdom-card')) {
+                const card = event.target.closest('.district-card') || event.target.closest('.metric-card') || event.target.closest('.chiefdom-card');
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+            }
         });
     </script>
 </body>
